@@ -14,7 +14,7 @@ else
 end
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/opt/app/blacklight/dwexp/dwexp"
+set :deploy_to, "/opt/app/dwexp/dwexp"
 
 set :rails_env, 'production'
 # Default value for :format is :airbrussh.
