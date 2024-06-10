@@ -77,6 +77,7 @@ gem "rsolr", ">= 1.0", "< 3"
 gem "bootstrap", "\~\>\ 5.1"
 gem "sassc-rails", "~> 2.1"
 gem "config"
+gem "dotenv"
 
 # For Capistrano
 group :deployment do

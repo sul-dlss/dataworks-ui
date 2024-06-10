@@ -401,6 +401,7 @@ DEPENDENCIES
   config
   debug
   dlss-capistrano
+  dotenv
   dotenv-rails
   importmap-rails
   jbuilder

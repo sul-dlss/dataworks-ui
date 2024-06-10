@@ -1,9 +1,19 @@
+# frozen_string_literal: true
+
+require 'dotenv'
+Dotenv.load
+
 # Load DSL and set up stages
 require "capistrano/setup"
 
 # Include default deployment tasks
 require "capistrano/deploy"
-require "capistrano/rails"
+require 'capistrano/bundler'
+require 'capistrano/rails'
+require 'capistrano/passenger'
+require 'dlss/capistrano'
+#require 'capistrano/sitemap_generator'
+require 'capistrano/shared_configs'
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
@@ -35,4 +45,4 @@ install_plugin Capistrano::SCM::Git
 # require "capistrano/passenger"
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
-Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
+Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
