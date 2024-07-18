@@ -56,6 +56,8 @@ class CatalogController < ApplicationController
     # config.index.search_bar_component = MyApp::SearchBarComponent
     # config.index.search_header_component = MyApp::SearchHeaderComponent
     # config.index.document_actions.delete(:bookmark)
+    config.header_component = Dwexp::HeaderComponent
+    config.logo_link = 'https://library.stanford.edu'
 
     config.add_results_document_tool(:bookmark, component: Blacklight::Document::BookmarkComponent, if: :render_bookmarks_control?)
 
@@ -144,6 +146,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'format_ssim', label: 'Format'
     config.add_index_field 'language_ssim', label: 'Language'
     config.add_index_field 'publisher_ssim', label: 'Publishers'
+    config.add_index_field 'origin_source_ssi', label: 'Origin'
     #config.add_index_field 'published_vern_ssim', label: 'Published'
     #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
 
