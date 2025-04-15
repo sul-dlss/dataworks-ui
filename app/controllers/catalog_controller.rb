@@ -108,16 +108,18 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'format_ssim', label: 'Format'
-    config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
-    config.add_facet_field 'subject_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'language_ssim', label: 'Language', limit: true
+    #config.add_facet_field 'format_ssim', label: 'Format'
+    #config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
+    #config.add_facet_field 'subject_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
+    #config.add_facet_field 'language_ssim', label: 'Language', limit: true
     #config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
-    config.add_facet_field 'subject_geo_ssim', label: 'Geographic Coverage'
-    config.add_facet_field 'subject_temp_ssim', label: 'Temporal Coverage'
-    config.add_facet_field 'author_ssim', label: 'Authors'
-    config.add_facet_field 'origin_source_ssi', label: 'Origin'
-    config.add_facet_field 'funders_ssim', label: 'Funders'
+    #config.add_facet_field 'subject_geo_ssim', label: 'Geographic Coverage'
+    #config.add_facet_field 'subject_temp_ssim', label: 'Temporal Coverage'
+    #config.add_facet_field 'author_ssim', label: 'Authors'
+    config.add_facet_field 'access_ssi', label: 'Access'
+    config.add_facet_field 'provider_ssi', label: 'Provider'
+    #config.add_facet_field 'funders_ssim', label: 'Funders'
+    config.add_facet_field 'doi_ssi', label: 'DOI'
 
 
 
@@ -139,36 +141,50 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field 'title_tsim', label: 'Title'
     #config.add_index_field 'title_vern_ssim', label: 'Title'
-    config.add_index_field 'author_ssim', label: 'Author'
+    #config.add_index_field 'author_ssim', label: 'Author'
     #config.add_index_field 'author_vern_ssim', label: 'Author'
-    config.add_index_field 'format_ssim', label: 'Format'
-    config.add_index_field 'language_ssim', label: 'Language'
-    config.add_index_field 'publisher_ssim', label: 'Publishers'
+    #config.add_index_field 'format_ssim', label: 'Format'
+    #config.add_index_field 'language_ssim', label: 'Language'
+    #config.add_index_field 'publisher_ssim', label: 'Publishers'
     #config.add_index_field 'published_vern_ssim', label: 'Published'
     #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
+    config.add_index_field 'provider_ssi', label: 'Provider'
+    config.add_index_field 'descriptions_tsim', label: 'Description'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field 'title_tsim', label: 'Title'
+    config.add_show_field 'subtitle_tsim', label: 'Subtitle'
+    config.add_show_field 'alternative_title_tsim', label: 'Alternative Title'
+    config.add_show_field 'translate_title_tsim', label: 'Translated Title'
+    config.add_show_field 'other_title_tsim', label: 'Other Title'
+
+    config.add_show_field 'creators_struct_ss', label: 'Creators'
+    config.add_show_field 'access_ssi', label: 'Access'
+    config.add_show_field 'provider_ssi', label: 'Provider'
+    config.add_show_field 'doi_ssi', label: 'DOI'
+    config.add_show_field 'provider_identifier_ssim', label: 'Provider id'
+    config.add_show_field 'descriptions_tsim', label: 'Description'
+
     #config.add_show_field 'title_vern_ssim', label: 'Title'
     #config.add_show_field 'subtitle_tsim', label: 'Subtitle'
     #config.add_show_field 'subtitle_vern_ssim', label: 'Subtitle'
-    config.add_show_field 'author_ssim', label: 'Author'
-    config.add_show_field 'access_ssim', label: 'Access Information'
-    config.add_show_field 'license_tsim', label: 'License Information'
-    config.add_show_field 'origin_source_ssi', label: 'Origin'
-    config.add_show_field 'description_tsim', label: 'Description'
-    config.add_show_field 'pub_date_ssim', label: 'Publication Date'
+    #config.add_show_field 'author_ssim', label: 'Author'
+    #config.add_show_field 'access_ssim', label: 'Access Information'
+    #config.add_show_field 'license_tsim', label: 'License Information'
+    #config.add_show_field 'origin_source_ssi', label: 'Origin'
+    #config.add_show_field 'description_tsim', label: 'Description'
+    #config.add_show_field 'pub_date_ssim', label: 'Publication Date'
 
     #config.add_show_field 'author_vern_ssim', label: 'Author'
-    config.add_show_field 'format_ssim', label: 'Format'
-    config.add_show_field 'source_url_ssi', label: 'Source URL'
+    #config.add_show_field 'format_ssim', label: 'Format'
+    #config.add_show_field 'source_url_ssi', label: 'Source URL'
     #config.add_show_field 'url_suppl_ssim', label: 'More Information'
-    config.add_show_field 'language_ssim', label: 'Language'
-    config.add_show_field 'publisher_ssim', label: 'Publishers'
-    config.add_show_field 'funders_ssim', label: 'Funders'
-    config.add_show_field 'methodology_tsim', label: 'Methodology'
-    config.add_show_field 'usage_tsim', label: 'Usage'
+    #config.add_show_field 'language_ssim', label: 'Language'
+    #config.add_show_field 'publisher_ssim', label: 'Publishers'
+    #config.add_show_field 'funders_ssim', label: 'Funders'
+    #config.add_show_field 'methodology_tsim', label: 'Methodology'
+    #config.add_show_field 'usage_tsim', label: 'Usage'
 
 
 
