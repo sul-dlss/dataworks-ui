@@ -56,6 +56,8 @@ class CatalogController < ApplicationController
     # config.index.search_bar_component = MyApp::SearchBarComponent
     # config.index.search_header_component = MyApp::SearchHeaderComponent
     # config.index.document_actions.delete(:bookmark)
+    config.header_component = Dwexp::HeaderComponent
+    config.logo_link = 'https://library.stanford.edu'
 
     config.add_results_document_tool(:bookmark, component: Blacklight::Document::BookmarkComponent, if: :render_bookmarks_control?)
 
