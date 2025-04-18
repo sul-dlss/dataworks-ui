@@ -16,7 +16,7 @@
 <div class="document-main-section">
   <header class="documentHeader row"><h3>Metadata from source</h3><input type="button" id="toggle-external" value="Display"></header>
   <div id="external-metadata" class="d-none border">
-    <%=external_metadata(@document["provider_ssi"], @document["provider_identifier_ssim"][0]) if @document.key?("provider_identifier_ssim") %>
+    <%=external_metadata(@document["provider_ssi"], @document["provider_identifier_ssi"][0]) if @document.key?("") %>
   </div>
 </div>
 

@@ -9,6 +9,7 @@ class ExternalApis
   end
 
   def external_api_class(source)
+    puts "EXTERNAL API CLASS #{source}"
     case source
     when "Dryad"
       Dryad
@@ -20,6 +21,8 @@ class ExternalApis
       Datagov
     when "SDR"
       Sdr
+    when "Zenodo"
+      Zenodo
     end
   end
 

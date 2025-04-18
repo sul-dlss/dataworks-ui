@@ -17,6 +17,8 @@ module ExternalHelper
       display_datagov(json_response)
     when "SDR"
       display_sdr(json_response)
+    when "Zenodo"
+      display_zenodo(json_response)
     end
   end
 
@@ -24,6 +26,7 @@ module ExternalHelper
 
   # Dryad
   def display_dryad(json_response)
+    puts "DISPLAY DRYAD #{json_response}"
     display_html = ""
     # Don't display links
     json_response.each do |json_field, json_value|
@@ -51,6 +54,10 @@ module ExternalHelper
   end
 
   def display_sdr(json_response)
+    display_metadata_json(json_response)
+  end
+
+  def display_zenodo(json_response)
     display_metadata_json(json_response)
   end
   # Generate Blacklight like display for metadata
