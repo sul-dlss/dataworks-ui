@@ -1,9 +1,9 @@
-class Dryad  
+class Zenodo 
   require 'net/http'
 
   # Initialize independent of the specific URI to be used
   def initialize
-    @base_datasets_url = "https://datadryad.org/api/v2/datasets/"
+    @base_datasets_url = "https://zenodo.org/api/records/"
   end
 
   # This is not necessarily a single "file" but dataset as defined by the service
@@ -13,7 +13,6 @@ class Dryad
   end
 
   def json_response(url)
-    puts "DRYAD URL #{url}"
     resp = Net::HTTP.get_response(URI.parse(url))
     data = resp.body
     JSON.parse(data)
