@@ -174,7 +174,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'doi_ssi', label: 'DOI'
     config.add_show_field 'provider_identifier_ssi', label: 'Provider id'
     config.add_show_field 'descriptions_tsim', label: 'Description'
-    config.add_show_field 'funder_tsim', label: 'Funders'
+    config.add_show_field 'funders_tsim', label: 'Funders'
 
     #config.add_show_field 'title_vern_ssim', label: 'Title'
     #config.add_show_field 'subtitle_tsim', label: 'Subtitle'
