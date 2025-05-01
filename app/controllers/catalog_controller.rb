@@ -159,6 +159,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field 'title_tsim', label: 'Title'
+    config.add_index_field 'version_ss', label: 'Version'
     #config.add_index_field 'title_vern_ssim', label: 'Title'
     #config.add_index_field 'author_ssim', label: 'Author'
     #config.add_index_field 'author_vern_ssim', label: 'Author'
@@ -167,10 +168,9 @@ class CatalogController < ApplicationController
     #config.add_index_field 'publisher_ssim', label: 'Publishers'
     #config.add_index_field 'published_vern_ssim', label: 'Published'
     #config.add_index_field 'lc_callnum_ssim', label: 'Call number'
-    config.add_index_field 'url_ss', label: 'Url'
+    config.add_index_field 'url_ss', label: 'Url', helper_method: :url_link
     config.add_index_field 'provider_ssi', label: 'Provider'
     config.add_index_field 'descriptions_tsim', label: 'Description'
-
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field 'title_tsim', label: 'Title'
@@ -259,28 +259,36 @@ class CatalogController < ApplicationController
       # solr_parameters hash are sent to Solr as ordinary url query params.
       field.solr_parameters = {
         'spellcheck.dictionary': 'title',
-        qf: '${title_qf}',
-        pf: '${title_pf}'
+        qf: 'title_tsim subtitle_tsim alternative_title_tsim other_title_tsim translate_title_tsim',
+        pf: 'title_tsim^2 subtitle_tsim^2'
       }
     end
 
-    config.add_search_field('author') do |field|
+    config.add_search_field('authors') do |field|
       field.solr_parameters = {
         'spellcheck.dictionary': 'author',
-        qf: '${author_qf}',
-        pf: '${author_pf}'
+        qf: 'creators_ssim contributors_ssim creators_ids_sim contributors_ids_sim',
+        pf: 'creators_ssim contributors_ssim creators_ids_sim contributors_ids_sim'
       }
     end
 
     # Specifying a :qt only to show it's possible, and so our internal automated
     # tests can test it. In this case it's the same as
     # config[:default_solr_parameters][:qt], so isn't actually neccesary.
-    config.add_search_field('subject') do |field|
+    config.add_search_field('subjects') do |field|
       field.qt = 'search'
       field.solr_parameters = {
         'spellcheck.dictionary': 'subject',
-        qf: '${subject_qf}',
-        pf: '${subject_pf}'
+        qf: 'subjects_ssim',
+        pf: 'subjects_ssim'
+      }
+    end
+
+    config.add_search_field('DOI') do |field|
+      field.qt = 'search'
+      field.solr_parameters = {
+        qf: 'doi_ssi',
+        pf: 'doi_ssi'
       }
     end
 
