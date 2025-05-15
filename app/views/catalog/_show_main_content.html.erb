@@ -13,18 +13,18 @@
   <% end %>
 <% end %>
 
+
+
+<% if @document.key?("provider_identifier_ssi") && @document['provider_ssi'] !=  'Local' %>
+
 <div class="document-main-section provider-metadata">
   <header class="documentHeader row"><h3>Metadata from provider</h3><input type="button" id="toggle-external" value="Display"></header>
   <div id="external-metadata" class="d-none border">
-    <% 
-      if @document.key?("provider_identifier_ssi") 
-        metadata = external_metadata(@document["provider_ssi"], @document["provider_identifier_ssi"])
-    %>      
-      <%= metadata %>
-    <% end %>
+    <% metadata = external_metadata(@document["provider_ssi"], @document["provider_identifier_ssi"]) %>      
+    <%= metadata %>
   </div>
 </div>
-
+<% end %>
 <div>
   <%# https://datadryad.org/api/v2/files/1642017/download%>
   <%#=display_preview("https://zenodo.org/records/11206979/files/Aktuell_Deutschland_SarsCov2_Infektionen.csv") %>
