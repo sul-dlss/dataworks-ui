@@ -5,13 +5,13 @@ module Dwexp
             @query = query
             @sort = sort
             response = results['response']
-            @docs = filter_versions(response['docs'])
+            @docs = filter_titles(response['docs'])
           end
         
         def search_params
             {
                 'q' => @query,
-                'rows' => 20,
+                'rows' => 30,
                 'fl' => '*',
                 'sort' => @sort
             }.compact
@@ -22,33 +22,23 @@ module Dwexp
             @results = solr.get 'select', params: search_params
         end
 
-        def filter_versions(docs)
-            # Eliminate anything that says 'hasVersion' b/c that has a more recent version
-            # We may not want to do this in actuality, this is just for temporary display
+        def filter_titles(docs)
+            # Get rid of any docs that have the same title in the display
+            # This is just a temporary solution
             return_docs = []
-            puts docs.length.to_s
+            doc_titles = []
             docs.each do |doc|
-                if doc.key?('related_identifiers_struct_ss') 
-                    struct_array = JSON.parse(doc['related_identifiers_struct_ss'])
-                    struct_array.each do |struct|
-                        if(struct.key?('relation_type')) 
-                            relation_type = struct['relation_type']
-                            if relation_type != 'HasVersion'
-                                return_docs << doc
-                            end
-                        else
-                            return_docs << doc
-                        end
-                    end 
-                else
-                    return_docs << doc
+                title = doc['title_tsim']
+                if ! doc_titles.include?(title)
+                    doc_titles.push(title)
+                    return_docs.push(doc)
                 end
             end
-            puts return_docs.length.to_s
+
             if return_docs.length <= 4
                 return return_docs
-            else 
-                return_docs[0..3]
+            else
+                return return_docs[0..3]
             end
         end
 
