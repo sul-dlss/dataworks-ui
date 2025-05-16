@@ -15,7 +15,6 @@ class ExternalApis
   end
 
   def external_api_class(source)
-    puts "EXTERNAL API CLASS #{source}"
     case source
     when "Dryad"
       Dryad

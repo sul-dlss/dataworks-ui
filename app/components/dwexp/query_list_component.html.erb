@@ -1,0 +1,25 @@
+<div class='row'>
+<% 
+    @docs.each do |doc|
+        catalog_link = "/catalog/#{doc['id']}"
+        creators_display = ""
+        limited_number = false
+        if doc.key?('creators_ssim')
+            creators =  doc['creators_ssim']
+            creators_display = creators[0]
+            if creators.length > 1
+                creators_display += " et al."
+            end
+        end
+        %>
+            <div class='col queryresult'>
+                <div class='mb-2'>
+                    <a href='<%=catalog_link%>'><%= doc['title_tsim'].join(', ') %></a>
+                </div>
+                <div class='mt-2'> <%= creators_display %> </div>
+            </div>
+        <%
+        
+    end
+%>
+</div>

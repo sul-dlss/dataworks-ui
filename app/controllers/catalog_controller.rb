@@ -129,6 +129,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'publisher_id_sim', label: 'Publisher Ids', limit: 15
     config.add_facet_field 'related_ids_sim', label: 'Related Ids', limit: 15
     config.add_facet_field 'rights_uris_sim', label: 'Rights URIs', limit: 15
+    config.add_facet_field 'courses_sim', label: 'Courses'
 
 
     #config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_ssim'], collapsing: true
@@ -181,6 +182,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'related_identifiers_struct_ss', label: 'Related Identifiers', helper_method: :render_related_identifiers
     config.add_show_field 'dates_struct_ss', label: 'Related dates', helper_method: :display_dates
     config.add_show_field 'rights_list_struct_ss', label: 'Rights', helper_method: :display_rights
+    config.add_show_field 'provider_identifier_map_struct_ss', label: 'Also available at', helper_method: :display_also_available
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

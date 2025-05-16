@@ -147,10 +147,18 @@ module DataworksHelper
   end
 
   def display_facet_separate_lines(args)
-    puts args[:field]
     field = args[:field]
     args[:value].sort.map do|val|
       add_facet_link(field, val)
     end.join('<br>').html_safe
+  end
+
+  def display_also_available(args)
+    args[:value].map do |arg|
+      parsed_json = JSON.parse(arg)
+      parsed_json.map do |provider, id|
+        "<a target='_blank' href='#{provider_url_link_for_id(provider.downcase, id)}'>#{provider.titleize}</a>"
+      end.join('<br>')
+    end.join('').html_safe
   end
 end
