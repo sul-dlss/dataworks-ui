@@ -154,11 +154,16 @@ module DataworksHelper
   end
 
   def display_also_available(args)
+    doc = args[:document]
+    url = doc['url_ss']
+    # Filter out any providers that are already in the main URL
     args[:value].map do |arg|
       parsed_json = JSON.parse(arg)
       parsed_json.map do |provider, id|
+        next if url.include?(provider.downcase)
+          
         "<a target='_blank' href='#{provider_url_link_for_id(provider.downcase, id)}'>#{provider.titleize}</a>"
-      end.join('<br>')
+      end.compact.join('<br>')
     end.join('').html_safe
   end
 end

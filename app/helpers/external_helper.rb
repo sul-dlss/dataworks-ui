@@ -136,7 +136,6 @@ module ExternalHelper
 
   # From the other provider hash added to the solr doc, everything is in lower case
   def provider_url_link_for_id(source, id)
-    puts "HELPER METHOD #{source} #{id}"
     url = case source
     when "dryad"
       "https://datadryad.org/dataset/#{id}" 

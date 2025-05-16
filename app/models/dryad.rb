@@ -13,7 +13,6 @@ class Dryad
   end
 
   def json_response(url)
-    puts "DRYAD URL #{url}"
     resp = Net::HTTP.get_response(URI.parse(url))
     data = resp.body
     JSON.parse(data)
