@@ -30,6 +30,8 @@ class ExternalApis
       Zenodo
     when "SearchWorks"
       SearchWorks
+    when "OpenAlex"
+      Openalex
     end
   end
 

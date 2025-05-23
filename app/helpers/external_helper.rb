@@ -20,6 +20,8 @@ module ExternalHelper
       display_zenodo(json_response)
     when "SearchWorks"
       display_searchworks(json_response)
+    when "OpenAlex"
+      display_openalex(json_response)
     end
   end
 
@@ -43,6 +45,10 @@ module ExternalHelper
     # Focus on attributes where the main metadata we map resides
     attributes_response = json_response["data"]["attributes"]
     display_metadata_json(attributes_response)
+  end
+
+  def display_openalex(json_response)
+    display_metadata_json(json_response)
   end
 
   def display_redivis(json_response)
@@ -130,6 +136,8 @@ module ExternalHelper
       "https://zenodo.org/records/#{json_response['id']}"
     when "SearchWorks"
       "https://searchworks.stanford.edu/view/#{json_response['response']['document']['id']}"
+    when "OpenAlex"
+      "https://openalex.org/works/#{json_response['id']['https://openalex.org/'.length,json_response['id'].length]}"
     end
     sanitize "<a href='#{url}'>Provider url</a>"
   end
@@ -147,6 +155,8 @@ module ExternalHelper
       "https://zenodo.org/records/#{id}"
     when "searchworks"
       "https://searchworks.stanford.edu/view/#{id}"
+    when "open_alex"
+      "https://openalex.org/works/#{id['https://openalex.org/'.length,id.length]}"
     end
     url
   end
