@@ -82,6 +82,7 @@ gem "sassc-rails", "~> 2.1"
 gem "config"
 gem "dotenv"
 gem "pg"
+gem "openssl"
  
 # For Capistrano
 group :deployment do
