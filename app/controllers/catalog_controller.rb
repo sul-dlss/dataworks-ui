@@ -168,9 +168,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'provider_ssi', label: 'Provider', link_to_facet: true
     config.add_show_field 'doi_ssi', label: 'DOI'
     config.add_show_field 'provider_identifier_ssi', label: 'Provider id'
-    config.add_show_field 'descriptions_tsim', label: 'Description'
-    config.add_show_field 'methods_tsim', label: 'Methods'
-    config.add_show_field 'other_descriptions_tsim', label: 'Other description'
+    config.add_show_field 'descriptions_tsim', label: 'Description', helper_method: :render_rich_text
+    config.add_show_field 'methods_tsim', label: 'Methods', helper_method: :render_rich_text
+    config.add_show_field 'other_descriptions_tsim', label: 'Other description', helper_method: :render_rich_text
     config.add_show_field 'subjects_ssim', label: 'Subjects', helper_method: :display_facet_separate_lines
     config.add_show_field 'language_ssi', label: 'Language', link_to_facet: true
     config.add_show_field 'sizes_ssm', label: 'Sizes'
