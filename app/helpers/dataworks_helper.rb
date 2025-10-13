@@ -166,4 +166,22 @@ module DataworksHelper
       end.compact.join('<br>')
     end.join('').html_safe
   end
+
+  # Sanitize HTML/XML in rich text fields and render line breaks.
+  def render_rich_text(args)
+    safe_join(args[:value].map do |arg|
+      simple_format(
+        # If there is whitespace in between tags, they will get converted to <br>
+        # by simple_format, which results in bad list rendering. This preserves
+        # newlines in running text but removes them between tags.
+        arg.gsub(/(<[^>]+?>)\s+(?=<[^>]+?>)/, "\\1"),
+        # We wrap each value in a div with class 'rich-text' so that we can
+        # scope styling to just these fields. The default is <p>, but that
+        # causes issues when the content itself contains <p> tags.
+        { class: 'rich-text' },
+        wrapper_tag: :div,
+        sanitize_options: { tags: %w(p b i em strong ul ol li br a), attributes: %w(href) }
+      )
+    end)
+  end
 end
