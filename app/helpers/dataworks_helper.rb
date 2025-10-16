@@ -8,17 +8,17 @@ module DataworksHelper
             prefix_string = ""
             relation_type = ""
             id = "#{val['related_identifier']}"
-            if(val.key?('relation_type')) 
+            if(val.key?('relation_type'))
                 relation_type = "#{val['relation_type']}: "
             end
-            if(val.key?('related_identifier_type')) 
+            if(val.key?('related_identifier_type'))
                 prefix_string = "#{relation_type}#{val['related_identifier_type']}"
             end
             "#{prefix_string} #{id} #{display_remaining_keys(val, ['related_identifier', 'relation_type', 'related_identifier_type'])}"
             # Display any other keys after
         end.join('<br>')
     end.join('').html_safe
-    
+
   end
 
   def display_remaining_keys(val, exclude_keys)
@@ -67,9 +67,9 @@ module DataworksHelper
             name = val.key?('name')? val['name'] : ''
             "#{add_facet_link(facet_field, name)}#{display_name_identifiers(val)}#{display_affiliation_info(val)}"
         end.join('<br>')
-        
+
     end.join('')
-    
+
     info.html_safe
   end
 
@@ -161,27 +161,47 @@ module DataworksHelper
       parsed_json = JSON.parse(arg)
       parsed_json.map do |provider, id|
         next if url.include?(provider.downcase)
-          
+
         "<a target='_blank' href='#{provider_url_link_for_id(provider.downcase, id)}'>#{provider.titleize}</a>"
       end.compact.join('<br>')
     end.join('').html_safe
   end
 
+  # Define allowed tags and attributes for sanitization
+  ALLOWED_TAGS = %w(a b i em strong p ul ol li br table thead tbody tr th td colgroup col).freeze
+  ALLOWED_ATTRIBUTES = %w(href).freeze
+
   # Sanitize HTML/XML in rich text fields and render line breaks.
   def render_rich_text(args)
     safe_join(args[:value].map do |arg|
+      # If there are newlines in between tags or in running text, they will get
+      # converted to <br> tags by simple_format, which we don't want. We sanitize
+      # first, then clean up any undesired newlines that may result.
+      input = sanitize(CGI::unescapeHTML(arg), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)
+        .gsub(/>\n+\s*</, '><')
+        .gsub(/([^>])\n ([^<])/, '\1 \2')
+
+      # We wrap each value in a div with class 'rich-text' so that we can
+      # scope styling to just these fields. The default is <p>, but that
+      # causes issues when the content itself contains <p> tags.
       simple_format(
-        # If there is whitespace in between tags, they will get converted to <br>
-        # by simple_format, which results in bad list rendering. This preserves
-        # newlines in running text but removes them between tags.
-        arg.gsub(/(<[^>]+?>)\s+(?=<[^>]+?>)/, "\\1"),
-        # We wrap each value in a div with class 'rich-text' so that we can
-        # scope styling to just these fields. The default is <p>, but that
-        # causes issues when the content itself contains <p> tags.
+        input,
         { class: 'rich-text' },
         wrapper_tag: :div,
-        sanitize_options: { tags: %w(p b i em strong ul ol li br a), attributes: %w(href) }
+        sanitize_options: { tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES }
       )
     end)
+  end
+
+  # Preview version of rich text that strips out almost all HTML and renders
+  # a truncated version for the index view. Allows italics. Tries to break on
+  # word boundaries.
+  def render_rich_text_preview(args)
+    truncate(
+      safe_join(args[:value].map { |arg| sanitize(CGI::unescapeHTML(arg), tags: %w(em i)) }),
+      length: 500,
+      escape: false,
+      separator: ' '
+    )
   end
 end

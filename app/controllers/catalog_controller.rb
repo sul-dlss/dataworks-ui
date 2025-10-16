@@ -153,7 +153,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'version_ss', label: 'Version'
     config.add_index_field 'url_ss', label: 'Url', helper_method: :url_link
     config.add_index_field 'provider_ssi', label: 'Provider'
-    config.add_index_field 'descriptions_tsim', label: 'Description'
+    config.add_index_field 'descriptions_tsim', label: 'Description', helper_method: :render_rich_text_preview
     config.add_index_field 'variables_tsim', label: 'Variables'
 
     # Show fields

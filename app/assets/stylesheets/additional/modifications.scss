@@ -70,6 +70,27 @@ $font-family-serif: "Source Serif 4", serif;
   border:1px solid #016895;
 }
 
+// Rich text display styles (descriptions, notes, etc.)
+.rich-text + .rich-text {
+  margin-top: 1rem;
+}
+
+.rich-text table {
+  display: block;
+  overflow-x: scroll;
+  border: inset 1px #d1d1d1;
+}
+
+.rich-text th,
+.rich-text td {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #d1d1d1;
+}
+
+.rich-text tr {
+  vertical-align: top;
+}
+
 @import 'sulBase';
 @import "sulHeader";
 @import 'stanfordStripe';
