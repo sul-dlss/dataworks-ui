@@ -112,7 +112,7 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'access_ssi', label: 'Access'
-    config.add_facet_field 'provider_ssi', label: 'Provider'
+    config.add_facet_field 'provider_ssi', label: 'Provider', show: false
     # config.add_facet_field 'doi_ssi', label: 'DOI', limit: 15
     config.add_facet_field 'creators_ssim', label: 'Creators', limit: 15
     config.add_facet_field 'contributors_ssim', label: 'Contributors', limit: 15
@@ -123,7 +123,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subjects_ssim', label: 'Subjects', limit: 15
     # config.add_facet_field 'affiliation_names_sim', label: 'Affiliations', limit: 15
     config.add_facet_field 'language_ssi', label: 'Language', show: false
-    config.add_facet_field 'formats_ssim', label: 'Formats', limit: 15, show: false
+    config.add_facet_field 'formats_ssim', label: 'Formats', limit: 15
     #config.add_facet_field 'creators_ids_sim', label: 'Creator Ids', limit: 15
     #config.add_facet_field 'contributors_ids_sim', label: 'Contributor Ids', limit: 15
     #config.add_facet_field 'funders_ids_sim', label: 'Funder Ids', limit: 15
