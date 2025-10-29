@@ -65,7 +65,7 @@ module DataworksHelper
         parsed_json = JSON.parse(arg)
         parsed_json.map do |val|
             name = val.key?('name')? val['name'] : ''
-            "#{add_facet_link(facet_field, name)}#{display_name_identifiers(val)}#{display_affiliation_info(val)}"
+            "#{add_facet_link(facet_field, name)}#{display_name_identifiers(val, name)}#{display_affiliation_info(val)}"
         end.join('<br>')
 
     end.join('')
@@ -73,7 +73,7 @@ module DataworksHelper
     info.html_safe
   end
 
-  def display_name_identifiers(val)
+  def display_name_identifiers(val, name)
     return '' if ! val.key?('name_identifiers')
 
     ids = val['name_identifiers'].filter_map do |nid|
@@ -82,7 +82,7 @@ module DataworksHelper
         name_identifier_scheme = nid['name_identifier_scheme'] || ''
 
         if(name_identifier_scheme == 'ORCID')
-            display_orcid_link(nid['name_identifier'])
+            render_orcid_link(nid['name_identifier'], name)
         elsif(name_identifier_scheme.length > 0)
             "#{name_identifier_scheme} : #{nid['name_identifier']}"
         else
@@ -90,15 +90,18 @@ module DataworksHelper
         end
     end.join(', ')
 
-    ids.length > 0 ? " (#{ids})" : ''
+    ids.length > 0 ? " #{ids}" : ''
   end
 
-  def display_orcid_link(orcid)
-    orcid_link = orcid
-    if( ! orcid.starts_with?('https://orcid.org'))
-        orcid_link = "https://orcid.org/#{orcid_link}"
+  # Render a link to an ORCID profile with the ORCID icon
+  # @param orcid [String] The ORCID URL or ID
+  # @param name [String] The name associated with the ORCID
+  def render_orcid_link(orcid, name)
+    orcid_id = URI.parse(orcid).path.delete_prefix('/')
+    link_to("https://orcid.org/#{orcid_id}", target: :blank) do
+      tag.span("ORCID profile for #{name} ", class: 'visually-hidden') +
+      image_tag('orcid_id.svg', alt: "", class: 'orcid-icon')
     end
-    link_to('ORCID', orcid_link, target: :blank)
   end
 
   def display_affiliation_info(val)
