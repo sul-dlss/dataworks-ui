@@ -7,10 +7,27 @@ $masthead-color: $stanford-white;
   --bs-navbar-hover-color: rgba(255, 255, 255, 1);
 }
 
-.navbar-logo {
-  height: 41px;
-  width: 258px;
-  background-size: 258px 41px;
+.navbar-logo,
+.prefooter-logo {
+  --bs-navbar-brand-padding-y: 0;
+
+  background-color: var(--sul-logo-color);
+  background-image: none;
+  mask-image: image-url("StanfordLibraries-logo.svg");
+  mask-repeat: no-repeat;
+  mask-position: 0 center;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  width: 250px;
+
+  &.polychrome {
+    background-color: transparent;
+    mask-image: none;
+    background-image: image-url("StanfordLibraries-logo-poly.svg");
+    background-repeat: no-repeat;
+    background-position: 0 center;
+  }
 }
 
 #feedback {
