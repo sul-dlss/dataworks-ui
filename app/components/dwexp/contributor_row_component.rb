@@ -18,10 +18,11 @@ module Dwexp
       end
     end
 
-    # Render an affiliation with its ROR link if present
+    # Render an affiliation with its ROR link and country if present
     def render_affiliation(affiliation)
       tag.div do
         tag.span(affiliation['name']) +
+        render_affiliation_country(affiliation).to_s +
         render_ror_link(affiliation)
       end
     end
@@ -45,6 +46,14 @@ module Dwexp
         tag.span("ROR profile for #{affiliation['name']} ", class: 'visually-hidden') +
         image_tag('ror_icon.svg', alt: "", class: 'ror-icon ms-2')
       end
+    end
+
+    # Render the affiliation country as an emoji flag using ROR info
+    def render_affiliation_country(affiliation)
+      return unless affiliation['affiliation_identifier_scheme'] == 'ROR'
+      org = RorService.get_by_id(affiliation['affiliation_identifier'])
+
+      tag.span(org.country_emoji, class: 'ms-2', aria: { label: org.country_name }) if org&.country_emoji
     end
   end
 end
