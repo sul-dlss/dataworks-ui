@@ -1,3 +1,6 @@
 sources:
   redivis:
     access_token: XYZ
+
+ror:
+  url: https://api.ror.org
