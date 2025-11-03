@@ -12,8 +12,5 @@
         <%= render Dwexp::ContributorRowComponent.new(field: @field, contributor: contributor) %>
       <% end %>
     </tbody>
-    <% if creator_data.any? %>
-      <caption>*Creator</caption>
-    <% end %>
   </table>
 </dd>
