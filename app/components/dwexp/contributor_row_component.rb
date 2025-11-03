@@ -9,11 +9,9 @@ module Dwexp
     private
 
     # Render the contributor's name with a link to search results
-    # Adds a "Creator" asterisk if applicable
     def render_name
       tag.div do
         link_to(@contributor['name'], search_catalog_path(f: { @field.field_config.key => [@contributor['name']] })) +
-        (tag.span("*", aria: { label: "Creator" }, class: "fw-normal") if @contributor['role'] == 'Creator') +
         render_orcid_link
       end
     end
