@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
+    get 'api_info', to: 'catalog#api_info', as: 'api_info'
   end
 
   concern :exportable, Blacklight::Routes::Exportable.new

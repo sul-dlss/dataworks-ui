@@ -266,4 +266,12 @@ class CatalogController < ApplicationController
     # default 'mySuggester', uncomment and provide it below
     # config.autocomplete_suggester = 'mySuggester'
   end
+
+  # Get info from APIs regarding particular DOIs or identifiers
+  def api_info
+    doi = params[:doi]
+    oa = Openalex.new
+    response = oa.retrieve_metadata_by_id(id: doi)
+    render json: response
+  end
 end

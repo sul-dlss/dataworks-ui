@@ -13,6 +13,12 @@ class Openalex
       prefix = 'https://openalex.org/'
       json_response(metadata_url(source_identifier_ssi[prefix.length, source_identifier_ssi.length]))
     end
+
+    # Retrieve metadata given a particular doi
+    def retrieve_metadata_by_id(id:, type: 'doi')
+      path = "#{@base_datasets_url}https://doi.org/#{id}?select=id,title,doi,publication_year"
+      json_response(path)
+    end
   
     def json_response(url)
       resp = Net::HTTP.get_response(URI.parse(url))
