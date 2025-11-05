@@ -269,9 +269,11 @@ class CatalogController < ApplicationController
 
   # Get info from APIs regarding particular DOIs or identifiers
   def api_info
-    doi = params[:doi]
+    id = params[:id]
+    type = params[:type]
+
     oa = Openalex.new
-    response = oa.retrieve_metadata_by_id(id: doi)
+    response = oa.retrieve_metadata_by_id(id:, type:)
     render json: response
   end
 end
