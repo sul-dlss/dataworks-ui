@@ -99,8 +99,28 @@ $font-family-serif: "Source Serif 4", serif;
   vertical-align: sub;
 }
 
+// Hide the "true" value and ">" when the Stanford Datasets facet is selected
+.constraint.filter.filter-stanford_dataset_bsi .filter-value,
+.constraint.filter.filter-stanford_dataset_bsi .filter-name::after {
+  display: none;
+}
+
 @import 'sulBase';
 @import "sulHeader";
 @import 'stanfordStripe';
 @import "sulFooter";
 @import "sulFacets";
+
+// Cardinal red button (stanford datasets facet)
+.btn-stanford-cardinal {
+  --bs-btn-hover-border-color: var(--stanford-cardinal);
+  --bs-btn-border-color: var(--stanford-cardinal);
+  --bs-btn-hover-bg: var(--stanford-cardinal);
+  --bs-btn-color: var(--stanford-cardinal);
+
+  &.active {
+    --bs-btn-active-border-color: var(--stanford-cardinal);
+    --bs-btn-border-color: var(--stanford-cardinal);
+    --bs-btn-active-bg: var(--stanford-cardinal);
+  }
+}

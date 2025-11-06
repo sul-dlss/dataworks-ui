@@ -112,6 +112,7 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
+    config.add_facet_field 'stanford_dataset_bsi', label: 'Stanford datasets', component: Dwexp::StanfordDatasetFacetComponent
     config.add_facet_field 'access_ssi', label: 'Access'
     config.add_facet_field 'provider_ssi', label: 'Provider', show: false
     # config.add_facet_field 'doi_ssi', label: 'DOI', limit: 15
