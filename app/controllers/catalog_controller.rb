@@ -125,6 +125,7 @@ class CatalogController < ApplicationController
     # config.add_facet_field 'affiliation_names_sim', label: 'Affiliations', limit: 15
     config.add_facet_field 'language_ssi', label: 'Language', show: false
     config.add_facet_field 'formats_ssim', label: 'Formats', limit: 15
+    config.add_facet_field 'department_ssim', label: 'Stanford department', limit: 15
     #config.add_facet_field 'creators_ids_sim', label: 'Creator Ids', limit: 15
     #config.add_facet_field 'contributors_ids_sim', label: 'Contributor Ids', limit: 15
     #config.add_facet_field 'funders_ids_sim', label: 'Funder Ids', limit: 15
