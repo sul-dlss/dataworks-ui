@@ -10,5 +10,5 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-import ApiInfoController from "./api_info_controller"
-application.register("api-info", ApiInfoController)
+import RelatedPublicationsController from "./related_publications_controller"
+application.register("related-publications",RelatedPublicationsController)

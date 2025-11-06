@@ -1,7 +1,7 @@
 <dt class="blacklight-formats_ssim col-md-3"> Related Publications:
 </dt>
 <dd class="col-md-9 blacklight-formats_ssim">
-<div data-controller="api-info">
+<div data-controller="related-publications">
 <%
   @group_publications.keys.each do |display_relation_type|
     %><h5><%= display_relation_type %></h5><%
@@ -12,7 +12,7 @@
       id = item['related_identifier']
       display_id = "#{id_type} #{id}"
       %>
-      <span data-api-info-target="publication" api-id="<%=id%>" api-id-type-value="<%=id%>"><%= display_id %></span>
+      <span data-related-publications-target="publication" api-id="<%=id%>" api-id-type-value="<%=id%>"><%= display_id %></span>
       <%
     end
   end
