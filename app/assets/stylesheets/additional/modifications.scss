@@ -124,3 +124,10 @@ $font-family-serif: "Source Serif 4", serif;
     --bs-btn-active-bg: var(--stanford-cardinal);
   }
 }
+
+// Cardinal red badges
+.badge.text-bg-cardinal {
+  --bs-badge-color: #fff;
+  --bs-badge-font-size: 0.75rem;
+  background-color: var(--stanford-cardinal);
+}

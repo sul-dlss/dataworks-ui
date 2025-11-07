@@ -1,0 +1,19 @@
+<header class="documentHeader row">
+  <%= content_tag @as, class: @classes do %>
+    <% before_titles.each do |t| %>
+      <%= t %>
+    <% end %>
+
+    <%= render Dwexp::DocumentBadgesComponent.new(document: @document) %>
+
+    <%= counter -%><%= title -%>
+
+    <% after_titles.each do |t| %>
+      <%= t %>
+    <% end %>
+  <% end %>
+
+  <% actions.each do |action| %>
+    <%= action %>
+  <% end %>
+</header>
