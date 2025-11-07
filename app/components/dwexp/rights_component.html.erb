@@ -1,5 +1,5 @@
 <div class='mb-4'>
 <h2>Rights</h2>
 <h3>License</h3>
-<%= display_rights %>
+<%= sanitize(display_rights, attributes:['target', 'href']) %>
 </div>

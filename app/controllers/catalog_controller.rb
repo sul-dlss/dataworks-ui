@@ -165,7 +165,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'translate_title_tsim', label: 'Translated Title'
     config.add_show_field 'other_title_tsim', label: 'Other Title'
     config.add_show_field 'contributors_ssim', label: 'Contributors', component: Dwexp::ContributorTableComponent
-    config.add_show_field 'access_ssi', label: 'Access', link_to_facet: true
+    # config.add_show_field 'access_ssi', label: 'Access', link_to_facet: true, show: false
     config.add_show_field 'url_ss', label: 'URL', helper_method: :url_link
     config.add_show_field 'provider_ssi', label: 'Provider', link_to_facet: true
     config.add_show_field 'doi_ssi', label: 'DOI'
@@ -185,8 +185,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'variables_tsim', label: 'Variables', helper_method: :display_variables
     config.add_show_field 'related_identifiers_struct_ss', label: 'Related Identifiers', helper_method: :render_related_identifiers
     config.add_show_field 'dates_struct_ss', label: 'Related Dates', helper_method: :display_dates
-    config.add_show_field 'rights_list_struct_ss', label: 'Rights', helper_method: :display_rights
-    config.add_show_field 'provider_identifier_map_struct_ss', label: 'Also Available At', helper_method: :display_also_available
+    # config.add_show_field 'rights_list_struct_ss', label: 'Rights', show: false
+    # config.add_show_field 'provider_identifier_map_struct_ss', label: 'Also Available At', helper_method: :display_also_available
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

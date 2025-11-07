@@ -1,8 +1,15 @@
+<%
+  access = @document['access_ssi']
+  contact_info = @document['access_contact_struct_ss']
+  providers_info = @document['provider_identifier_map_struct_ss']
+  url = @document['url_ss']
+  rights_list = @document['rights_list_struct_ss']
+%>
 <div class="mt-5">
   <div class="border-start ps-lg-3 px-3 mb-5">
-    <%= render(Dwexp::RightsComponent.new(@document['rights_list_struct_ss'])) %> 
-    Contact information
-    Related works
-    Also available at
+    <%= render(Dwexp::AccessComponent.new(access:)) %> 
+    <%= render(Dwexp::RightsComponent.new(rights_list:)) %> 
+    <%= render(Dwexp::ContactComponent.new(contact_info:)) %> 
+    <%= render(Dwexp::AlsoAvailableComponent.new(providers_info:, url:)) %>
   </div>
 </div>
