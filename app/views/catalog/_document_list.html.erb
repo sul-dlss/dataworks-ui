@@ -3,6 +3,6 @@
 <div id="documents" class="documents-<%= view_config&.key || document_index_view_type %>">
   <% document_presenters = documents.map { |doc| document_presenter(doc) } -%>
   <%= render view_config.document_component.with_collection(document_presenters, partials: view_config.partials, counter_offset: @response&.start || 0) do |component| %>
-    <%= component.with_title(component: Dwexp::DocumentTitleComponent) %>
+    <% component.with_title(component: Dwexp::DocumentTitleComponent) %>
   <% end %>
 </div>
