@@ -28,7 +28,7 @@ class Openalex
       end
       
       
-      path = "#{id_path}?select=id,ids,title,doi,publication_year,primary_location,type"
+      path = "#{id_path}?select=id,ids,title,doi,publication_year,primary_location,type,authorships"
       puts "PATH IS #{path}"
       json_response(path)
     end

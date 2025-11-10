@@ -1,9 +1,9 @@
 module Dwexp
   class RelatedPublicationsComponent < ViewComponent::Base
-    def initialize(field:, **kwargs)
+    def initialize(document:)
       super()
-      @field = field
-      @document = field.document
+      @document = document
+      @related_items = JSON.parse(document['related_identifiers_struct_ss'] || '[]')
       @group_all = {}
       @group_publications = {}
       group_related_items
@@ -11,8 +11,7 @@ module Dwexp
 
     # Retrieve related items and then organize by type of relationship
     def group_related_items
-      related_items = JSON.parse(@field.values[0])
-      related_items.each do |val|
+      @related_items.each do |val|
         id = val['related_identifier']
         relation_type = val['relation_type'] || ''
 
@@ -44,7 +43,7 @@ module Dwexp
     end
 
     def non_publication_types
-      ['Dataset', 'Image', 'Software']
+      ['Dataset', 'Image', 'Software', 'ComputationalNotebook']
     end
 
     def non_publication_relation_types
@@ -63,7 +62,7 @@ module Dwexp
       when 'Cites'
         'Cites'
       else
-        'Publications'
+        'Related resources'
       end
     end
 
