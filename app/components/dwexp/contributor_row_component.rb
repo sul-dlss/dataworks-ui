@@ -12,16 +12,54 @@ module Dwexp
     def render_name
       tag.div do
         link_to(@contributor['name'], search_catalog_path(f: { @field.field_config.key => [@contributor['name']] })) +
-        render_orcid_link
+        render_orcid_link + 
+        render_profile_link
+      end
+    end
+
+    # Render the profile page URL with Stanford badge
+    def render_profile_link
+      return '' unless @contributor['name_identifiers'].present?
+
+      cap_id = @contributor['name_identifiers'].filter_map do |nid|
+        nid['name_identifier'] if nid['name_identifier_scheme'].present? && nid['name_identifier_scheme'] == 'CAP'
+      end
+
+      return '' unless cap_id.present? 
+
+      link_to("https://profiles.stanford.edu/intranet/#{cap_id[0]}", target: :blank) do
+        tag.span("Stanford profile for #{@contributor['name']} ", class: 'visually-hidden') +
+        tag.i(class:'ms-1 bi bi-person-fill profile')
       end
     end
 
     # Render an affiliation with its ROR link and country if present
     def render_affiliation(affiliation)
       tag.div do
-        tag.span(affiliation['name']) +
+        tag.span(render_affiliation_name(affiliation)) +
         render_affiliation_country(affiliation).to_s +
         render_ror_link(affiliation)
+      end
+    end
+
+    # Render affiliation name with department name if available 
+    def render_affiliation_name(affiliation)
+      name = affiliation['name']
+      department_names = include_department_names(name, affiliation['affiliation_department_name'])
+
+      if department_names.present?
+        return "#{name}, #{department_names.join(', ')}"
+      end
+
+      name
+    end
+
+    # Render department names only if the text of the name is not already included in the affiliation
+    def include_department_names(affiliation_name, department_names)
+      return unless department_names.present?
+
+      department_names.filter_map do |department_name|
+        department_name if ! affiliation_name.include?(department_name)
       end
     end
 
