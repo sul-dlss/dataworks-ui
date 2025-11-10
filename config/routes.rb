@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
+  get 'openalex_info', to: 'related_publications#openalex_info', as: 'openalex_info'
+
   concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do

@@ -183,7 +183,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'temporal_isim', label: 'Temporal Coverage', link_to_facet: true
     config.add_show_field 'geo_place_ssim', label: 'Geographic Coverage'
     config.add_show_field 'variables_tsim', label: 'Variables', helper_method: :display_variables
-    config.add_show_field 'related_identifiers_struct_ss', label: 'Related Identifiers', helper_method: :render_related_identifiers
+    config.add_show_field 'related_identifiers_struct_ss', label: 'Related Publications', component: Dwexp::RelatedPublicationsComponent
     config.add_show_field 'dates_struct_ss', label: 'Related Dates', helper_method: :display_dates
     config.add_show_field 'rights_list_struct_ss', label: 'Rights', helper_method: :display_rights
     config.add_show_field 'provider_identifier_map_struct_ss', label: 'Also Available At', helper_method: :display_also_available
