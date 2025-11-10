@@ -20,23 +20,22 @@ class Openalex
       # Default to DOI as last case
       case type
       when 'ISSN'
-        id_path = "#{@base_prefix}sources/issn:#{id}"
+        id_path = "#{@base_prefix}sources/issn:#{id}?select=id,ids,issn,display_name,homepage_url"
       when 'PMID'
-        id_path = "#{@base_datasets_url}pmid:#{id}"
+        id_path = "#{@base_datasets_url}pmid:#{id}?select=id,ids,title,doi,publication_year,primary_location,type,authorships"
       else
-        id_path = "#{@base_datasets_url}https://doi.org/#{id}"
+        id_path = "#{@base_datasets_url}https://doi.org/#{id}?select=id,ids,title,doi,publication_year,primary_location,type,authorships"
       end
       
-      
-      path = "#{id_path}?select=id,ids,title,doi,publication_year,primary_location,type"
-      puts "PATH IS #{path}"
-      json_response(path)
+      json_response(id_path)
     end
   
     def json_response(url)
       resp = Net::HTTP.get_response(URI.parse(url))
       data = resp.body
       JSON.parse(data)
+    rescue JSON::ParserError, Net::HTTPBadResponse, Timeout::Error => e
+      { error: "Failed OpaAlex request: #{e.message}" }
     end
   
     def metadata_url(source_identifier_ssi)

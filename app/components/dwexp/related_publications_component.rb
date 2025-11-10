@@ -1,9 +1,9 @@
 module Dwexp
   class RelatedPublicationsComponent < ViewComponent::Base
-    def initialize(field:, **kwargs)
+    def initialize(document:)
       super()
-      @field = field
-      @document = field.document
+      @document = document
+      @related_items = JSON.parse(document['related_identifiers_struct_ss'] || '[]')
       @group_all = {}
       @group_publications = {}
       group_related_items
@@ -11,17 +11,17 @@ module Dwexp
 
     # Retrieve related items and then organize by type of relationship
     def group_related_items
-      related_items = JSON.parse(@field.values[0])
-      related_items.each do |val|
+      @related_items.each do |val|
         id = val['related_identifier']
         relation_type = val['relation_type'] || ''
+        related_identifier_type = val['related_identifier_type'] || ''
 
         @group_all[relation_type] = [] if ! @group_all.key?(relation_type)
         @group_all[relation_type] << val
 
         # For publications, we group by what we will call the relationship type for display
         if add_publication(val)
-          display_relation_type = relation_type_label(relation_type)
+          display_relation_type = relation_type_label(relation_type, related_identifier_type)
           @group_publications[display_relation_type] = []  if ! @group_publications.key?(display_relation_type)
           @group_publications[display_relation_type] << val
         end
@@ -44,7 +44,7 @@ module Dwexp
     end
 
     def non_publication_types
-      ['Dataset', 'Image', 'Software']
+      ['Dataset', 'Image', 'Software', 'ComputationalNotebook']
     end
 
     def non_publication_relation_types
@@ -52,7 +52,9 @@ module Dwexp
     'IsVariantFormOf', 'IsIdenticalTo', 'IsOriginalFormOf']
     end
 
-    def relation_type_label(relation_type)
+    def relation_type_label(relation_type, related_identifier_type)
+      return 'Journals' if related_identifier_type == 'ISSN'
+
       case relation_type
       when ''
         'Publications'
@@ -63,7 +65,7 @@ module Dwexp
       when 'Cites'
         'Cites'
       else
-        'Publications'
+        'Related resources'
       end
     end
 
