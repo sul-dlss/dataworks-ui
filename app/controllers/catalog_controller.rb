@@ -151,7 +151,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'title_tsim', label: 'Title'
+    # config.add_index_field 'title_tsim', label: 'Title'
     config.add_index_field 'version_ss', label: 'Version'
     config.add_index_field 'url_ss', label: 'Url', helper_method: :url_link
     config.add_index_field 'provider_ssi', label: 'Provider'
@@ -159,7 +159,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'variables_tsim', label: 'Variables'
 
     # Show fields
-    config.add_show_field 'title_tsim', label: 'Title'
+    # config.add_show_field 'title_tsim', label: 'Title'
     config.add_show_field 'subtitle_tsim', label: 'Subtitle'
     config.add_show_field 'alternative_title_tsim', label: 'Alternative Title'
     config.add_show_field 'translate_title_tsim', label: 'Translated Title'
