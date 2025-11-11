@@ -152,41 +152,36 @@ $font-family-serif: "Source Serif 4", serif;
 // Similar to SearchWorks sizing
 
 h1,
-.h1,
 h2,
-.h2,
 h3,
-.h3,
 h4,
-.h4,
-h5,
-.h5 {
+h5 {
   font-size: var(--sul-header-font-size);
   line-height: 1.15;
   font-weight: 600;
 }
 
-h1,
-.h1 {
+h1 {
   --sul-header-font-size: 1.75rem;
 }
 
-h2,
-.h2 {
+h2 {
   --sul-header-font-size: 1.25rem;
 }
 
-h3,
-.h3 {
+h3 {
   --sul-header-font-size: 1.0rem;
 }
 
-h4,
-.h4 {
-  --sul-header-font-size: 0.9rem;
+.documents-list .document h3.document-title-heading{
+  --sul-header-font-size: 1.25rem;
 }
 
-h5,
-.h5 {
-  --sul-header-font-size: 0.8rem;
+h4 {
+  --sul-header-font-size: 1.0rem;
 }
+
+h5 {
+  --sul-header-font-size: 1.0rem;
+}
+
