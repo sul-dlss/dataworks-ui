@@ -3,7 +3,7 @@
   <div data-controller="related-publications" data-related-publications-url-value="<%= openalex_info_url %>">
   <%
     @group_publications.keys.each do |display_relation_type|
-      %><h5><%= display_relation_type %></h5><%
+      %><h3><%= display_relation_type %></h3><%
       items = @group_publications[display_relation_type]
 
       items.each do |item|
