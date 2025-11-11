@@ -36,9 +36,9 @@ module Dwexp
 
     # Render a link to an ORCID profile with the ORCID icon, if the contributor has one
     def render_orcid_link
-      return unless orcid.present?
+      return unless orcid_url.present?
 
-      link_to(orcid['name_identifier'], target: :blank) do
+      link_to(orcid_url, target: :blank) do
         tag.span("ORCID profile for #{@contributor['name']} ", class: 'visually-hidden') +
         image_tag('orcid_id.svg', alt: "", class: 'orcid-icon ms-2')
       end
@@ -77,9 +77,15 @@ module Dwexp
 
     private
 
-    # The ORCID identifier for the contributor, if present
-    def orcid
-      @orcid ||= Array(@contributor['name_identifiers']).find { |id| id['name_identifier_scheme'] == 'ORCID' }&.dig('name_identifier')
+    # The ORCID profile URL for the contributor, if present
+    def orcid_url
+      @orcid_url ||= begin
+        value = Array(@contributor['name_identifiers']).find { |id| id['name_identifier_scheme'] == 'ORCID' }&.dig('name_identifier')
+        return unless value.present?
+        return value if value.start_with?('http')
+
+        "https://orcid.org/#{value}"
+      end
     end
 
     # The Stanford Profiles (CAP) identifier for the contributor, if present
