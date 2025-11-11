@@ -3,6 +3,9 @@
     <%= render_name %>
   </th>
   <td>
+    <%= render_collaborators_link %>
+  </td>
+  <td>
     <table>
       <% Array(@contributor['affiliation']).each do |affiliation| %>
         <tr>

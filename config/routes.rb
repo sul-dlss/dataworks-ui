@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
+    get 'collaborators', to: 'catalog#collaborators', as: 'collaborators'
   end
 
   get 'openalex_info', to: 'related_publications#openalex_info', as: 'openalex_info'

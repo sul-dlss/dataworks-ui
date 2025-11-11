@@ -12,7 +12,7 @@ module Dwexp
     def render_name
       tag.div do
         link_to(@contributor['name'], search_catalog_path(f: { @field.field_config.key => [@contributor['name']] })) +
-        render_orcid_link + 
+        render_orcid_link +
         render_profile_link
       end
     end
@@ -25,7 +25,7 @@ module Dwexp
         nid['name_identifier'] if nid['name_identifier_scheme'].present? && nid['name_identifier_scheme'] == 'CAP'
       end
 
-      return '' unless cap_id.present? 
+      return '' unless cap_id.present?
 
       link_to("https://profiles.stanford.edu/intranet/#{cap_id[0]}", target: :blank) do
         tag.span("Stanford profile for #{@contributor['name']} ", class: 'visually-hidden') +
@@ -42,7 +42,7 @@ module Dwexp
       end
     end
 
-    # Render affiliation name with department name if available 
+    # Render affiliation name with department name if available
     def render_affiliation_name(affiliation)
       name = affiliation['name']
       department_names = include_department_names(name, affiliation['affiliation_department_name'])
@@ -90,6 +90,15 @@ module Dwexp
       org = RorService.get_by_id(affiliation['affiliation_identifier'])
 
       tag.span(org.country_emoji, class: 'ms-2', aria: { label: org.country_name }) if org&.country_emoji
+    end
+
+    # Render a link to view the modal of collaborators for this contributor
+    def render_collaborators_link
+      link_to(collaborators_catalog_path(f: { 'contributors_ssim' => [@contributor['name']] }), data: { blacklight_modal: 'trigger', turbo: false }) do
+        tag.i(class: "bi bi-people-fill me-1", aria: { hidden: true }) +
+        tag.span(@contributor['name'], class: 'visually-hidden') +
+        tag.span("Collaborators")
+      end
     end
   end
 end

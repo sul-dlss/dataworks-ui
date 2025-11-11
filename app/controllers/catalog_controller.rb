@@ -268,4 +268,21 @@ class CatalogController < ApplicationController
     # default 'mySuggester', uncomment and provide it below
     # config.autocomplete_suggester = 'mySuggester'
   end
+
+  # Render a list of collaborators for the given contributors, as a modal
+  def collaborators
+    @facet = blacklight_config.facet_fields['contributors_ssim']
+    @contributors = params[:f][@facet.key]
+    @response = search_service.facet_field_response(@facet.key, {
+      "f[#{@facet.key}][]" => @contributors,
+      "f.#{@facet.key}.facet.limit" => -1,  # get all values
+      "facet.sort" => 'count'
+    })
+    @display_facet = @response.aggregations[@facet.key]
+    @presenter = @facet.presenter.new(@facet, @display_facet, view_context)
+
+    respond_to do |format|
+      format.html { render layout: false }
+    end
+  end
 end

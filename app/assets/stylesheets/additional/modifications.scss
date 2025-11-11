@@ -141,3 +141,10 @@ $font-family-serif: "Source Serif 4", serif;
 .profile {
   color: var(--stanford-cardinal)
 }
+
+// Move the modal close button to the top right corner
+#blacklight-modal .blacklight-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

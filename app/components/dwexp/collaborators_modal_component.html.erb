@@ -1,0 +1,30 @@
+<div data-blacklight-modal="container">
+  <div class="modal-header flex-wrap py-2">
+    <h1 class="modal-title fs-3 w-100 mb-1 d-flex gap-2 align-items-center">
+      <span><%= @contributors.to_sentence %></span>
+      <span class="badge rounded-pill text-reset bg-secondary-subtle fw-normal fs-6"><%= pluralize(datasets_count, 'Dataset') %></span>
+    </h1>
+    <h2 class="modal-subtitle fs-5">Collaborators</h2>
+    <button type="button" class="blacklight-modal-close btn-close close" data-bl-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body collaborators">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col" class="bg-secondary-subtle fw-semibold">Collaborator</th>
+          <th scope="col" class="bg-secondary-subtle fw-semibold">Shared datasets</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <% collaborators.each do |presenter| %>
+          <tr>
+            <td><%= presenter.label %></td>
+            <td><%= link_to(presenter.hits, presenter.href) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
