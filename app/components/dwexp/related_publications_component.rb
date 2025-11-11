@@ -72,5 +72,9 @@ module Dwexp
     def openalex_info_url
       "#{root_path}openalex_info" 
     end
+
+    def render?
+      @group_publications.present?
+    end
   end
 end
