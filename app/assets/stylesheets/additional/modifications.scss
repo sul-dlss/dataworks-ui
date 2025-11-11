@@ -99,9 +99,9 @@ $font-family-serif: "Source Serif 4", serif;
   vertical-align: sub;
 }
 
-// Hide the "true" value and ">" when the Stanford Datasets facet is selected
-.constraint.filter.filter-stanford_dataset_bsi .filter-value,
-.constraint.filter.filter-stanford_dataset_bsi .filter-name::after {
+// Hide the "true" value and ">" when the Stanford authored facet is selected
+.constraint.filter.filter-stanford_contributor_bsi .filter-value,
+.constraint.filter.filter-stanford_contributor_bsi .filter-name::after {
   display: none;
 }
 
@@ -184,4 +184,3 @@ h4 {
 h5 {
   --sul-header-font-size: 1.0rem;
 }
-
