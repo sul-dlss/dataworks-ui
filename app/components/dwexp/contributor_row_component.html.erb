@@ -6,12 +6,19 @@
     <%= render_collaborators_link %>
   </td>
   <td>
-    <table>
-      <% Array(@contributor['affiliation']).each do |affiliation| %>
-        <tr>
-          <td><%= render_affiliation(affiliation) %></td>
-        </tr>
-      <% end %>
-    </table>
+    <% Array(@contributor['affiliation']).each do |affiliation| %>
+      <div class="d-flex justify-content-between align-items-start mb-1">
+        <div class="d-flex flex-column">
+          <span><%= affiliation['name'] %><%= render_ror_link(affiliation) %></span>
+          <% departments(affiliation).each do |department| %>
+            <span class="text-muted d-block ms-2">
+              <i class="bi bi-arrow-return-right"></i>
+              <%= department %>
+            </span>
+          <% end %>
+        </div>
+        <%= render_affiliation_country(affiliation) %>
+      </div>
+    <% end %>
   </td>
 </tr>

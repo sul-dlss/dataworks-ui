@@ -17,55 +17,25 @@ module Dwexp
       end
     end
 
-    # Render the profile page URL with Stanford badge
+    # Render the profile page URL with Stanford badge, if the contributor has one
     def render_profile_link
-      return '' unless @contributor['name_identifiers'].present?
+      return unless cap_id.present?
 
-      cap_id = @contributor['name_identifiers'].filter_map do |nid|
-        nid['name_identifier'] if nid['name_identifier_scheme'].present? && nid['name_identifier_scheme'] == 'CAP'
-      end
-
-      return '' unless cap_id.present?
-
-      link_to("https://profiles.stanford.edu/intranet/#{cap_id[0]}", target: :blank) do
+      link_to("https://profiles.stanford.edu/intranet/#{cap_id}", target: :blank) do
         tag.span("Stanford profile for #{@contributor['name']} ", class: 'visually-hidden') +
         tag.i(class:'ms-1 bi bi-person-fill profile')
       end
     end
 
-    # Render an affiliation with its ROR link and country if present
-    def render_affiliation(affiliation)
-      tag.div do
-        tag.span(render_affiliation_name(affiliation)) +
-        render_affiliation_country(affiliation).to_s +
-        render_ror_link(affiliation)
-      end
-    end
-
-    # Render affiliation name with department name if available
-    def render_affiliation_name(affiliation)
-      name = affiliation['name']
-      department_names = include_department_names(name, affiliation['affiliation_department_name'])
-
-      if department_names.present?
-        return "#{name}, #{department_names.join(', ')}"
-      end
-
-      name
-    end
-
-    # Render department names only if the text of the name is not already included in the affiliation
-    def include_department_names(affiliation_name, department_names)
-      return unless department_names.present?
-
-      department_names.filter_map do |department_name|
-        department_name if ! affiliation_name.include?(department_name)
-      end
+    # Get all of the departments for an affiliation, excluding duplicates of the affiliation name
+    def departments(affiliation)
+      Array(affiliation['affiliation_department_name']).map do |dept|
+        dept unless dept == affiliation['name']
+      end.compact
     end
 
     # Render a link to an ORCID profile with the ORCID icon, if the contributor has one
     def render_orcid_link
-      orcid = Array(@contributor['name_identifiers']).find { |id| id['name_identifier_scheme'] == 'ORCID' }
       return unless orcid.present?
 
       link_to(orcid['name_identifier'], target: :blank) do
@@ -88,8 +58,12 @@ module Dwexp
     def render_affiliation_country(affiliation)
       return unless affiliation['affiliation_identifier_scheme'] == 'ROR'
       org = RorService.get_by_id(affiliation['affiliation_identifier'])
+      return unless org&.country_name.present?
 
-      tag.span(org.country_emoji, class: 'ms-2', aria: { label: org.country_name }) if org&.country_emoji
+      tag.div(class: 'text-nowrap') do
+        tag.span(org.country_name) +
+        tag.span(org.country_emoji, class: 'ms-2', aria: { hidden: true })
+      end
     end
 
     # Render a link to view the modal of collaborators for this contributor
@@ -99,6 +73,18 @@ module Dwexp
         tag.span(@contributor['name'], class: 'visually-hidden') +
         tag.span("Collaborators")
       end
+    end
+
+    private
+
+    # The ORCID identifier for the contributor, if present
+    def orcid
+      @orcid ||= Array(@contributor['name_identifiers']).find { |id| id['name_identifier_scheme'] == 'ORCID' }&.dig('name_identifier')
+    end
+
+    # The Stanford Profiles (CAP) identifier for the contributor, if present
+    def cap_id
+      @cap_id ||= Array(@contributor['name_identifiers']).find { |id| id['name_identifier_scheme'] == 'CAP' }&.dig('name_identifier')
     end
   end
 end
