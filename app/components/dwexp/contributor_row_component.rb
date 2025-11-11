@@ -30,7 +30,7 @@ module Dwexp
     # Get all of the departments for an affiliation, excluding duplicates of the affiliation name
     def departments(affiliation)
       Array(affiliation['affiliation_department_name']).map do |dept|
-        dept unless dept == affiliation['name']
+        dept unless affiliation['name'].include?(dept)
       end.compact
     end
 
