@@ -141,11 +141,11 @@ module DataworksHelper
   # a truncated version for the index view. Allows italics. Tries to break on
   # word boundaries.
   def render_rich_text_preview(args)
-    truncate(
+    sanitize(truncate(
       safe_join(args[:value].map { |arg| sanitize(CGI::unescapeHTML(arg), tags: %w(em i)) }),
       length: 500,
       escape: false,
       separator: ' '
-    )
+    ), tags: %w(em i))
   end
 end
