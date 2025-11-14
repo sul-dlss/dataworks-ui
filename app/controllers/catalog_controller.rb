@@ -154,7 +154,7 @@ class CatalogController < ApplicationController
     # config.add_index_field 'title_tsim', label: 'Title'
     config.add_index_field 'version_ss', label: 'Version'
     config.add_index_field 'url_ss', label: 'Url', helper_method: :url_link
-    config.add_index_field 'provider_ssi', label: 'Provider'
+    # config.add_index_field 'provider_ssi', label: 'Provider'
     config.add_index_field 'descriptions_tsim', label: 'Description', helper_method: :render_rich_text_preview
     config.add_index_field 'variables_tsim', label: 'Variables'
 
@@ -167,9 +167,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'contributors_ssim', label: 'Contributors', component: Dwexp::ContributorTableComponent
     # config.add_show_field 'access_ssi', label: 'Access', link_to_facet: true, show: false
     config.add_show_field 'url_ss', label: 'URL', helper_method: :url_link
-    config.add_show_field 'provider_ssi', label: 'Provider', link_to_facet: true
+    # config.add_show_field 'provider_ssi', label: 'Provider', link_to_facet: true
     config.add_show_field 'doi_ssi', label: 'DOI'
-    config.add_show_field 'provider_identifier_ssi', label: 'Provider id'
+    # config.add_show_field 'provider_identifier_ssi', label: 'Provider id'
     config.add_show_field 'descriptions_tsim', label: 'Description', helper_method: :render_rich_text
     config.add_show_field 'methods_tsim', label: 'Methods', helper_method: :render_rich_text
     config.add_show_field 'other_descriptions_tsim', label: 'Other description', helper_method: :render_rich_text
