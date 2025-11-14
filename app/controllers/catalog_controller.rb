@@ -230,9 +230,6 @@ class CatalogController < ApplicationController
       }
     end
 
-    # Specifying a :qt only to show it's possible, and so our internal automated
-    # tests can test it. In this case it's the same as
-    # config[:default_solr_parameters][:qt], so isn't actually neccesary.
     config.add_search_field('subject') do |field|
       field.solr_parameters = {
         'spellcheck.dictionary': 'subject',
@@ -241,7 +238,7 @@ class CatalogController < ApplicationController
     }
     end
 
-    config.add_search_field('DOI') do |field|
+    config.add_search_field('doi') do |field|
       field.solr_parameters = {
         qf: 'doi_ssi'
       }
