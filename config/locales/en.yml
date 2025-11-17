@@ -29,3 +29,12 @@
 
 en:
   hello: "Hello world"
+  provider:
+    datacite: "DataCite"
+    figshare: "Figshare"
+    zenodo: "Zenodo"
+    sdr: "Stanford Digital Repository"
+    open_alex: "OpenAlex"
+    dryad: "Dryad"
+    redivis: "Redivis"
+    searchworks: "SearchWorks"
