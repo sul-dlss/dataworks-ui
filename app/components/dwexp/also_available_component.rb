@@ -15,7 +15,7 @@ module Dwexp
         # Don't display if no URL mapped for provider OR this is already the landing page URL
         next if available_url.blank? || remove_prefix(url: @url) == remove_prefix(url: available_url)
 
-        "<a target='_blank' href='#{available_url}'>#{provider.titleize}</a>"
+        "<a target='_blank' href='#{available_url}'>#{I18n.t("provider.#{provider.downcase}")}</a>"
       end.compact.join('<br/>')
     end
 
