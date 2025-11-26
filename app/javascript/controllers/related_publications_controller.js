@@ -14,10 +14,37 @@ export default class extends Controller {
   queryPublications() {
     this.idTypeHash = this.collectByIdType()
     const _this = this
+    var batchSize = 50
     for(const idType in this.idTypeHash) {
-      _this.openAlexInfo(_this.idTypeHash[idType], idType)
+      var ids = _this.idTypeHash[idType]
+      if(ids.length < (batchSize + 1)) {
+        _this.openAlexInfo(ids, idType)
+      } else {
+       _this.batchRequests(ids, idType)
+      }
     }
   }
+
+  async batchRequests(ids, idType) {
+     // Break out requests into batches of no more than 50
+     var counter = 0
+     var batchSize = 50
+     var delayCounter = 0
+     while(counter < ids.length) {
+       var queryIds = ids.slice(counter, counter + batchSize)
+       counter += batchSize
+       delayCounter++
+       this.openAlexInfo(queryIds, idType)
+       // Rate limiting is about 5 requests per second
+       // so we introduce a delay after every 5 requests
+       if(delayCounter == 4) {
+        delayCounter = 0
+        await this.delay(1000)
+       }
+     }
+  }
+
+  
 
   // We will combine cals for different ids
   collectByIdType() {
