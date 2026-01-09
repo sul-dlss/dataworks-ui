@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the repository for the experimental prototype Blacklight application for DataWorks. 
 
-Things you may want to cover:
+* Local installation
+After cloning the repository, you will need to run the following commands:
 
-* Ruby version
+    $ bundle install
+    $ yarn install
+    $ rails db:migrate
 
-* System dependencies
+* Solr
+You will have to setup a Solr instance that includes the fields specified in the catalog controller.  As an example, you may look at the dwexp-demo Solr collection in the SUL DLSS Solr instance.
 
-* Configuration
+You can set the SOLR URL in the config/blacklight.yml file directly or set an environment variable for the Solr index you are using for your local installation.
 
-* Database creation
+* Starting the system locally
 
-* Database initialization
+You can start the application locally using 
+    $ bundle install
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+and then navigating to http://localhost:3000.
