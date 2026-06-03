@@ -8,3 +8,19 @@ require_relative 'config/application'
 Rails.application.load_tasks
 
 require 'solr_wrapper/rake_task' unless Rails.env.production?
+
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+rescue LoadError
+  task rubocop: [:environment] do
+    raise 'Unable to load rubocop'
+  end
+end
+
+# remove default rspec task
+task(:default).clear
+
+task default: :ci
+
+task ci: [:rubocop]
