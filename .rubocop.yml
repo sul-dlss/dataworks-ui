@@ -3,6 +3,8 @@ inherit_from: .rubocop_todo.yml
 plugins:
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
+  - rubocop-rspec_rails
   - rubocop-capybara
 
 AllCops:
@@ -15,6 +17,9 @@ AllCops:
 
 Rails:
   Enabled: true
+
+RSpec/MultipleExpectations:
+  Enabled: false
 
 Layout/LineLength:
   Max: 120
@@ -530,4 +535,20 @@ Capybara/RSpec/PredicateMatcher: # new in 2.19
 Capybara/RSpec/SpecificMatcher: # new in 2.12
   Enabled: true
 Capybara/RSpec/VisibilityMatcher: # new in 1.39
+  Enabled: true
+RSpec/IncludeExamples: # new in 3.6
+  Enabled: true
+RSpec/LeakyLocalVariable: # new in 3.8
+  Enabled: true
+RSpecRails/AvoidSetupHook: # new in 2.4
+  Enabled: true
+RSpecRails/HaveHttpStatus: # new in 2.12
+  Enabled: true
+RSpecRails/InferredSpecType: # new in 2.14
+  Enabled: true
+RSpecRails/MinitestAssertions: # new in 2.17
+  Enabled: true
+RSpecRails/NegationBeValid: # new in 2.23
+  Enabled: true
+RSpecRails/TravelAround: # new in 2.19
   Enabled: true

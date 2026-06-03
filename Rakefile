@@ -18,9 +18,16 @@ rescue LoadError
   end
 end
 
-# remove default rspec task
+require_relative 'lib/tasks/solr_task_helpers'
+
 task(:default).clear
 
 task default: :ci
 
-task ci: [:rubocop]
+task ci: %i[rubocop] do
+  with_solr do
+    # run the tests
+    Rake::Task['dataworks_ui:index:seed'].invoke
+    Rake::Task['spec'].invoke
+  end
+end
