@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 8.1'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+# Asset pipeline
+gem 'propshaft'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 2.1'
@@ -72,13 +72,11 @@ gem 'blacklight', '~> 9.0'
 # CSV needs to be added explicitly post ruby 3.4
 gem 'csv'
 
-gem 'bootstrap', '~> 5.3'
 gem 'config'
 gem 'dotenv'
 gem 'openssl'
 gem 'pg'
 gem 'rsolr', '>= 1.0', '< 3'
-gem 'sassc-rails', '~> 2.1'
 
 # For Capistrano
 group :deployment do

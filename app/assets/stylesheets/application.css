@@ -1,18 +1,41 @@
-// Importing 
-@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
-
-$logo-width: 200px;
-$logo-height: 35px;
-
-$link-light-color: $stanford-white;
-$link-dark-color: $stanford-digital-blue;
-$font-family-serif: "Source Serif 4", serif;
 :root {
-  --sul-link-color-rgb: 0, 108, 184; /* Digital blue #006CB8; */
+  /* Bootstrap theme overrides */
+  --bs-primary: #8c1515;
+  --bs-primary-rgb: 140, 21, 21;
+  --bs-danger: #b1040e;
+  --bs-danger-rgb: 177, 4, 14;
+  --bs-info: #006cb8;
+  --bs-info-rgb: 0, 108, 184;
+  --bs-secondary: #014240;
+  --bs-secondary-rgb: 1, 66, 64;
+  --bs-dark: #016895;
+  --bs-dark-rgb: 1, 104, 149;
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
+  --bs-border-radius-xl: 0;
+  --bs-border-radius-xxl: 0;
+  --bs-border-radius-pill: 50rem;
+  --bs-body-font-family: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Stanford colors */
+  --stanford-cardinal: #8c1515;
+  --stanford-black: #2e2d29;
+  --stanford-white: #ffffff;
+  --stanford-digital-blue: #006cb8;
+  --stanford-digital-blue-dark: #00548f;
+  --stanford-digital-red: #b1040e;
+  --stanford-illuminating: #fedd5c;
+  --stanford-palo-alto-light: #2d716f;
+  --stanford-palo-alto-dark: #014240;
+  --stanford-fog: #dad7cb;
+  --grey-lighter: #ededed;
+
+  --sul-link-color-rgb: 0, 108, 184; /* Digital blue #006CB8 */
   --sul-link-font-weight: 450;
 
-  --bs-link-color: #006cb8; /* for .btn-link */
-  --bs-link-hover-color: #006cb8; /* for .btn-link */
+  --bs-link-color: #006cb8;
+  --bs-link-hover-color: #006cb8;
   --bs-link-color-rgb: var(--sul-link-color-rgb);
   --bs-link-hover-color-rgb: var(--sul-link-color-rgb);
   --bs-link-decoration: none;
@@ -55,8 +78,8 @@ $font-family-serif: "Source Serif 4", serif;
 }
 
 .queryresult {
-  background-color: #F7FAFB;
-  border:1px solid #016895;
+  background-color: #f7fafb;
+  border: 1px solid #016895;
   padding: 15px;
   margin-right: 15px;
 }
@@ -66,11 +89,11 @@ $font-family-serif: "Source Serif 4", serif;
 }
 
 .highlight {
-  background-color: #F7FAFB;
-  border:1px solid #016895;
+  background-color: #f7fafb;
+  border: 1px solid #016895;
 }
 
-// Rich text display styles (descriptions, notes, etc.)
+/* Rich text display styles */
 .rich-text + .rich-text {
   margin-top: 1rem;
 }
@@ -91,7 +114,7 @@ $font-family-serif: "Source Serif 4", serif;
   vertical-align: top;
 }
 
-// ORCID and ROR icons
+/* ORCID and ROR icons */
 .orcid-icon,
 .ror-icon {
   width: 1rem;
@@ -99,58 +122,56 @@ $font-family-serif: "Source Serif 4", serif;
   vertical-align: sub;
 }
 
-// Hide the "true" value and ">" when the Stanford authored facet is selected
+/* Hide the "true" value and ">" when the Stanford authored facet is selected */
 .constraint.filter.filter-stanford_contributor_bsi .filter-value,
 .constraint.filter.filter-stanford_contributor_bsi .filter-name::after {
   display: none;
 }
 
-@import 'sulBase';
-@import "sulHeader";
-@import 'stanfordStripe';
-@import "sulFooter";
-@import "sulFacets";
-
-// Cardinal red button (stanford datasets facet)
+/* Cardinal red button (stanford datasets facet) */
 .btn-stanford-cardinal {
   --bs-btn-hover-border-color: var(--stanford-cardinal);
   --bs-btn-border-color: var(--stanford-cardinal);
   --bs-btn-hover-bg: var(--stanford-cardinal);
   --bs-btn-color: var(--stanford-cardinal);
 
+  &:hover {
+    --bs-btn-hover-color: #fff;
+  }
+
   &.active {
     --bs-btn-active-border-color: var(--stanford-cardinal);
     --bs-btn-border-color: var(--stanford-cardinal);
     --bs-btn-active-bg: var(--stanford-cardinal);
+    --bs-btn-active-color: #fff;
   }
 }
 
-// Cardinal red badges
+/* Cardinal red badges */
 .badge.text-bg-cardinal {
   --bs-badge-color: #fff;
   --bs-badge-font-size: 0.75rem;
   background-color: var(--stanford-cardinal);
 }
 
-// Mail icon
+/* Mail icon */
 .mail {
   color: var(--stanford-digital-blue);
 }
 
-// Person icon
+/* Person icon */
 .profile {
-  color: var(--stanford-cardinal)
+  color: var(--stanford-cardinal);
 }
 
-// Move the modal close button to the top right corner
+/* Move the modal close button to the top right corner */
 #blacklight-modal .blacklight-modal-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
 }
 
-// Similar to SearchWorks sizing
-
+/* Heading sizes */
 h1,
 h2,
 h3,
@@ -161,26 +182,12 @@ h5 {
   font-weight: 600;
 }
 
-h1 {
-  --sul-header-font-size: 1.75rem;
-}
+h1 { --sul-header-font-size: 1.75rem; }
+h2 { --sul-header-font-size: 1.25rem; }
+h3 { --sul-header-font-size: 1.0rem; }
+h4 { --sul-header-font-size: 1.0rem; }
+h5 { --sul-header-font-size: 1.0rem; }
 
-h2 {
+.documents-list .document h3.document-title-heading {
   --sul-header-font-size: 1.25rem;
-}
-
-h3 {
-  --sul-header-font-size: 1.0rem;
-}
-
-.documents-list .document h3.document-title-heading{
-  --sul-header-font-size: 1.25rem;
-}
-
-h4 {
-  --sul-header-font-size: 1.0rem;
-}
-
-h5 {
-  --sul-header-font-size: 1.0rem;
 }

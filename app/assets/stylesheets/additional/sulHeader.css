@@ -1,0 +1,21 @@
+
+.beta-banner {
+  background-color: #fedd5c;
+  color: #000;
+
+  a {
+    color: #0065ad;
+  }
+}
+
+.search-query-form .search-field {
+  width: auto;
+  flex: 0 1 auto;
+}
+
+search {
+  width: 100%;
+  max-width: 1000px;
+}
+
+

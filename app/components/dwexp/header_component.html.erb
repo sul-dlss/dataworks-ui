@@ -1,7 +1,132 @@
-<header>
-  <%= render 'shared/stanford_stripe' %>
-  <%= render 'shared/top_bar' %>
-  <%= render 'shared/masthead' %>
+<nav id="skip-link" class="visually-hidden-focusable" aria-label="Skip links">
+  <div class="container-xl">
+    <a class="d-inline-flex m-1 py-2 px-3" href="#search_field">Skip to search</a>
+    <a class="d-inline-flex m-1 py-2 px-3" href="#main-container">Skip to main content</a>
+    <a class="d-inline-flex m-1 py-2 px-3" href="#documents">Skip to first result</a>
+  </div>
+</nav>
+<header class="mb-3">
+  <%# render 'shared/stanford_stripe' %>
+  <%# render 'shared/top_bar' %>
+  <%# render 'shared/masthead' %>
+  <div class="identity-bar">
+    <div class="container">
+      <a class="su-brand-bar__logo" href="https://www.stanford.edu">Stanford University</a>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-md bg-dark sky-dark">
+    <div class="container">
+      <a class="mb-0 navbar-brand navbar-logo" href="https://library.stanford.edu" aria-label="Stanford University Libraries"></a>
+      <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#user-util-collapse" data-bs-target="#user-util-collapse" aria-controls="user-util-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- <div class="d-md-block d-none"> -->
+        <!-- <ul class="navbar-nav"> -->
+          <!-- <li class="nav-item"> -->
+            <!-- <a id="bookmarks_nav" class="nav-link" href="/bookmarks"> -->
+                    <!-- Bookmarks -->
+              <!-- <span class="badge rounded-pill bookmark-counter" data-role="bookmark-counter">0</span> -->
+            <!-- </a> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
+            <!-- <a class="nav-link" href="/search_history">History</a> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
+            <!-- <a href="#feedback" class="nav-link">Feedback</a> -->
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
+            <!-- <a href="/login" class="nav-link">Login</a> -->
+          <!-- </li> -->
+        <!-- </ul> -->
+      <!-- </div> -->
+    </div>
+  </nav>
+  <div class="masthead bg-dark sky-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-end pt-3 pb-1 pb-md-3 gap-2">
+        <div class="d-flex align-items-end gap-2 flex-grow-1">
+          <span class="rosette-logo me-1 align-self-start flex-shrink-0" aria-hidden="true"></span>
+          <div class="me-1 flex-grow-1">
+            <div class="h1 my-0">
+              <a href="/">DataWorks Experimental Prototype</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbars ms-md-auto bg-dark">
+          <nav class="collapse navbar-collapse align-items-start justify-content-md-end navbar-expand-md d-md-flex flex-column flex-md-row" aria-label="browse" id="user-util-collapse">
+            <!-- <hr class="d-md-none text-white vw-100 my-0"> -->
+            <!-- <ul class="navbar-nav justify-content-md-end gap-0 gap-md-4 w-100 fw-semibold"> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a class="nav-link" href="/item1">Option</a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a class="nav-link" href="/item2">Option</a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item dropdown"> -->
+                <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> -->
+                        <!-- Select an option -->
+                <!-- </a> -->
+                <!-- <ul class="dropdown-menu"> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option1">Dropdown option 1</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option2">Dropdown option 2</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option3">Dropdown option 3: Lorem ipsum dolor sit amet</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option4">Dropdown option 4: Lorem ipsum dolor sit amet</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option5">Dropdown option 5: Lorem ipsum dolor sit amet</a> -->
+                  <!-- </li> -->
+                <!-- </ul> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item dropdown"> -->
+                <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> -->
+                        <!-- Select an option -->
+                <!-- </a> -->
+                <!-- <ul class="dropdown-menu"> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option1">Dropdown option 1</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option2">Dropdown option 2</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option3">Dropdown option 3: Lorem ipsum dolor sit amet</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option4">Dropdown option 4: Lorem ipsum dolor sit amet</a> -->
+                  <!-- </li> -->
+                  <!-- <li> -->
+                    <!-- <a class="dropdown-item" href="/option5">Dropdown option 5: Lorem ipsum dolor sit amet</a> -->
+                  <!-- </li> -->
+                <!-- </ul> -->
+              <!-- </li> -->
+            <!-- </ul> -->
+            <!-- <hr class="d-md-none text-white vw-100 my-0"> -->
+            <!-- <ul class="navbar-nav d-md-none gap-0 w-100"> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a id="bookmarks_nav" class="nav-link" href="/bookmarks"> -->
+                        <!-- Bookmarks -->
+                  <!-- <span class="badge rounded-pill bookmark-counter" data-role="bookmark-counter">0</span> -->
+                <!-- </a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a class="nav-link" href="/search_history">History</a> -->
+              <!-- </li> -->
+              <!-- <li class="nav-item"> -->
+                <!-- <a href="#feedback" class="nav-link">Feedback</a> -->
+              <!-- </li> -->
+            <!-- </ul> -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
   <%= render 'shared/banner' %>
   <%= search_bar %>
 </header>
