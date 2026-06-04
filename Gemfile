@@ -67,12 +67,12 @@ group :test do
 end
 
 # Incorporating blacklight
-gem 'blacklight'
+gem 'blacklight', '~> 9.0'
 
 # CSV needs to be added explicitly post ruby 3.4
 gem 'csv'
 
-gem 'bootstrap', '~> 5.1'
+gem 'bootstrap', '~> 5.3'
 gem 'config'
 gem 'dotenv'
 gem 'openssl'
