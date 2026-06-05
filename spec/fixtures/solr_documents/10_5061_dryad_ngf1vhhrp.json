@@ -1,0 +1,23 @@
+{
+  "id":"10_5061_dryad_ngf1vhhrp",
+  "load_id_ssi":"f4c4b769-b04d-418b-a56d-fd55a5dc907d",
+  "access_ssi":"Public",
+  "provider_ssi":"Dryad",
+  "descriptions_tsim":["<p><b>Objective: </b>To determine if memory tasks with demonstrated sensitivity to hippocampal function can detect variance related to preclinical Alzheimer’s disease (AD) biomarkers, we examined associations between performance in three memory tasks and CSF Ab<sub>42</sub>/Ab<sub>40 </sub>and p-tau<sub>181</sub> in cognitively unimpaired older adults (CU).</p>\r\n\r\n<p><b>Methods: </b>CU enrolled in the Stanford Aging and Memory Study (N=153; age 68.78 ± 5.81 yrs; 94 female) completed a lumbar puncture and memory assessments. CSF Ab<sub>42</sub>,<sub> </sub>Ab<sub>40</sub>, and phosopho-tau<sub>181</sub> (p-tau<sub>181</sub>) were measured with the automated Lumipulse G system in a single-batch analysis. Episodic memory was assayed using a delayed recall composite, paired associate (word-picture) cued recall, and a mnemonic discrimination task that involves discrimination between studied ‘target’ objects, novel ‘foil’ objects, and perceptually similar ‘lure’ objects. Analyses examined cross-sectional relationships between memory performance, age, and CSF measures, controlling for sex and education.</p>\r\n\r\n<p><span><b>Results: </b>Age and lower Ab<sub>42</sub>/Ab<sub>40 </sub>were independently associated with elevated p-tau<sub>181</sub>. Age, Ab<sub>42</sub>/Ab<sub>40,</sub> and p-tau<sub>181</sub> were each associated with a) poorer associative memory and b) diminished improvement in mnemonic discrimination performance across levels of decreased task difficulty (i.e., target-lure similarity). P-tau mediated the effect of Ab<sub>42</sub>/Ab<sub>40 </sub>on memory. Relationships between CSF proteins and delayed recall were similar but non-significant. CSF Ab<sub>42 </sub>was not significantly associated with p-tau<sub>181 </sub>or memory. </span></p>\r\n\r\n<p><b>Conclusions: </b>Tests designed to tax hippocampal function are sensitive to subtle individual differences in memory among CU, and correlate with early AD-associated biomarker changes in CSF. These tests may offer utility for identifying cognitively unimpaired older adults with preclinical AD pathology.<b> </b></p>\r\n"],
+  "doi_ssi":"10.5061/dryad.ngf1vhhrp",
+  "provider_identifier_ssi":"doi:10.5061/dryad.ngf1vhhrp",
+  "creators_ssim":["Alexandra Trelle", "(Alexander Second)"],
+  "subjects_ssim":["Physics","Inelastic X-ray scattering","Nonlinear X-ray dynamics","ISXRS", "\"EARTH SCIENCE\",\"CRYOSPHERE\",\"GLACIERS/ICE SHEETS\",\"GLACIER MOTION/ICE SHEET MOTION\""],
+  "url_ss":"http://datadryad.org/dataset/doi:10.5061/dryad.ngf1vhhrp",
+  "publication_year_isi":2021,
+  "publisher_ssi":" figshare ",
+  "other_descriptions_tsim":["<p><strong>Supplemental Data</strong> </p>\r\n\r\n<p><b>Method e-1. </b>Tau PET imaging</p>\r\n\r\n<p><b>Figure e-1: </b>SAMS Participant Flowchart</p>\r\n\r\n<p><b>Figure e-2: </b>Gaussian Mixture Modelling</p>\r\n\r\n<p><b>Figure e-3: </b>CSF Proteins vs. Medial Temporal Lobe Tau<b>  </b></p>\r\n\r\n<p><b>Figure e-4: </b>CSF Ab<sub>42</sub> Sample Characteristics<b> </b></p>\r\n\r\n<p><b>Figure e-5: </b>CSF Proteins vs. Associative <i>d’ </i>by Stimulus Category</p>\r\n\r\n<p><b>Figure e-6: </b>CSF Proteins vs. Lure Discrimination Difference Scores</p>\r\n\r\n<p><b>Table e-1: </b>Relationships between CSF Proteins and Individual Standardized Delayed Recall Test Scores</p>\r\n"],
+  "sizes_ssm":["1915023 KB"],
+  "version_ss":"1",
+  "provider_identifier_map_struct_ss":"{\"dryad\":\"doi:10.5061/dryad.ngf1vhhrp\",\"zenodo\":\"5773130\"}",
+  "title_tsim":["Association of CSF biomarkers with hippocampal-dependent memory in preclinical Alzheimer disease V1"],
+  "creators_struct_ss":"[{\"name\":\"Alexandra Trelle\",\"name_type\":\"Personal\",\"name_identifiers\":[{\"name_identifier\":\"0000-0003-2837-8753\",\"name_identifier_scheme\":\"ORCID\"}],\"affiliation\":[{\"name\":\"Stanford University\",\"affiliation_identifier\":\"https://ror.org/00f54p054\",\"affiliation_identifier_scheme\":\"ROR\"}]}]",
+  "dates_struct_ss":"[{\"date\":\"2021-12-10\",\"date_type\":\"Issued\"},{\"date\":\"2020-12-11\",\"date_type\":\"Updated\"}]",
+  "rights_list_struct_ss":"[{\"rights_uri\":\"https://spdx.org/licenses/CC0-1.0.html\"}]",
+  "related_identifiers_struct_ss":"[{\"related_identifier\":\"0028-3878\",\"related_identifier_type\":\"ISSN\"}]"
+}
