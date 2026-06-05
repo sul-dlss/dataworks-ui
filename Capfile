@@ -17,7 +17,7 @@ require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'dlss/capistrano'
 # require 'capistrano/sitemap_generator'
-require 'capistrano/shared_configs'
+# require 'capistrano/shared_configs'
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
