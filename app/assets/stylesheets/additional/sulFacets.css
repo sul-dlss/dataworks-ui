@@ -1,0 +1,16 @@
+/* Date Range Facet */
+
+#facet-date_range {
+  .distribution,
+  .more_facets,
+  .facet-values.missing,
+  .facet-count {
+    display: none;
+  }
+
+  p.range.subsection {
+    .facet-limit-active & {
+      display: none;
+    }
+  }
+}
