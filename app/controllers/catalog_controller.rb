@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Blacklight controller that handles searches and document requests
-class CatalogController < ApplicationController
+class CatalogController < ApplicationController # rubocop:disable Metrics/ClassLength
   include Blacklight::Catalog
 
   # If you'd like to handle errors returned by Solr in a certain way,
@@ -273,18 +273,39 @@ class CatalogController < ApplicationController
 
   # Render a list of collaborators for the given contributors, as a modal
   def collaborators
-    @facet = blacklight_config.facet_fields['contributors_ssim']
-    @contributors = params[:f][@facet.key]
-    @response = search_service.facet_field_response(@facet.key, {
-                                                      "f[#{@facet.key}][]" => @contributors,
-                                                      "f.#{@facet.key}.facet.limit" => -1, # get all values
-                                                      'facet.sort' => 'count'
-                                                    })
-    @display_facet = @response.aggregations[@facet.key]
-    @presenter = @facet.presenter.new(@facet, @display_facet, view_context)
+    load_collaborators_data
 
     respond_to do |format|
-      format.html { render layout: false }
+      format.html { render layout: !request.xhr? }
     end
+  end
+
+  private
+
+  def load_collaborators_data
+    @facet = collaborators_facet
+    @contributors = contributor_params(@facet)
+    @response = collaborators_response(@facet, @contributors)
+    @display_facet = @response.aggregations[@facet.key]
+    @presenter = @facet.presenter.new(@facet, @display_facet, view_context)
+  end
+
+  def collaborators_facet
+    blacklight_config.facet_fields['contributors_ssim']
+  end
+
+  def contributor_params(facet)
+    params[:f][facet.key]
+  end
+
+  def collaborators_response(facet, contributors)
+    search_service.facet_field_response(
+      facet.key,
+      {
+        "f[#{facet.key}][]" => contributors,
+        "f.#{facet.key}.facet.limit" => -1,
+        'facet.sort' => 'count'
+      }
+    )
   end
 end
