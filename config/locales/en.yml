@@ -29,6 +29,11 @@
 
 en:
   hello: "Hello world"
+  badges:
+    access:
+      public: "Public"
+      restricted: "Restricted"
+    stanford_authored: "Stanford Authored"
   provider:
     datacite: "DataCite"
     figshare: "Figshare"

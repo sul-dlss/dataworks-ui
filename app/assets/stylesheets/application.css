@@ -1,4 +1,4 @@
-:root { 
+:root {
   --bs-dark-rgb: 1, 104, 149;
   --bs-dark: #016895;
 }
@@ -114,6 +114,21 @@
   --bs-badge-color: var(--stanford-cardinal);
   background-color: var(--stanford-fog-light);
   font-size: 0.75rem;
+}
+
+/* Access badges */
+.badge.access-badge {
+  --bs-badge-font-size: 0.75rem;
+
+  &.public {
+    --bs-badge-color: rgb(var(--stanford-palo-alto-rgb));
+    background-color: rgba(var(--stanford-palo-verde-dark-rgb), 0.05);
+  }
+  
+  &.restricted {
+    --bs-badge-color: var(--stanford-digital-red-dark);
+    background-color: var(--bs-danger-bg-subtle);
+  }
 }
 
 /* Mail icon */

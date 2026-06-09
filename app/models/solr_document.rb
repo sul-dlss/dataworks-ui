@@ -4,6 +4,9 @@
 class SolrDocument
   include Blacklight::Solr::Document
 
+  attribute :access, :string, 'access_ssi'
+  attribute :stanford_authored?, :boolean, 'stanford_contributor_bsi'
+
   # self.unique_key = 'id'
 
   # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document
@@ -12,12 +15,4 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
-
-  def stanford_project?
-    self['stanford_project_bsi'] == true
-  end
-
-  def stanford_authored?
-    self['stanford_contributor_bsi'] == true
-  end
 end

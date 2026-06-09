@@ -4,9 +4,14 @@
       <%= t %>
     <% end %>
 
-    <%= render Dwexp::DocumentBadgesComponent.new(document: @document) %>
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      <%= render Badges::AccessComponent.new(document: @document) %>
+      <%= render Badges::StanfordAuthoredComponent.new(document: @document) %>
+    </div>
 
-    <%= counter -%><%= title -%>
+    <div class="d-flex align-items-baseline">
+      <%= counter -%><%= title -%>
+    </div>
 
     <% after_titles.each do |t| %>
       <%= t %>
