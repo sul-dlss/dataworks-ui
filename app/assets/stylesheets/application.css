@@ -18,14 +18,16 @@
 
 .documentHeader {
   padding-bottom: 1rem;
-  border-bottom: 1px solid #d1d1d1;
-  margin-bottom: 2rem;
+}
+
+.documents-list .document {
+  border-bottom: 1px solid var(--stanford-20-black);
 }
 
 .provider-metadata {
   padding-top: 1rem;
   margin-top: 2rem;
-  border-top: 1px solid #d1d1d1;
+  border-top: 1px solid var(--stanford-20-black);
 }
 
 .browseitem {
@@ -61,13 +63,13 @@
 .rich-text table {
   display: block;
   overflow-x: scroll;
-  border: inset 1px #d1d1d1;
+  border: inset 1px var(--stanford-20-black);
 }
 
 .rich-text th,
 .rich-text td {
   padding: 0.25rem 0.5rem;
-  border: 1px solid #d1d1d1;
+  border: 1px solid var(--stanford-20-black);
 }
 
 .rich-text tr {
