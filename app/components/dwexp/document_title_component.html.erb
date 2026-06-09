@@ -9,8 +9,8 @@
       <%= render Badges::StanfordAuthoredComponent.new(document: @document) %>
     </div>
 
-    <div class="d-flex align-items-baseline">
-      <%= counter -%><%= title -%>
+    <div class="d-flex align-items-baseline gap-1">
+      <%= counter %><%= title %>
     </div>
 
     <% after_titles.each do |t| %>
