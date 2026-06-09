@@ -10,7 +10,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
   #
   # rescue_from Blacklight::Exceptions::InvalidRequest, with: :my_handling_method
 
-  configure_blacklight do |config|
+  configure_blacklight do |config| # rubocop:disable Metrics/BlockLength
     ## Specify the style of markup to be generated (may be 4 or 5)
     # config.bootstrap_version = 5
     #
@@ -55,6 +55,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # config.index.document_component = MyApp::SearchResultComponent
     # config.index.constraints_component = MyApp::ConstraintsComponent
     config.index.search_bar_component = Dwexp::SearchBarComponent
+    config.index.dropdown_component = Dwexp::DropdownComponent
     # config.index.search_header_component = MyApp::SearchHeaderComponent
     # config.index.document_actions.delete(:bookmark)
     config.header_component = Dwexp::HeaderComponent
