@@ -10,7 +10,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
   #
   # rescue_from Blacklight::Exceptions::InvalidRequest, with: :my_handling_method
 
-  configure_blacklight do |config| # rubocop:disable Metrics/BlockLength
+  configure_blacklight do |config|
     ## Specify the style of markup to be generated (may be 4 or 5)
     # config.bootstrap_version = 5
     #
@@ -117,7 +117,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # :index_range can be an array or range of prefixes that will be used to create the navigation
     # (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'stanford_contributor_bsi', label: 'Stanford authored', component: Dwexp::StanfordDatasetFacetComponent
+    config.add_facet_field 'stanford_contributor_bsi', label: 'Stanford-authored only', component: Dwexp::StanfordDatasetFacetComponent
     config.add_facet_field 'access_ssi', label: 'Access'
     config.add_facet_field 'provider_ssi', label: 'Provider', show: false
     # config.add_facet_field 'doi_ssi', label: 'DOI', limit: 15

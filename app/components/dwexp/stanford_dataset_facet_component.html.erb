@@ -1,6 +1,10 @@
-<div class="d-flex justify-content-center align-items-center mb-3">
-  <a class="btn btn-outline-primary btn-stanford-cardinal text-decoration-none my-3 p-3 <%= 'active' if presenter.selected? %>" href="<%= presenter.href %>">
-    <input type="checkbox" class="me-2" style="pointer-events: none;" aria-hidden="true" <%= 'checked' if presenter.selected? %> />
+<div class="d-flex justify-content-center align-items-center mt-2 mb-4">
+  <a class="btn btn-outline-primary btn-stanford-cardinal text-decoration-none py-2 px-3 <%= 'active' if presenter.selected? %>" href="<%= presenter.href %>">
+    <% if presenter.selected? %>
+      <input type="checkbox" class="me-2" style="pointer-events: none;" checked>
+    <% else %>
+      <input type="checkbox" class="me-2" style="pointer-events: none;">
+    <% end %>
     <%= @facet_field.label %>
   </a>
 </div>
