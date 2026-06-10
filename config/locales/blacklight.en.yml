@@ -2,6 +2,7 @@ en:
   blacklight:
     application_name: "DataWorks"
     search:
+      start_over: "Clear all"
       fields:
         facet:
           access_ssi: "Access"
