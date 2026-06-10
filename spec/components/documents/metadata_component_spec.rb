@@ -18,7 +18,7 @@ RSpec.describe Documents::MetadataComponent, type: :component do
     let(:description) { 'A dataset about something interesting.' }
 
     it 'renders the description preview' do
-      expect(page).to have_css('p.document-description')
+      expect(page).to have_css('div.document-description', text: 'A dataset about something interesting.')
     end
   end
 
