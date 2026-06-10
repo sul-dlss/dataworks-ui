@@ -6,5 +6,7 @@ module Documents
       @document = document
       super()
     end
+
+    delegate :publication_year, to: :@document
   end
 end

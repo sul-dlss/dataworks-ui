@@ -8,11 +8,21 @@ RSpec.describe Documents::MetadataComponent, type: :component do
   let(:description) { nil }
   let(:url) { nil }
   let(:access) { nil }
+  let(:publication_year) { nil }
   let(:document) do
-    instance_double(SolrDocument, description:, url:, access:, stanford_authored?: false, subjects: [])
+    instance_double(SolrDocument, description:, url:, access:, publication_year:, stanford_authored?: false,
+                                  subjects: [])
   end
 
   before { render_inline(component) }
+
+  context 'when a publication year is present' do
+    let(:publication_year) { 1998 }
+
+    it 'renders the publication year' do
+      expect(page).to have_css('p.document-publication-year', text: 'Published: 1998')
+    end
+  end
 
   context 'when a description is present' do
     let(:description) { 'A dataset about something interesting.' }

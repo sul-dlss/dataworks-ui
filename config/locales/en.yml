@@ -29,6 +29,8 @@
 
 en:
   hello: "Hello world"
+  index:
+    publication_year: "Published: %{year}"
   badges:
     access:
       public: "Public"

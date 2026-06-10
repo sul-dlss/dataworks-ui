@@ -6,6 +6,7 @@ class SolrDocument
 
   attribute :access, :string, 'access_ssi'
   attribute :description, :string, 'descriptions_tsim'
+  attribute :publication_year, :string, 'publication_year_isi'
   attribute :stanford_authored?, :boolean, 'stanford_contributor_bsi'
   attribute :subjects, :array, 'subjects_ssim'
   attribute :url, :string, 'url_ss'
