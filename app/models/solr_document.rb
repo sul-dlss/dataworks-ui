@@ -5,8 +5,9 @@ class SolrDocument
   include Blacklight::Solr::Document
 
   attribute :access, :string, 'access_ssi'
-  attribute :stanford_authored?, :boolean, 'stanford_contributor_bsi'
   attribute :description, :string, 'descriptions_tsim'
+  attribute :stanford_authored?, :boolean, 'stanford_contributor_bsi'
+  attribute :subjects, :array, 'subjects_ssim'
   attribute :url, :string, 'url_ss'
 
   # self.unique_key = 'id'
