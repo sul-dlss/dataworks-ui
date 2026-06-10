@@ -1,7 +1,7 @@
 <div class="document-metadata">
   <%= render Documents::IndexSubjectsComponent.new(document: @document) %>
   <% if publication_year %>
-    <p class="document-publication-year"><%= t('index.publication_year', year: publication_year) %></p>
+    <p class="document-publication-year"><%= t('.publication_year', year: publication_year) %></p>
   <% end %>
   <%= render Documents::IndexDescriptionComponent.new(document: @document) %>
   <%= render Documents::IndexAccessComponent.new(document: @document) %>

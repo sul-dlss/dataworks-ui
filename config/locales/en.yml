@@ -29,8 +29,13 @@
 
 en:
   hello: "Hello world"
-  index:
-    publication_year: "Published: %{year}"
+  documents:
+    index_description_component:
+      heading: Description
+    index_subjects_component:
+      heading: Subjects
+    metadata_component:
+      publication_year: "Published: %{year}"
   badges:
     access:
       public: "Public"
