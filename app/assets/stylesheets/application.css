@@ -169,6 +169,29 @@ h5 { --sul-header-font-size: 1.0rem; }
   --sul-header-font-size: 1.25rem;
 }
 
+/* Expand/collapse text styles */
+.expand-text--collapsed {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+
+  p {
+    margin: 0;
+  }
+}
+
+.document-description [data-expand-text-target="content"] .rich-text:last-child > *:last-child {
+  margin-bottom: 0;
+}
+
+.document-description__toggle {
+  display: block;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
 /* Compact button */
 .search-widgets .btn,
 .clear-bookmarks,

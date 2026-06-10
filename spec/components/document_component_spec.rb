@@ -48,7 +48,7 @@ RSpec.describe DocumentComponent, type: :component do
   end
 
   it 'renders the description' do
-    expect(page).to have_css 'p.document-description', text: 'A description of the dataset.'
+    expect(page).to have_css 'div.document-description', text: 'A description of the dataset.'
   end
 
   it 'renders the access data button' do
