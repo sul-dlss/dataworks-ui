@@ -5,8 +5,8 @@
     <% end %>
 
     <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-      <%= render Badges::AccessComponent.new(document: @document) %>
-      <%= render Badges::StanfordAuthoredComponent.new(document: @document) %>
+      <%= render Badges::AccessComponent.new(document: presenter.document) %>
+      <%= render Badges::StanfordAuthoredComponent.new(document: presenter.document) %>
     </div>
 
     <div class="d-flex align-items-baseline">
