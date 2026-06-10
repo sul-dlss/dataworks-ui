@@ -1,4 +1,5 @@
 <div class="document-metadata">
+  <%= render Documents::IndexSubjectsComponent.new(document: @document) %>
   <%= render Documents::IndexDescriptionComponent.new(document: @document) %>
   <%= render Documents::IndexAccessComponent.new(document: @document) %>
 </div>

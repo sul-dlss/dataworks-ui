@@ -192,6 +192,19 @@ h5 { --sul-header-font-size: 1.0rem; }
   margin-top: 0.25rem;
 }
 
+/* Subject pills */
+.expand-items__toggle {
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+.document-subjects__pill {
+  background-color: var(--stanford-fog-light);
+  color: var(--bs-body-color);
+  font-weight: normal;
+  font-size: 0.875rem;
+}
+
 /* Compact button */
 .search-widgets .btn,
 .clear-bookmarks,

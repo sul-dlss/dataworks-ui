@@ -9,7 +9,7 @@ RSpec.describe Documents::MetadataComponent, type: :component do
   let(:url) { nil }
   let(:access) { nil }
   let(:document) do
-    instance_double(SolrDocument, description:, url:, access:, stanford_authored?: false)
+    instance_double(SolrDocument, description:, url:, access:, stanford_authored?: false, subjects: [])
   end
 
   before { render_inline(component) }
