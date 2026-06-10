@@ -117,36 +117,18 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # :index_range can be an array or range of prefixes that will be used to create the navigation
     # (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'stanford_contributor_bsi', label: 'Stanford-authored only', component: Dwexp::StanfordDatasetFacetComponent
-    config.add_facet_field 'access_ssi', label: 'Access'
-    config.add_facet_field 'provider_ssi', label: 'Provider', show: false
-    # config.add_facet_field 'doi_ssi', label: 'DOI', limit: 15
-    config.add_facet_field 'contributors_ssim', label: 'Contributors', limit: 15
-    config.add_facet_field 'funders_ssim', label: 'Funders', limit: 15
-    config.add_facet_field 'publisher_ssi', label: 'Publishers', limit: 15
-    config.add_facet_field 'publication_year_isi', label: 'Publication year', limit: 15
-    config.add_facet_field 'temporal_isim', label: 'Temporal Coverage', limit: 15
-    config.add_facet_field 'subjects_ssim', label: 'Subjects', limit: 15
-    # config.add_facet_field 'affiliation_names_sim', label: 'Affiliations', limit: 15
-    config.add_facet_field 'language_ssi', label: 'Language', show: false
-    config.add_facet_field 'formats_ssim', label: 'Formats', limit: 15
-    config.add_facet_field 'department_ssim', label: 'Stanford department', limit: 15
-    # config.add_facet_field 'creators_ids_sim', label: 'Creator Ids', limit: 15
-    # config.add_facet_field 'contributors_ids_sim', label: 'Contributor Ids', limit: 15
-    # config.add_facet_field 'funders_ids_sim', label: 'Funder Ids', limit: 15
-    # config.add_facet_field 'publisher_id_sim', label: 'Publisher Ids', limit: 15
-    # config.add_facet_field 'related_ids_sim', label: 'Related Ids', limit: 15
-    # config.add_facet_field 'rights_uris_sim', label: 'Rights URIs', limit: 15
-    # config.add_facet_field 'courses_sim', label: 'Courses'
-
-    # config.add_facet_field 'example_pivot_field', label: 'Pivot Field',
-    #   pivot: ['format', 'language_ssim'], collapsing: true
-
-    # config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
-    #    :years_5 => { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5 } TO *]" },
-    #    :years_10 => { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10 } TO *]" },
-    #    :years_25 => { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25 } TO *]" }
-    # }
+    config.add_facet_field 'stanford_contributor_bsi', component: Dwexp::StanfordDatasetFacetComponent
+    config.add_facet_field 'access_ssi'
+    config.add_facet_field 'provider_ssi', show: false
+    config.add_facet_field 'contributors_ssim', limit: 15
+    config.add_facet_field 'funders_ssim', limit: 15
+    config.add_facet_field 'publisher_ssi', limit: 15
+    config.add_facet_field 'publication_year_isi', limit: 15
+    config.add_facet_field 'temporal_isim', limit: 15
+    config.add_facet_field 'subjects_ssim', limit: 15
+    config.add_facet_field 'language_ssi', show: false
+    config.add_facet_field 'formats_ssim', limit: 15
+    config.add_facet_field 'department_ssim', limit: 15
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request

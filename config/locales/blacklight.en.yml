@@ -3,9 +3,22 @@ en:
     application_name: "DataWorks"
     search:
       fields:
+        facet:
+          access_ssi: "Access"
+          department_ssim: "Stanford department"
+          funders_ssim: "Funder"
+          language_ssi: "Language"
+          formats_ssim: "Format"
+          publication_year_isi: "Publication year"
+          publisher_ssi: "Publisher"
+          provider_ssi: "Provider"
+          stanford_contributor_bsi: "Stanford-authored only"
+          subjects_ssim: "Subject"
+          temporal_isim: "Temporal Coverage"
+          contributors_ssim: "Contributor"
         search:
-          doi: DOI
           author: Contributor
+          doi: DOI
       search_bar_button: "Search"
     index_access:
       button: "Access data"
