@@ -1,6 +1,7 @@
 :root {
   --bs-dark-rgb: 1, 104, 149;
   --bs-dark: #016895;
+  --bs-border-color: var(--stanford-20-black);
 }
 
 .documents-list {
