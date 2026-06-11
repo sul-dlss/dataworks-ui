@@ -12,5 +12,11 @@ module Documents
     def render?
       url.present?
     end
+
+    def url_host
+      URI.parse(url).host
+    rescue URI::InvalidURIError
+      url
+    end
   end
 end

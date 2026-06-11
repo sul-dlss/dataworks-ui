@@ -30,6 +30,9 @@
 en:
   hello: "Hello world"
   documents:
+    index_access_component:
+      button: "Access data"
+      available_at: "Available at"
     index_description_component:
       heading: Description
     index_subjects_component:

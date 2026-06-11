@@ -10,6 +10,14 @@ RSpec.describe Documents::IndexAccessComponent, type: :component do
 
   before { render_inline(component) }
 
+  it 'renders the available at label with the url host' do
+    expect(page).to have_text('Available at example.com')
+  end
+
+  it 'renders a bordered container' do
+    expect(page).to have_css('div.border.rounded-2')
+  end
+
   it 'renders a link to the document url' do
     expect(page).to have_link(href: url)
   end
