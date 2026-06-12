@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DocumentComponent, type: :component do
+RSpec.describe Index::DocumentComponent, type: :component do
   subject(:component) { described_class.new(document:, counter: 1) }
 
   let(:view_context) { vc_test_controller.view_context }

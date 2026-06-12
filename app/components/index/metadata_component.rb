@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Documents
+module Index
   class MetadataComponent < ViewComponent::Base
     def initialize(document:)
       @document = document

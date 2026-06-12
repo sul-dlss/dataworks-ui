@@ -52,7 +52,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # config.index.document_presenter_class = MyApp::IndexPresenter
 
     # Some components can be configured
-    config.index.document_component = DocumentComponent
+    config.index.document_component = Index::DocumentComponent
     # config.index.constraints_component = MyApp::ConstraintsComponent
     config.index.search_bar_component = Dwexp::SearchBarComponent
     config.index.dropdown_component = Dwexp::DropdownComponent

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Documents::IndexSubjectsComponent, type: :component do
+RSpec.describe Index::SubjectsComponent, type: :component do
   subject(:component) { described_class.new(document:) }
 
   let(:subjects) { [] }

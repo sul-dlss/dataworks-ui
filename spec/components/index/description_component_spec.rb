@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Documents::IndexDescriptionComponent, type: :component do
+RSpec.describe Index::DescriptionComponent, type: :component do
   subject(:component) { described_class.new(document:) }
 
   let(:description) { nil }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Documents
-  class IndexSubjectsComponent < ViewComponent::Base
+module Index
+  class SubjectsComponent < ViewComponent::Base
     def initialize(document:)
       @document = document
       super()

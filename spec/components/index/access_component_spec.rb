@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Documents::IndexAccessComponent, type: :component do
+RSpec.describe Index::AccessComponent, type: :component do
   subject(:component) { described_class.new(document:) }
 
   let(:url) { 'https://example.com/dataset' }

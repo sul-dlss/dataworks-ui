@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Documents::MetadataComponent, type: :component do
+RSpec.describe Index::MetadataComponent, type: :component do
   subject(:component) { described_class.new(document:) }
 
   let(:description) { nil }
