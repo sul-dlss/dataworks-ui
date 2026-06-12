@@ -117,7 +117,8 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # :index_range can be an array or range of prefixes that will be used to create the navigation
     # (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'stanford_contributor_bsi', component: Dwexp::StanfordDatasetFacetComponent
+    config.index.facet_group_component = Dwexp::FacetGroupComponent
+    config.add_facet_field 'stanford_contributor_bsi', show: false
     config.add_facet_field 'access_ssi'
     config.add_facet_field 'provider_ssi', show: false
     config.add_facet_field 'contributors_ssim', limit: 15

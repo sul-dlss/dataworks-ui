@@ -216,6 +216,34 @@ h5 { --sul-header-font-size: 1.0rem; }
   font-size: 0.875rem;
 }
 
+/* The component library styles the expanded selected-facet header (dark text
+   on --stanford-fog-light) but leaves the collapsed state's text color, hover
+   and active colors, and the chevron at Blacklight's white, which is invisible
+   on the light header. Fill that gap so every state stays dark. */
+.facets .facet-limit-active .accordion-button {
+  --bs-accordion-btn-color: var(--stanford-black);
+  --bs-btn-hover-color: var(--stanford-black);
+  --bs-btn-active-color: var(--stanford-black);
+  --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%232e2d29' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>");
+  --bs-accordion-btn-active-icon: var(--bs-accordion-btn-icon);
+}
+
+/* Off-canvas facets */
+#offcanvas-facets {
+  --bs-offcanvas-height: 80%;
+}
+
+/* Bootstrap sets flex-grow: 0 on offcanvas-body above the breakpoint, which
+   prevents it from filling the sidebar column width at md+. Override that. */
+@media (min-width: 768px) {
+  #offcanvas-facets,
+  #offcanvas-facets .offcanvas-body,
+  #offcanvas-facets .offcanvas-body > * {
+    width: 100%;
+    flex-grow: 1;
+  }
+}
+
 /* Compact button */
 .search-widgets .btn,
 .clear-bookmarks,

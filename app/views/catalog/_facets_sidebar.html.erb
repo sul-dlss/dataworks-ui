@@ -1,0 +1,26 @@
+<div class="col-12 col-md-4 col-xxl-3 order-first mt-3 mt-md-0">
+  <div class="d-md-none text-center mb-3">
+    <button class="btn btn-lg btn-primary" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvas-facets"
+            aria-controls="offcanvas-facets">
+      <%= render Icons::SlidersComponent.new %>
+      <%= t('blacklight.search.facets.mobile_button') %>
+    </button>
+  </div>
+
+  <div id="offcanvas-facets" class="offcanvas-md offcanvas-bottom">
+    <%= render Dwexp::StanfordDatasetFacetComponent.new(response: @response, blacklight_config: blacklight_config) %>
+
+    <div class="d-flex justify-content-between align-items-center m-3 mb-1 m-md-0 pb-md-2 ps-2">
+      <h2 class="facets-heading mb-0"><%= t('blacklight.search.facets.title') %></h2>
+      <button type="button" class="btn-close d-md-none" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvas-facets" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body pt-0">
+      <section id="sidebar" class="page-sidebar" aria-label="<%= t('blacklight.search.documents.aria.limit_search') %>">
+        <%= content_for(:sidebar) %>
+      </section>
+    </div>
+  </div>
+</div>

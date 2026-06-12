@@ -20,4 +20,10 @@ en:
         search:
           author: Contributor
           doi: DOI
+      facets:
+        title: "Filters"
+        mobile_button: "Filters"
+      documents:
+        aria:
+          limit_search: "Filter your results"
       search_bar_button: "Search"

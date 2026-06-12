@@ -1,0 +1,15 @@
+<% content_for(:content) do %>
+  <% if content_for? :sidebar %>
+    <section id="content" class="col-md-8 col-xxl-9 order-last ps-lg-5 mt-0" aria-label="<%= t('blacklight.search.documents.aria.search_results') %>">
+      <%= yield %>
+    </section>
+
+    <%= render 'catalog/facets_sidebar' %>
+  <% else %>
+    <section class="col-md-12">
+      <%= yield %>
+    </section>
+  <% end %>
+<% end %>
+
+<%= render template: "layouts/blacklight/base" %>
