@@ -95,6 +95,16 @@
   vertical-align: sub;
 }
 
+/* Add breathing room between the label, filter badges, and start-over button */
+.constraints-container {
+  gap: 0.5rem 0.75rem;
+}
+
+/* Emphasize the "Your selections:" label */
+.constraints-label {
+  font-weight: 700;
+}
+
 /* Hide the "true" value and ">" when the Stanford authored facet is selected */
 .constraint.filter.filter-stanford_contributor_bsi .filter-value,
 .constraint.filter.filter-stanford_contributor_bsi .filter-name::after {
