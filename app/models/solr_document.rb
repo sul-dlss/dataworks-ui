@@ -6,10 +6,23 @@ class SolrDocument
 
   attribute :access, :string, 'access_ssi'
   attribute :description, :string, 'descriptions_tsim'
+  attribute :doi, :string, 'doi_ssi'
+  attribute :formats, :array, 'formats_ssim'
   attribute :publication_year, :string, 'publication_year_isi'
+  attribute :sizes, :array, 'sizes_ssm'
   attribute :stanford_authored?, :boolean, 'stanford_contributor_bsi'
   attribute :subjects, :array, 'subjects_ssim'
   attribute :url, :string, 'url_ss'
+  attribute :version, :string, 'version_ss'
+
+  # The host portion of the dataset's external URL, for "Available on <host>" labels.
+  def url_host
+    return if url.blank?
+
+    URI.parse(url).host
+  rescue URI::InvalidURIError
+    url
+  end
 
   # self.unique_key = 'id'
 

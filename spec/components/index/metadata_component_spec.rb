@@ -10,8 +10,8 @@ RSpec.describe Index::MetadataComponent, type: :component do
   let(:access) { nil }
   let(:publication_year) { nil }
   let(:document) do
-    instance_double(SolrDocument, description:, url:, access:, publication_year:, stanford_authored?: false,
-                                  subjects: [])
+    SolrDocument.new(id: 'abc-123', descriptions_tsim: description, url_ss: url, access_ssi: access,
+                     publication_year_isi: publication_year, stanford_contributor_bsi: false, subjects_ssim: [])
   end
 
   before { render_inline(component) }

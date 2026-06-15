@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
-module Index
-  class AccessComponent < ViewComponent::Base
+module Show
+  # Renders the "About this dataset" section of the show page.
+  class AboutDatasetComponent < ViewComponent::Base
     def initialize(document:)
       @document = document
       super()
     end
 
     attr_reader :document
-
-    def render?
-      document.url.present?
-    end
   end
 end

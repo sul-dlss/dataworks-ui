@@ -1,6 +1,6 @@
 <div class="border rounded-2 d-inline-flex align-items-center gap-3 p-2 mb-4">
-  <span class="access-link-available-at small"><%= t('.available_at') %> <%= url_host %></span>
-  <%= link_to url, class: 'btn btn-outline-primary btn-compact d-inline-flex align-items-center gap-1 w-auto', target: '_blank', rel: 'noopener' do %>
+  <span class="access-link-available-at small"><%= t('.available_at') %> <%= document.url_host %></span>
+  <%= link_to document.url, class: 'btn btn-outline-primary btn-compact d-inline-flex align-items-center gap-1 w-auto', target: '_blank', rel: 'noopener' do %>
     <%= t('.button') %>
     <%= render Icons::ArrowUpRightComponent.new %>
   <% end %>

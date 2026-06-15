@@ -1,0 +1,30 @@
+<div class="border rounded-2 align-items-center gap-3 p-3 mt-3 mb-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-start column-gap-3 row-gap-1 mb-3">
+    <div>
+      <h2 class="m-0 d-flex flex-wrap align-items-center gap-2">
+        <%= t('.heading') %>
+        <%= render Badges::AccessComponent.new(document: document) %>
+      </h2>
+      <% if document.url.present? %>
+        <span class="available-at"><%= t('.available_at') %> <%= document.url_host %></span>
+      <% end %>
+    </div>
+    <div class="d-flex flex-wrap gap-3">
+      <span><%= t('.published', year: document.publication_year) if document.publication_year.present? %></span>
+      <span><%= t('.version', version: document.version) if document.version.present? %></span>
+    </div>
+  </div>
+  <div class="bg-light rounded-2 d-flex flex-wrap justify-content-between align-items-center gap-3 p-3">
+    <div class="d-flex flex-wrap gap-3">
+      <span class="text-nowrap"><%= t('.size_html', size: document.sizes.join(', ')) if document.sizes.present? %></span>
+      <span class="text-nowrap"><%= t('.formats_html', formats: document.formats.join(', ')) if document.formats.present? %></span>
+      <span class="text-nowrap"><%= t('.doi_html', doi: document.doi) if document.doi.present? %></span>
+    </div>
+    <% if document.url.present? %>
+      <%= link_to document.url, class: 'btn btn-primary d-inline-flex align-items-center gap-1 w-auto', target: '_blank', rel: 'noopener' do %>
+        <%= t('.button') %>
+        <%= render Icons::ArrowUpRightComponent.new %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

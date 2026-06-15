@@ -143,19 +143,12 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     config.add_show_field 'translate_title_tsim', label: 'Translated Title'
     config.add_show_field 'other_title_tsim', label: 'Other Title'
     config.add_show_field 'contributors_ssim', label: 'Contributors', component: Dwexp::ContributorTableComponent
-    # config.add_show_field 'access_ssi', label: 'Access', link_to_facet: true, show: false
-    config.add_show_field 'url_ss', label: 'Access Data', helper_method: :url_link
-    # config.add_show_field 'provider_ssi', label: 'Provider', link_to_facet: true
     config.add_show_field 'doi_ssi', label: 'DOI'
-    # config.add_show_field 'provider_identifier_ssi', label: 'Provider id'
     config.add_show_field 'descriptions_tsim', label: 'Description', helper_method: :render_rich_text
     config.add_show_field 'methods_tsim', label: 'Methods', helper_method: :render_rich_text
     config.add_show_field 'other_descriptions_tsim', label: 'Other description', helper_method: :render_rich_text
     config.add_show_field 'subjects_ssim', label: 'Subjects', helper_method: :display_facet_separate_lines
     config.add_show_field 'language_ssi', label: 'Language', link_to_facet: true
-    config.add_show_field 'sizes_ssm', label: 'Sizes'
-    config.add_show_field 'formats_ssim', label: 'Formats', link_to_facet: true
-    config.add_show_field 'version_ss', label: 'Version'
     config.add_show_field 'funding_references_struct_ss', label: 'Funding Full Info',
                                                           helper_method: :display_funding_information
     config.add_show_field 'publication_year_isi', label: 'Publication Year', link_to_facet: true

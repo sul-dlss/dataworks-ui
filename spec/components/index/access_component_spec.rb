@@ -6,7 +6,7 @@ RSpec.describe Index::AccessComponent, type: :component do
   subject(:component) { described_class.new(document:) }
 
   let(:url) { 'https://example.com/dataset' }
-  let(:document) { instance_double(SolrDocument, url:) }
+  let(:document) { SolrDocument.new(url_ss: url) }
 
   before { render_inline(component) }
 
