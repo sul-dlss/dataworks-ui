@@ -87,7 +87,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # config.show.document_presenter_class = MyApp::ShowPresenter
     #
     # These components can be configured
-    # config.show.document_component = MyApp::DocumentComponent
+    config.show.document_component = Show::DocumentComponent
     config.show.sidebar_component = Dwexp::SidebarComponent
     # config.show.embed_component = MyApp::EmbedComponent
 
