@@ -67,3 +67,7 @@ en:
       heading: "Content/Summary"
       show_more: "Show more"
       show_less: "Show less"
+    subjects_component:
+      heading: "Subjects"
+      show_more: "Show more"
+      show_less: "Show less"
