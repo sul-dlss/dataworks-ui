@@ -4,10 +4,13 @@
       <%= t %>
     <% end %>
 
-    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-      <%= render Badges::AccessComponent.new(document: presenter.document) %>
+    <% badges = capture do %>
+      <%= render Badges::AccessComponent.new(document: presenter.document) if render_access_badge? %>
       <%= render Badges::StanfordAuthoredComponent.new(document: presenter.document) %>
-    </div>
+    <% end %>
+    <% if badges.strip.present? %>
+      <div class="d-flex flex-wrap align-items-center gap-2 mb-2"><%= badges %></div>
+    <% end %>
 
     <div class="d-flex align-items-baseline gap-1">
       <%= counter %><%= title %>
