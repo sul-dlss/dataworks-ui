@@ -5,6 +5,9 @@ en:
       start_over: "Clear all"
       show:
         back_to_search: "Search results"
+        # Drop the trailing colon Blacklight appends to show-page field labels
+        # (default is "%{label}:").
+        label: "%{label}"
       fields:
         facet:
           access_ssi: "Access"
