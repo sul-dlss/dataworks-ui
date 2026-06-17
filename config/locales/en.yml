@@ -54,6 +54,8 @@ en:
     redivis: "Redivis"
     searchworks: "SearchWorks"
   show:
+    bibliographic_info_component:
+      heading: "Bibliographic information"
     about_dataset_component:
       heading: "About this dataset"
       available_at: "Available on"
