@@ -260,6 +260,13 @@ h5 { --sul-header-font-size: 1.0rem; }
   --bs-accordion-btn-active-icon: var(--bs-accordion-btn-icon);
 }
 
+/* Above xl, widen the gap between the record and the sidebar on the show view. */
+@media (min-width: 1400px) {
+  .blacklight-catalog-show .show-document {
+    padding-right: 6rem;
+  }
+}
+
 /* Off-canvas facets */
 #offcanvas-facets {
   --bs-offcanvas-height: 80%;
