@@ -1,6 +1,6 @@
 <h4 class="visually-hidden"><%= t('.heading') %></h4>
 <ul class="document-subjects list-unstyled d-flex flex-wrap gap-1 mb-3" data-controller="expand-items">
   <% subjects.each do |subject| %>
-    <li><span class="badge rounded-pill document-subjects__pill"><%= subject %></span></li>
+    <li data-expand-items-target="item"><span class="badge rounded-pill document-subjects__pill"><%= subject %></span></li>
   <% end %>
 </ul>

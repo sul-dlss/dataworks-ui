@@ -149,7 +149,6 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     config.add_show_field 'doi_ssi', label: 'DOI'
     config.add_show_field 'methods_tsim', label: 'Methods', helper_method: :render_rich_text
     config.add_show_field 'other_descriptions_tsim', label: 'Other description', helper_method: :render_rich_text
-    config.add_show_field 'subjects_ssim', label: 'Subjects', helper_method: :display_facet_separate_lines
     config.add_show_field 'language_ssi', label: 'Language', link_to_facet: true
     config.add_show_field 'funding_references_struct_ss', label: 'Funding Full Info',
                                                           helper_method: :display_funding_information
