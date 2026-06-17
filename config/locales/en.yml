@@ -63,3 +63,7 @@ en:
       published: "Published: %{year}"
       size_html: '<span class="fw-bold">Size:</span> %{size}'
       version: "Version: %{version}"
+    content_summary_component:
+      heading: "Content/Summary"
+      show_more: "Show more"
+      show_less: "Show less"

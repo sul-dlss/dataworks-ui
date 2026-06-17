@@ -144,7 +144,6 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     config.add_show_field 'other_title_tsim', label: 'Other Title'
     config.add_show_field 'contributors_ssim', label: 'Contributors', component: Dwexp::ContributorTableComponent
     config.add_show_field 'doi_ssi', label: 'DOI'
-    config.add_show_field 'descriptions_tsim', label: 'Description', helper_method: :render_rich_text
     config.add_show_field 'methods_tsim', label: 'Methods', helper_method: :render_rich_text
     config.add_show_field 'other_descriptions_tsim', label: 'Other description', helper_method: :render_rich_text
     config.add_show_field 'subjects_ssim', label: 'Subjects', helper_method: :display_facet_separate_lines

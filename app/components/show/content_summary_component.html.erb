@@ -1,0 +1,19 @@
+<div id="content-summary" class="mb-4">
+  <h2><%= t('.heading') %></h2>
+  <div data-controller="expand-text" class="content-summary">
+    <div data-expand-text-target="content" class="expand-text--collapsed" style="--expand-text-lines: 5;">
+      <%= description %>
+    </div>
+    <button type="button"
+            data-expand-text-target="toggle"
+            data-action="expand-text#toggle"
+            class="btn btn-link p-0 mt-2 small text-decoration-none">
+      <span data-expand-text-target="moreControl" class="content-summary__control align-items-center gap-1">
+        <%= render Icons::ArrowDownCircleComponent.new(aria_hidden: true) %><%= t('.show_more') %>
+      </span>
+      <span data-expand-text-target="lessControl" class="content-summary__control align-items-center gap-1" hidden>
+        <%= render Icons::ArrowUpCircleComponent.new(aria_hidden: true) %><%= t('.show_less') %>
+      </span>
+    </button>
+  </div>
+</div>

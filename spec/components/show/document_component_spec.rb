@@ -15,8 +15,7 @@ RSpec.describe Show::DocumentComponent, type: :component do
     SolrDocument.new(
       id: 'abc-123',
       title_tsim: 'My Dataset',
-      descriptions_tsim: 'A description of the dataset.',
-      doi_ssi: '10.0000/example'
+      variables_tsim: ['Variable 1']
     )
   end
   let(:document) { view_context.document_presenter(presented_document) }
@@ -43,9 +42,7 @@ RSpec.describe Show::DocumentComponent, type: :component do
   end
 
   it 'renders the configured show_fields through the bridge' do
-    expect(page).to have_text 'Description'
-    expect(page).to have_text 'A description of the dataset.'
-    expect(page).to have_text 'DOI'
-    expect(page).to have_text '10.0000/example'
+    expect(page).to have_text 'Variables'
+    expect(page).to have_text 'Variable 1'
   end
 end

@@ -194,16 +194,13 @@ h5 { --sul-header-font-size: 1.0rem; }
 .expand-text--collapsed {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: var(--expand-text-lines, 3);
+  line-clamp: var(--expand-text-lines, 3);
   overflow: hidden;
-
-  p {
-    margin: 0;
-  }
 }
 
-.document-description [data-expand-text-target="content"] .rich-text:last-child > *:last-child {
+.document-description [data-expand-text-target="content"] .rich-text:last-child > *:last-child,
+.content-summary [data-expand-text-target="content"] .rich-text:last-child > *:last-child {
   margin-bottom: 0;
 }
 
@@ -211,6 +208,21 @@ h5 { --sul-header-font-size: 1.0rem; }
   display: block;
   font-size: 0.875rem;
   margin-top: 0.25rem;
+}
+
+/* inline-flex so the toggle icon centers with its label; a Bootstrap d-inline-flex
+   utility would be !important and override the [hidden] attribute we toggle on. */
+.content-summary__control {
+  display: inline-flex;
+}
+
+.content-summary__control[hidden] {
+  display: none;
+}
+
+/* Take the icon off the text baseline so the filled circle isn't clipped at the bottom. */
+.content-summary__control svg {
+  display: block;
 }
 
 /* Subject pills */
