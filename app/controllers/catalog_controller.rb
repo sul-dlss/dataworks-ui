@@ -87,9 +87,12 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # config.show.document_presenter_class = MyApp::ShowPresenter
     #
     # These components can be configured
+    config.show.document_header_component = Show::PageHeaderComponent
     config.show.document_component = Show::DocumentComponent
     config.show.sidebar_component = Dwexp::SidebarComponent
     # config.show.embed_component = MyApp::EmbedComponent
+
+    config.track_search_session.applied_params_component = Show::AppliedParamsComponent
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display

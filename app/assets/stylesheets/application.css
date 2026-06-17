@@ -31,6 +31,16 @@
   padding-bottom: 0;
 }
 
+.pagination-search-widgets .page-links {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.pagination-search-widgets {
+  border-bottom: 0;
+}
+
 .documents-list .document {
   border-bottom: 1px solid var(--stanford-20-black);
 }
