@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Dwexp
+module Show
   class AlsoAvailableComponent < ViewComponent::Base
     def initialize(document:)
       @providers_info = document['provider_identifier_map_struct_ss']

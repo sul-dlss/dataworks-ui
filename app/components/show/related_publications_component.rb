@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Dwexp
+module Show
   class RelatedPublicationsComponent < ViewComponent::Base
     def initialize(document:)
       super()
@@ -22,7 +22,7 @@ module Dwexp
         @group_all[relation_type] << val
 
         # For publications, we group by what we will call the relationship type for display
-        next unless add_publication(val)
+        next unless add_publication?(val)
 
         display_relation_type = relation_type_label(relation_type, related_identifier_type)
         @group_publications[display_relation_type] = [] unless @group_publications.key?(display_relation_type)
@@ -36,7 +36,7 @@ module Dwexp
     # "BookChapter", "Other", "Book", "ConferencePaper", "Dissertation", "InteractiveResource",
     # "Collection", "ComputationalNotebook", "ConferenceProceeding", "PeerReview",
     # "Journal", "Instrument", "Image"}>
-    def add_publication(related_item_info)
+    def add_publication?(related_item_info)
       # Type of related item
       item_type = related_item_info['resource_type_general'] || ''
       # Relationship type
@@ -82,8 +82,8 @@ module Dwexp
     end
 
     # PMID ids ending with .0 are not allowing for any responses from OpenAlex
-    def parse_id(id, idType)
-      return id.delete_suffix('.0') if idType == 'PMID'
+    def parse_id(id, type)
+      return id.delete_suffix('.0') if type == 'PMID'
 
       id
     end

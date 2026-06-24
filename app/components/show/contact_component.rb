@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Dwexp
+module Show
   class ContactComponent < ViewComponent::Base
     def initialize(document:)
       @contact_info = JSON.parse(document['access_contact_struct_ss'] || '[]')

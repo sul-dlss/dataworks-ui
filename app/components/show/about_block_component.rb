@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Dwexp
+module Show
   class AboutBlockComponent < ViewComponent::Base
     def initialize(document:)
       @document = document

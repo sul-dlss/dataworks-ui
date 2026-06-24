@@ -89,7 +89,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     # These components can be configured
     config.show.document_header_component = Show::PageHeaderComponent
     config.show.document_component = Show::DocumentComponent
-    config.show.sidebar_component = Dwexp::SidebarComponent
+    config.show.sidebar_component = Show::SidebarComponent
     # config.show.embed_component = MyApp::EmbedComponent
 
     config.track_search_session.applied_params_component = Show::AppliedParamsComponent
@@ -153,7 +153,7 @@ class CatalogController < ApplicationController # rubocop:disable Metrics/ClassL
     config.add_show_field 'temporal_isim', label: 'Temporal Coverage', link_to_facet: true
     config.add_show_field 'geo_place_ssim', label: 'Geographic Coverage'
     config.add_show_field 'variables_tsim', label: 'Variables', helper_method: :display_variables
-    # config.add_show_field 'related_identifiers_struct_ss', label: 'Related Publications', component: Dwexp::RelatedPublicationsComponent
+    # config.add_show_field 'related_identifiers_struct_ss', label: 'Related Publications', component: Show::RelatedPublicationsComponent
     config.add_show_field 'dates_struct_ss', label: 'Related Dates', helper_method: :display_dates
     # config.add_show_field 'rights_list_struct_ss', label: 'Rights', show: false
     # config.add_show_field 'provider_identifier_map_struct_ss', label: 'Also Available At',

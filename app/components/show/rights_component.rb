@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Dwexp
+module Show
   class RightsComponent < ViewComponent::Base
     def initialize(document:)
       @rights_list = JSON.parse(document['rights_list_struct_ss'] || '[]')
