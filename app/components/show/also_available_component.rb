@@ -3,26 +3,24 @@
 module Show
   class AlsoAvailableComponent < ViewComponent::Base
     def initialize(document:)
-      @providers_info = document['provider_identifier_map_struct_ss']
-      @url = document['url_ss']
-      @available = extract_also_available
       super()
+      @providers = document.struct_field('provider_identifier_map_struct_ss')
+      @url = document['url_ss']
     end
 
-    def extract_also_available
-      return if @providers_info.blank?
+    def render?
+      also_available.present?
+    end
 
-      JSON.parse(@providers_info).filter_map do |provider, id|
+    # [label, url] pairs for each provider where this dataset is also available
+    def also_available
+      @also_available ||= @providers.filter_map do |provider, id|
         available_url = provider_url(provider: provider.downcase, id: id)
         # Don't display if no URL mapped for provider OR this is already the landing page URL
         next if available_url.blank? || remove_prefix(url: @url) == remove_prefix(url: available_url)
 
-        "<a target='_blank' href='#{available_url}'>#{I18n.t("provider.#{provider.downcase}")}</a>"
-      end.join('<br/>')
-    end
-
-    def render?
-      @available.present?
+        [I18n.t("provider.#{provider.downcase}"), available_url]
+      end
     end
 
     def remove_prefix(url:)

@@ -30,14 +30,14 @@ module Show
 
     # Structured data for creators; by default they have no role, so we add "Creator"
     def creator_data
-      @creator_data ||= JSON.parse(document[:creators_struct_ss] || '[]').tap do |creators|
+      @creator_data ||= document.struct_field('creators_struct_ss').tap do |creators|
         creators.each { |creator| creator['role'] = 'Creator' }
       end
     end
 
     # Structured data for contributors
     def contributor_data
-      @contributor_data ||= JSON.parse(document[:contributors_struct_ss] || '[]')
+      @contributor_data ||= document.struct_field('contributors_struct_ss')
     end
   end
 end

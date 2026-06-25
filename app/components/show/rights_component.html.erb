@@ -1,5 +1,9 @@
-<div class='mb-4'>
-<h2>Rights</h2>
-<h3>License</h3>
-<%= sanitize(display_rights, attributes:['target', 'href']) %>
+<div>
+  <h2><%= t('.heading') %></h2>
+  <h3><%= t('.subheading') %></h3>
+  <ul class="list-unstyled mb-0">
+    <% rights_entries.each do |fragments| %>
+      <li><%= safe_join(fragments.map { |text, href| href ? link_to(text, href, target: '_blank') : text }, tag.br) %></li>
+    <% end %>
+  </ul>
 </div>

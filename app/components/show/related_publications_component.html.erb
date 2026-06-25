@@ -1,9 +1,8 @@
-<div class="mb-4">
-  <h2>Related Works</h2>
+<div>
+  <h2><%= t('.heading') %></h2>
   <div data-controller="related-publications" data-related-publications-url-value="<%= openalex_info_url %>">
-    <% @group_publications.keys.each do |display_relation_type| %>
+    <% group_publications.each do |display_relation_type, items| %>
       <h3 class="mt-3"><%= display_relation_type %></h3>
-      <% items = @group_publications[display_relation_type] %>
 
       <% items.each do |item| %>
         <% id_type = item['related_identifier_type'] || '' %>

@@ -3,6 +3,26 @@
 require 'rails_helper'
 
 RSpec.describe SolrDocument do
+  describe '#struct_field' do
+    subject(:struct_field) { described_class.new(rights_list_struct_ss: value).struct_field('rights_list_struct_ss') }
+
+    context 'with a JSON value' do
+      let(:value) { [{ 'rights' => 'CC-BY' }].to_json }
+
+      it 'parses it into Ruby data' do
+        expect(struct_field).to eq([{ 'rights' => 'CC-BY' }])
+      end
+    end
+
+    context 'when the field is blank' do
+      let(:value) { nil }
+
+      it 'returns an empty array' do
+        expect(struct_field).to eq([])
+      end
+    end
+  end
+
   describe '#url_host' do
     subject(:url_host) { described_class.new(url_ss: url).url_host }
 

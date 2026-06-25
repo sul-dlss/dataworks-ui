@@ -4,6 +4,18 @@
   --bs-border-color: var(--stanford-20-black);
 }
 
+/* 32px stack gap — between Bootstrap's gap-4 (24px) and gap-5 (48px). */
+.about-block {
+  gap: 2rem;
+}
+
+/* Drop the divider border below the lg breakpoint, so it only shows on wide layouts. */
+@media (max-width: 991.98px) {
+  .about-block {
+    border-left: 0 !important;
+  }
+}
+
 .documents-list {
   --bl-results-document-margin-top: 0;
   --bl-results-document-padding-top: 0.5rem;

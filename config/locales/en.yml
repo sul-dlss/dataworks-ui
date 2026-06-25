@@ -54,8 +54,6 @@ en:
     redivis: "Redivis"
     searchworks: "SearchWorks"
   show:
-    bibliographic_info_component:
-      heading: "Bibliographic information"
     about_dataset_component:
       heading: "About this dataset"
       available_at: "Available on"
@@ -65,12 +63,23 @@ en:
       published: "Published: %{year}"
       size_html: '<span class="fw-bold">Size:</span> %{size}'
       version: "Version: %{version}"
+    also_available_component:
+      heading: "Also available at"
+    bibliographic_info_component:
+      heading: "Bibliographic information"
+    contact_component:
+      heading: "Contact information"
     content_summary_component:
       heading: "Content/Summary"
       show_more: "Show more"
       show_less: "Show less"
     contributor_table_component:
       heading: "Contributors"
+    related_publications_component:
+      heading: "Related works"
+    rights_component:
+      heading: "Rights"
+      subheading: "License"
     subjects_component:
       heading: "Subjects"
       show_more: "Show more"

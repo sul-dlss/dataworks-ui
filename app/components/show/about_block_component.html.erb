@@ -1,9 +1,8 @@
-<div class="mt-5">
-  <div class="border-start ps-lg-3 px-3 mb-5">
-    <%= render(Show::AccessComponent.new(document:@document)) %>
+<div class="mt-lg-5">
+  <div class="about-block border-start px-lg-3 mb-5 d-flex flex-column">
     <%= render(Show::RightsComponent.new(document:@document)) %>
     <%= render(Show::ContactComponent.new(document:@document)) %>
-    <%= render(Show::AlsoAvailableComponent.new(document:@document)) %>
     <%= render(Show::RelatedPublicationsComponent.new(document:@document)) %>
+    <%= render(Show::AlsoAvailableComponent.new(document:@document)) %>
   </div>
 </div>

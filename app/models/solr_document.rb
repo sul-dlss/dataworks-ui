@@ -24,6 +24,11 @@ class SolrDocument
     url
   end
 
+  # Parse a JSON `*_struct_ss` field into Ruby data, defaulting to an empty array when blank.
+  def struct_field(key)
+    JSON.parse(self[key] || '[]')
+  end
+
   # self.unique_key = 'id'
 
   # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document

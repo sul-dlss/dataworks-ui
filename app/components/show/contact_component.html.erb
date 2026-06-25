@@ -1,4 +1,13 @@
-<div class='mb-4'>
-<h2>Contact information</h2>
-<%= sanitize display_contacts %>
+<div>
+  <h2><%= t('.heading') %></h2>
+  <% access_contacts.each do |contact| %>
+    <div class="mb-2">
+      <% if contact['name'].present? %>
+        <h3><%= contact['name'] %></h3>
+      <% end %>
+      <% if contact['email'].present? %>
+        <%= render(Icons::EnvelopeFillComponent.new(classes: 'mail me-1', aria_hidden: true)) %><%= mail_to contact['email'] %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

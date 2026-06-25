@@ -2,74 +2,45 @@
 
 module Show
   class RelatedPublicationsComponent < ViewComponent::Base
+    # Resource types that are never treated as publications
+    NON_PUBLICATION_TYPES = %w[Dataset Image Software ComputationalNotebook].freeze
+
+    # Relationship types that are never treated as publications
+    NON_PUBLICATION_RELATION_TYPES = %w[HasVersion IsVersionOf HasPart IsPartOf IsPreviousVersionOf
+                                        IsNewVersionOf IsVariantFormOf IsIdenticalTo IsOriginalFormOf].freeze
+
     def initialize(document:)
       super()
-      @document = document
-      @related_items = JSON.parse(document['related_identifiers_struct_ss'] || '[]')
-      @group_all = {}
-      @group_publications = {}
-      group_related_items
+      @related_items = document.struct_field('related_identifiers_struct_ss')
     end
 
-    # Retrieve related items and then organize by type of relationship
-    def group_related_items
-      @related_items.each do |val|
-        val['related_identifier']
-        relation_type = val['relation_type'] || ''
-        related_identifier_type = val['related_identifier_type'] || ''
-
-        @group_all[relation_type] = [] unless @group_all.key?(relation_type)
-        @group_all[relation_type] << val
-
-        # For publications, we group by what we will call the relationship type for display
-        next unless add_publication?(val)
-
-        display_relation_type = relation_type_label(relation_type, related_identifier_type)
-        @group_publications[display_relation_type] = [] unless @group_publications.key?(display_relation_type)
-        @group_publications[display_relation_type] << val
-      end
+    # Publications grouped under the relationship label we display them by
+    def group_publications
+      @group_publications ||= @related_items.select { |item| publication?(item) }
+                                            .group_by { |item| relation_type_label(item) }
     end
 
-    # If the related item is absolutely NOT a publication, we don't want to add to our list
+    # Whether a related item should be shown as a publication.
     # For reference, types in our index so far
     # #<Set: {"Dataset", "", "Text", "Preprint", "JournalArticle", "Software", "Report",
     # "BookChapter", "Other", "Book", "ConferencePaper", "Dissertation", "InteractiveResource",
     # "Collection", "ComputationalNotebook", "ConferenceProceeding", "PeerReview",
     # "Journal", "Instrument", "Image"}>
-    def add_publication?(related_item_info)
-      # Type of related item
-      item_type = related_item_info['resource_type_general'] || ''
-      # Relationship type
-      relation_type = related_item_info['relation_type'] || ''
-
-      !(non_publication_types.include?(item_type) || non_publication_relation_types.include?(relation_type))
+    def publication?(item)
+      NON_PUBLICATION_TYPES.exclude?(item['resource_type_general'] || '') &&
+        NON_PUBLICATION_RELATION_TYPES.exclude?(item['relation_type'] || '')
     end
 
-    def non_publication_types
-      %w[Dataset Image Software ComputationalNotebook]
-    end
+    def relation_type_label(item)
+      return 'Journals' if item['related_identifier_type'] == 'ISSN'
 
-    def non_publication_relation_types
-      %w[HasVersion IsVersionOf HasPart IsPartOf IsPreviousVersionOf IsNewVersionOf
-         IsVariantFormOf IsIdenticalTo IsOriginalFormOf]
-    end
-
-    def relation_type_label(relation_type, related_identifier_type)
-      return 'Journals' if related_identifier_type == 'ISSN'
-
-      case relation_type
-      when ''
-        'Publications'
-      when 'IsCitedBy'
-        'Cited By'
-      when 'IsDescribedBy'
-        'Described By'
-      when 'Cites'
-        'Cites'
-      when 'References'
-        'References'
-      else
-        'Related resources'
+      case item['relation_type'] || ''
+      when '' then 'Publication'
+      when 'IsCitedBy' then 'Cited by'
+      when 'IsDescribedBy' then 'Described by'
+      when 'Cites' then 'Cites'
+      when 'References' then 'Reference'
+      else 'Related resource'
       end
     end
 
@@ -78,7 +49,7 @@ module Show
     end
 
     def render?
-      @group_publications.present?
+      group_publications.present?
     end
 
     # PMID ids ending with .0 are not allowing for any responses from OpenAlex
