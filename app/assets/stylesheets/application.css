@@ -9,6 +9,11 @@
   gap: 2rem;
 }
 
+/* Match the sidebar's 32px stack gap between show-page metadata sections. */
+.document-metadata-stack {
+  gap: 2rem;
+}
+
 /* Drop the divider border below the lg breakpoint, so it only shows on wide layouts. */
 @media (max-width: 991.98px) {
   .about-block {
