@@ -60,16 +60,6 @@ module DataworksHelper
     link_to(args[:value][0], args[:value][0], target: :blank)
   end
 
-  def display_dates(args)
-    args[:value].map do |arg|
-      parsed_json = JSON.parse(arg)
-      parsed_json.map do |val|
-        display = val['date']
-        "#{val['date_type']}: #{display}" if val['date_type'].present?
-      end.join('<br>')
-    end.join(' ').html_safe
-  end
-
   def display_rights(args)
     args[:value].map do |arg|
       parsed_json = JSON.parse(arg)
