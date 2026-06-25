@@ -29,6 +29,19 @@ class SolrDocument
     JSON.parse(self[key] || '[]')
   end
 
+  # Creators and other contributors, merged and de-duplicated by name and identifiers.
+  def contributors
+    @contributors ||= (creator_structs + contributor_structs).uniq do |contributor|
+      [contributor['name'], contributor['name_identifiers']]
+    end
+  end
+
+  # Affiliations recorded for the named contributor on this dataset.
+  def affiliations_for(name)
+    contributors.select { |contributor| contributor['name'] == name }
+                .flat_map { |contributor| Array(contributor['affiliation']) }
+  end
+
   # self.unique_key = 'id'
 
   # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document
@@ -37,4 +50,15 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  private
+
+  # Creator structs, tagged with the "Creator" role they lack by default.
+  def creator_structs
+    struct_field(:creators_struct_ss).each { |creator| creator['role'] = 'Creator' }
+  end
+
+  def contributor_structs
+    struct_field(:contributors_struct_ss)
+  end
 end

@@ -1,16 +1,24 @@
 # frozen_string_literal: true
 
-module Dwexp
-  class CollaboratorsModalComponent < Blacklight::System::ModalComponent
-    def initialize(contributors:, facet:)
+module Show
+  class ContributorModalComponent < Blacklight::System::ModalComponent
+    include AffiliationPresentation
+
+    def initialize(contributors:, facet:, affiliations: [])
       super()
       @contributors = contributors
       @facet = facet
+      @affiliations = affiliations
       @items = facet.display_facet.items
     end
 
     def datasets_count
       @items.filter_map { |item| item.hits if @contributors.include? item.value }.sum
+    end
+
+    # The departments listed for an affiliation, excluding repeats of the affiliation name.
+    def departments(affiliation)
+      Array(affiliation['affiliation_department_name']).reject { |dept| affiliation['name'].include?(dept) }
     end
 
     def collaborators

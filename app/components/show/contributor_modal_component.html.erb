@@ -1,0 +1,58 @@
+<div data-blacklight-modal="container">
+  <div class="modal-header flex-wrap py-2">
+    <h1 class="modal-title fs-3 mb-0 d-flex flex-wrap gap-3 align-items-center">
+      <span><%= @contributors.to_sentence %></span>
+      <% if datasets_count > 1 %>
+        <%= link_to search_catalog_path(f: { @facet.key => @contributors }),
+                    class: 'fs-6 fw-normal d-inline-flex align-items-center gap-1' do %>
+          <%= render Icons::SearchComponent.new(aria_hidden: true) %>
+          <%= t('.view_datasets', total: number_with_delimiter(datasets_count)) %>
+        <% end %>
+      <% end %>
+    </h1>
+    <button type="button" class="blacklight-modal-close btn-close close" data-bl-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <% if @affiliations.present? %>
+      <section class="mb-3">
+        <h2 class="fs-5"><%= t('.affiliations') %></h2>
+        <% @affiliations.each do |affiliation| %>
+          <div class="mb-1">
+            <span>
+              <%= affiliation['name'] %><%= render_ror_link(affiliation) %><% if (country = affiliation_country(affiliation)) %><span class="text-nowrap ms-3"><%= render Icons::GeoAltComponent.new(classes: 'me-1', aria_hidden: true) %><%= country %></span><% end %>
+            </span>
+            <% departments(affiliation).each do |department| %>
+              <span class="text-muted d-block ms-2">
+                <%= render Icons::ArrowReturnRightComponent.new(aria_hidden: true) %>
+                <%= department %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+      </section>
+    <% end %>
+    <% if collaborators.any? %>
+      <section>
+        <h2 class="fs-5 visually-hidden"><%= t('.collaborators') %></h2>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col" class="fw-semibold"><%= t('.collaborator') %></th>
+              <th scope="col" class="fw-semibold text-end"><%= t('.shared_datasets') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% collaborators.each do |presenter| %>
+              <tr>
+                <td><%= presenter.label %></td>
+                <td class="text-end"><%= link_to(number_with_delimiter(presenter.hits), presenter.href) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
+    <% end %>
+  </div>
+</div>

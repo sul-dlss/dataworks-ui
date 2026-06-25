@@ -60,16 +60,8 @@ class RorService
       links.find { |l| l['type'] == 'website' }&.dig('value')
     end
 
-    def country_code
-      geonames_details.pick('country_code')
-    end
-
     def country_name
       geonames_details.pick('country_name')
-    end
-
-    def country_emoji
-      country_code.upcase.chars.map { |char| 0x1F1E6 + char.ord - 'A'.ord }.pack('U*') if country_code
     end
 
     private

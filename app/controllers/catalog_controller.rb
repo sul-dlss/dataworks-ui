@@ -3,6 +3,7 @@
 # Blacklight controller that handles searches and document requests
 class CatalogController < ApplicationController
   include Blacklight::Catalog
+  include ContributorModal
 
   # If you'd like to handle errors returned by Solr in a certain way,
   # you can use Rails rescue_from with a method you define in this controller,
@@ -232,43 +233,5 @@ class CatalogController < ApplicationController
     # if the name of the solr.SuggestComponent provided in your solrconfig.xml is not the
     # default 'mySuggester', uncomment and provide it below
     # config.autocomplete_suggester = 'mySuggester'
-  end
-
-  # Render a list of collaborators for the given contributors, as a modal
-  def collaborators
-    load_collaborators_data
-
-    respond_to do |format|
-      format.html { render layout: !request.xhr? }
-    end
-  end
-
-  private
-
-  def load_collaborators_data
-    @facet = collaborators_facet
-    @contributors = contributor_params(@facet)
-    @response = collaborators_response(@facet, @contributors)
-    @display_facet = @response.aggregations[@facet.key]
-    @presenter = @facet.presenter.new(@facet, @display_facet, view_context)
-  end
-
-  def collaborators_facet
-    blacklight_config.facet_fields['contributors_ssim']
-  end
-
-  def contributor_params(facet)
-    params[:f][facet.key]
-  end
-
-  def collaborators_response(facet, contributors)
-    search_service.facet_field_response(
-      facet.key,
-      {
-        "f[#{facet.key}][]" => contributors,
-        "f.#{facet.key}.facet.limit" => -1,
-        'facet.sort' => 'count'
-      }
-    )
   end
 end
