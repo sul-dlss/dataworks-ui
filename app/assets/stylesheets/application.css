@@ -145,6 +145,13 @@
   display: none;
 }
 
+.badge-cardinal {
+  --bs-badge-bg: var(--stanford-cardinal);
+  --bs-badge-color: #fff;
+  background-color: var(--bs-badge-bg);
+  color: var(--bs-badge-color);
+}
+
 /* Cardinal red button (stanford datasets facet) */
 .btn-stanford-cardinal {
   --bs-btn-hover-border-color: var(--stanford-cardinal);
