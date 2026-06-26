@@ -1,0 +1,44 @@
+<div id="contributors">
+  <h2><%= t('.heading') %></h2>
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <div data-controller="expand-items" data-expand-items-max-rows-value="<%= VISIBLE_COUNT %>">
+        <ul class="list-unstyled mb-0">
+          <% contributors.each do |contributor| %>
+            <li class="mb-1" data-expand-items-target="item">
+              <%= render_name(contributor) %><%= render_orcid_link(contributor) %><%= render_profile_link(contributor) %><%= render_affiliation_refs(contributor) %>
+            </li>
+          <% end %>
+        </ul>
+        <button type="button"
+                data-expand-items-target="toggle"
+                data-action="expand-items#toggle"
+                class="btn btn-link p-0 mt-2 small text-decoration-none"
+                hidden>
+          <span data-expand-items-target="moreControl" class="content-summary__control align-items-center gap-1">
+            <%= render Icons::ArrowDownCircleComponent.new(aria_hidden: true) %><%= t('.show_more') %>
+          </span>
+          <span data-expand-items-target="lessControl" class="content-summary__control align-items-center gap-1" hidden>
+            <%= render Icons::ArrowUpCircleComponent.new(aria_hidden: true) %><%= t('.show_less') %>
+          </span>
+        </button>
+      </div>
+    </div>
+    <% if affiliations.present? %>
+      <div class="col-12 col-md-6">
+        <ol class="list-unstyled bg-light rounded-2 p-3 mb-0">
+          <% affiliations.each_with_index do |affiliation, index| %>
+            <li class="mb-1 d-flex justify-content-between align-items-start">
+              <span>
+                <sup class="me-1"><%= index + 1 %></sup><%= affiliation['name'] %><%= render_ror_link(affiliation) %>
+              </span>
+              <% if (country = affiliation_country(affiliation)) %>
+                <span class="text-nowrap"><%= country %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -23,6 +23,49 @@ RSpec.describe SolrDocument do
     end
   end
 
+  describe '#contributors' do
+    subject(:contributors) do
+      described_class.new(creators_struct_ss: creators.to_json,
+                          contributors_struct_ss: other_contributors.to_json).contributors
+    end
+
+    let(:creators) { [{ 'name' => 'Ada Lovelace' }] }
+    let(:other_contributors) { [{ 'name' => 'Alan Turing' }] }
+
+    it 'merges creators and contributors' do
+      expect(contributors.pluck('name')).to contain_exactly('Ada Lovelace', 'Alan Turing')
+    end
+
+    it 'tags creators with the Creator role' do
+      expect(contributors.find { |contributor| contributor['name'] == 'Ada Lovelace' }['role']).to eq('Creator')
+    end
+
+    context 'when a creator and a contributor share a name and identifiers' do
+      let(:creators) { [{ 'name' => 'Sam Smith', 'name_identifiers' => [] }] }
+      let(:other_contributors) { [{ 'name' => 'Sam Smith', 'name_identifiers' => [] }] }
+
+      it 'de-duplicates them into a single entry' do
+        expect(contributors.size).to eq(1)
+      end
+    end
+  end
+
+  describe '#affiliations_for' do
+    subject(:document) { described_class.new(creators_struct_ss: creators.to_json) }
+
+    let(:creators) do
+      [{ 'name' => 'Ada Lovelace', 'affiliation' => [{ 'name' => 'Stanford University' }] }]
+    end
+
+    it 'returns the affiliations recorded for the named contributor' do
+      expect(document.affiliations_for('Ada Lovelace')).to eq([{ 'name' => 'Stanford University' }])
+    end
+
+    it 'returns an empty list for a contributor not on the dataset' do
+      expect(document.affiliations_for('Alan Turing')).to eq([])
+    end
+  end
+
   describe '#url_host' do
     subject(:url_host) { described_class.new(url_ss: url).url_host }
 

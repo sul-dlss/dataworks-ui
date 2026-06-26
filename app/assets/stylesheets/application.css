@@ -198,8 +198,9 @@
   color: var(--stanford-digital-blue);
 }
 
-/* Person icon */
-.profile {
+/* Stanford profile badge: icon, label, and link (incl. its hover underline) */
+.profile,
+.profile:hover {
   color: var(--stanford-cardinal);
 }
 
