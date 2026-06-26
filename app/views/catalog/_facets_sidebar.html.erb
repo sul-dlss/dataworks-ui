@@ -3,7 +3,7 @@
     <button class="btn btn-lg btn-primary" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvas-facets"
             aria-controls="offcanvas-facets">
-      <%= render Icons::SlidersComponent.new %>
+      <%= render Icons::SlidersComponent.new(aria_hidden: true) %>
       <%= t('blacklight.search.facets.mobile_button') %>
     </button>
   </div>

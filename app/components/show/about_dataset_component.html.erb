@@ -23,7 +23,7 @@
     <% if document.url.present? %>
       <%= link_to document.url, class: 'btn btn-primary d-inline-flex align-items-center gap-1 w-auto', target: '_blank', rel: 'noopener' do %>
         <%= t('.button') %>
-        <%= render Icons::ArrowUpRightComponent.new %>
+        <%= render Icons::ArrowUpRightComponent.new(aria_hidden: true) %>
       <% end %>
     <% end %>
   </div>

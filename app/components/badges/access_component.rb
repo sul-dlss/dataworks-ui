@@ -20,9 +20,9 @@ module Badges
     def icon_component
       case document.access.downcase
       when 'public'
-        Icons::LockOpenComponent.new
+        Icons::LockOpenComponent.new(aria_hidden: true)
       when 'restricted'
-        Icons::LockClosedComponent.new
+        Icons::LockClosedComponent.new(aria_hidden: true)
       end
     end
   end
