@@ -33,8 +33,9 @@
         <div class="d-flex align-items-end gap-2 flex-grow-1">
           <span class="rosette-logo me-1 align-self-start flex-shrink-0" aria-hidden="true"></span>
           <div class="me-1 flex-grow-1">
-            <div class="h1 my-0">
+            <div class="h1 my-0 d-flex align-items-center gap-3">
               <a href="/"><%= helpers.application_name %></a>
+              <span class="badge badge-cardinal fw-semibold align-self-center fs-6 text-uppercase"><%= t("header.beta_badge") %></span>
             </div>
           </div>
         </div>
@@ -114,5 +115,4 @@
     </div>
   </div>
   <%= search_bar %>
-  <%= render 'shared/banner' %>
 </header>

@@ -29,6 +29,8 @@
 
 en:
   hello: "Hello world"
+  header:
+    beta_badge: "Beta"
   index:
     access_component:
       button: "Access data"
