@@ -1,0 +1,5 @@
+<% if request.xhr? %>
+  <%= render Feedback::FeedbackModalComponent.new %>
+<% else %>
+  <%= render Feedback::FeedbackStandaloneComponent.new %>
+<% end %>

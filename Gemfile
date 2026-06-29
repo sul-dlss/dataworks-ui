@@ -76,6 +76,7 @@ gem 'config'
 gem 'dotenv'
 gem 'openssl'
 gem 'pg'
+gem 'recaptcha', '~> 5.21'
 gem 'rsolr', '>= 1.0', '< 3'
 
 # For Capistrano

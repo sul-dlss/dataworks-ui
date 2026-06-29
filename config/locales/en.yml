@@ -29,6 +29,21 @@
 
 en:
   hello: "Hello world"
+  feedback_form:
+    title: "Send feedback"
+    new_tab: "Open in new tab"
+    success: "<strong>Thank you!</strong> <br/> Your feedback has been sent."
+    email_subject: "Feedback from DataWorks"
+    reporting_from: "Reporting from"
+    send: "Send"
+    close: "Close"
+    name: "Name"
+    email: "Email"
+    message: "Message"
+    errors:
+      recaptcha: "reCAPTCHA verification failed"
+      email_required: "An email address is required"
+      message_required: "A message is required"
   header:
     beta_badge: "Beta"
   index:

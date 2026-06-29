@@ -300,6 +300,7 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
+    recaptcha (5.21.2)
     redis (5.4.1)
       redis-client (>= 0.22.0)
     redis-client (0.30.0)
@@ -449,6 +450,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.1)
+  recaptcha (~> 5.21)
   redis (>= 4.0.1)
   rsolr (>= 1.0, < 3)
   rspec-rails

@@ -1,3 +1,5 @@
+feedback_email: email@example.com
+
 sources:
   redivis:
     access_token: XYZ

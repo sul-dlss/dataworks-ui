@@ -1,0 +1,28 @@
+<%= render Blacklight::System::ModalComponent.new do |component| %>
+  <% component.with_header do %>
+    <h2 class="modal-title fw-normal fs-4 me-auto"><%= t('feedback_form.title') %></h2>
+    <%= link_to new_feedback_form_path, class: "new-link text-nowrap me-5", target: "_blank", data: { bl_dismiss: "modal" }, rel: "opener" do %>
+      <%= render Icons::BoxArrowUpLeftComponent.new(classes: 'me-1') %><%= t('feedback_form.new_tab') %>
+    <% end %>
+  <% end %>
+  <% component.with_body do %>
+    <% if request.referer %>
+      <div class="py-1 px-4 bg-light-subtle">
+        <%= t('feedback_form.reporting_from') %> <%= request.referer %>
+      </div>
+    <% end %>
+
+    <div class="modal-body">
+      <%= helpers.turbo_frame_tag "feedback-form_frame" do %>
+        <% form_with url: feedback_form_path, method: :post, id: "feedback-form", class: "feedback-form", role: "form", namespace: 'feedback', data: { controller: 'feedback-form recaptcha', action: 'submit->recaptcha#refresh turbo:submit-end->feedback-form#closeModal' } do |f| %>
+          <%= render Feedback::FeedbackFormFieldsComponent.new(form: f, request_referer: request.referer) %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary me-2 close" data-bl-dismiss="modal"><%= t('feedback_form.close') %></button>
+      <button type="submit" class="btn btn-primary" form="feedback-form"><%= t('feedback_form.send') %></button>
+    </div>
+  <% end %>
+<% end %>

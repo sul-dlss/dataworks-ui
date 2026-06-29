@@ -1,0 +1,21 @@
+<div class="standalone mx-auto">
+  <h1 class="h2 fw-normal"><%= t('feedback_form.title') %></h1>
+
+  <div class="feedback-form-container">
+    <% if request.referer %>
+      <div class="py-1 px-2 bg-light-subtle">
+        <%= t('feedback_form.reporting_from') %> <%= request.referer %>
+      </div>
+    <% end %>
+
+    <%= helpers.turbo_frame_tag "feedback-form_frame" do %>
+      <% form_with url: feedback_form_path, method: :post, class: "feedback-form mt-3", role: "form", namespace: 'feedback', data: { controller: 'feedback-form recaptcha', action: 'submit->recaptcha#refresh' } do |f| %>
+        <%= f.hidden_field :form_format, value: 'standalone' %>
+        <%= render Feedback::FeedbackFormFieldsComponent.new(form: f, request_referer: request.referer) %>
+        <div class="d-flex-inline text-end">
+          <button type="submit" class="btn btn-primary"><%= t('feedback_form.send') %></button>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

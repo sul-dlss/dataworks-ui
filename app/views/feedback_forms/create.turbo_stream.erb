@@ -1,0 +1,35 @@
+<%
+  error = flash.key?(:error)
+  message_text = error ? flash[:error] : flash[:success]
+  alert_class = error ? 'alert-error' : 'alert-success'
+%>
+
+<% if params[:form_format] == 'standalone' %>
+  <%= turbo_stream.replace 'feedback-form_frame' do %>
+    <div class="alert <%= alert_class %> alert-dismissible shadow-sm d-flex align-items-center my-3" role="alert">
+      <div class="text-body">
+        <div>
+          <% if error %>
+            <%= render Icons::ExclamationTriangleFillComponent.new(classes: 'me-2') %>
+          <% else %>
+            <%= render Icons::CheckCircleFillComponent.new(classes: 'me-2') %>
+          <% end %>
+          <%= sanitize message_text %>
+        </div>
+      </div>
+      <button type="button" class="btn-close p-2 mt-1" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.append 'toast-area' do %>
+    <%= render ToastComponent.new do %>
+      <% if error %>
+        <%= render Icons::ExclamationTriangleFillComponent.new(classes: 'me-2') %>
+      <% else %>
+        <%= render Icons::CheckCircleFillComponent.new(classes: 'me-2') %>
+      <% end %>
+      <%= sanitize message_text %>
+    <% end %>
+  <% end %>
+
+<% end %>
