@@ -38,9 +38,9 @@ RSpec.describe Show::AboutDatasetComponent, type: :component do
   end
 
   it 'keeps each size/formats/DOI label glued to its value' do
-    expect(page).to have_css('span.text-nowrap', text: 'Size: 1.2 MB, 3 pages')
-    expect(page).to have_css('span.text-nowrap', text: 'Formats: PDF')
-    expect(page).to have_css('span.text-nowrap', text: 'DOI: 10.1234/5678')
+    expect(rendered_content).to include('Size:</span>&nbsp;1.2 MB, 3 pages')
+    expect(rendered_content).to include('Formats:</span>&nbsp;PDF')
+    expect(rendered_content).to include('DOI:</span>&nbsp;10.1234/5678')
   end
 
   it 'links to the dataset in a new tab' do

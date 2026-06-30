@@ -75,10 +75,10 @@ en:
       heading: "About this dataset"
       available_at: "Available on"
       button: "Access data"
-      doi_html: '<span class="fw-bold">DOI:</span> %{doi}'
-      formats_html: '<span class="fw-bold">Formats:</span> %{formats}'
+      doi_html: '<span class="fw-bold">DOI:</span>&nbsp;%{doi}'
+      formats_html: '<span class="fw-bold">Formats:</span>&nbsp;%{formats}'
       published: "Published: %{year}"
-      size_html: '<span class="fw-bold">Size:</span> %{size}'
+      size_html: '<span class="fw-bold">Size:</span>&nbsp;%{size}'
       version: "Version: %{version}"
     also_available_component:
       heading: "Also available at"

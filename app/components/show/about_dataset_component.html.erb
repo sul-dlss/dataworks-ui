@@ -16,9 +16,9 @@
   </div>
   <div class="bg-light rounded-2 d-flex flex-wrap justify-content-between align-items-center gap-3 p-3">
     <div class="d-flex flex-wrap gap-3">
-      <span class="text-nowrap"><%= t('.size_html', size: document.sizes.join(', ')) if document.sizes.present? %></span>
-      <span class="text-nowrap"><%= t('.formats_html', formats: document.formats.join(', ')) if document.formats.present? %></span>
-      <span class="text-nowrap"><%= t('.doi_html', doi: document.doi) if document.doi.present? %></span>
+      <span><%= t('.size_html', size: document.sizes.join(', ')) if document.sizes.present? %></span>
+      <span><%= t('.formats_html', formats: document.formats.join(', ')) if document.formats.present? %></span>
+      <span><%= t('.doi_html', doi: document.doi) if document.doi.present? %></span>
     </div>
     <% if document.url.present? %>
       <%= link_to document.url, class: 'btn btn-primary d-inline-flex align-items-center gap-1 w-auto', target: '_blank', rel: 'noopener' do %>
