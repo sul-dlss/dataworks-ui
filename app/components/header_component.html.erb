@@ -1,4 +1,4 @@
-<header class="mb-3">
+<header class="<%= header_css_class %>">
   <%= render IdentityBarComponent.new %>
   <nav class="navbar navbar-expand-md bg-dark sky-dark">
     <div class="container">
@@ -102,5 +102,5 @@
       </div>
     </div>
   </div>
-  <%= search_bar %>
+  <%= search_bar if show_search_bar? %>
 </header>

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Catalog index' do
   it 'renders the search page with seeded data in facets' do
-    visit '/'
+    visit search_catalog_path(q: '', search_field: 'all_fields')
     expect(page).to have_title('DataWorks')
     expect(page).to have_css('form.search-query-form')
     expect(page).to have_text('figshare')
@@ -12,7 +12,7 @@ RSpec.describe 'Catalog index' do
   end
 
   context 'when on the search results page' do
-    before { visit search_catalog_path(q: '') }
+    before { visit search_catalog_path(q: '', search_field: 'all_fields') }
 
     it 'renders the mobile Filters button linked to the offcanvas' do
       expect(page).to have_css('button[data-bs-toggle="offcanvas"][data-bs-target="#offcanvas-facets"]',
@@ -30,7 +30,7 @@ RSpec.describe 'Catalog index' do
     end
 
     context 'when the Stanford dataset facet is active' do
-      before { visit search_catalog_path(q: '', f: { stanford_contributor_bsi: [true] }) }
+      before { visit search_catalog_path(q: '', search_field: 'all_fields', f: { stanford_contributor_bsi: [true] }) }
 
       it 'marks the Stanford dataset facet button as active' do
         expect(page).to have_css('#offcanvas-facets a.btn-stanford-cardinal.active')

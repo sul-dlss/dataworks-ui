@@ -44,6 +44,14 @@ en:
       recaptcha: "reCAPTCHA verification failed"
       email_required: "An email address is required"
       message_required: "A message is required"
+  landing_page:
+    title: "Find Stanford research data"
+    intro: "Explore datasets across disciplines and domains. DataWorks provides a starting point for finding open access and licensed data that can support teaching, learning, and research. Right now you'll mostly find datasets shared by Stanford authors, including datasets from the Stanford Digital Repository, Zenodo, Harvard Dataverse, Dryad, figshare, Redivis, ICPSR, Mendeley Data, and more."
+    beta_notice_html: "<span class=\"fw-semibold\">DataWorks is currently in beta.</span> We welcome feedback from the Stanford community. Tell us what search and discovery features you'd like to see, suggest improvements, or recommend datasets for inclusion. Your suggestions and feedback will help shape future development and ensure DataWorks supports the needs of researchers, students, and educators."
+    intro_heading: "About DataWorks"
+    popular_subjects_heading: "Popular subjects"
+    beta_heading: "Share feedback"
+    feedback_button: "Send feedback"
   header:
     beta_badge: "Beta"
   header_component:

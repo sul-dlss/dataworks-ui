@@ -32,4 +32,23 @@ RSpec.describe Index::SearchBarComponent, type: :component do
   it 'renders the search button' do
     expect(page).to have_button(nil, type: 'submit', class: 'search-btn')
   end
+
+  it 'applies default search container classes' do
+    expect(page).to have_css('search.search-card')
+  end
+
+  context 'when custom search_classes are passed' do
+    let(:component) do
+      described_class.new(
+        url: '/catalog',
+        params: { q: '' },
+        autocomplete_path: '/catalog/suggest',
+        search_classes: %w[search-card rounded]
+      )
+    end
+
+    it 'applies the custom classes to the search container' do
+      expect(page).to have_css('search.search-card.rounded')
+    end
+  end
 end

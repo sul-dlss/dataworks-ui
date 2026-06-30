@@ -1,0 +1,87 @@
+/* The SUL component library adds 8px top padding to #main-container globally;
+   suppress it on this page so the hero image touches the masthead */
+body.blacklight-landing_page #main-container {
+  padding-top: 0;
+}
+
+
+/* Hero image */
+
+/* Negative margin-inline breaks the section out of its Bootstrap column gutters */
+.landing-hero {
+  margin-inline: calc(var(--bs-gutter-x) * -0.5);
+}
+
+/* Min-height steps up at each breakpoint; no min-height at xs since the bg image is hidden */
+@media (min-width: 576px) {
+  .landing-hero { min-height: 250px; }
+}
+
+@media (min-width: 992px) {
+  .landing-hero { min-height: 300px; }
+}
+
+@media (min-width: 1200px) {
+  .landing-hero { min-height: 320px; }
+}
+
+@media (min-width: 1400px) {
+  .landing-hero { min-height: 350px; }
+}
+
+.landing-hero__search-wrapper {
+  max-width: 700px;
+  padding: 1rem 1.75rem;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* At xs: stretch to full screen width, flush corners, compact top padding */
+@media (max-width: 575.98px) {
+  .landing-hero__search-wrapper {
+    --bs-border-radius-sm: 0; /* zeroes the rounded-1 class via its own CSS variable */
+    max-width: none;
+    margin-inline: calc(var(--bs-gutter-x) * -0.5);
+    padding-top: 0.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .landing-hero__search-wrapper {
+    margin-left: 8%;
+  }
+}
+
+/* Adds a visible border to the inner search card against the white wrapper background */
+.landing-hero__search-wrapper .search-card {
+  border: 1px solid var(--bs-border-color);
+}
+
+
+/* Beta feedback notice */
+.landing-beta-notice {
+  background-color: var(--stanford-fog-light);
+}
+
+
+/* Subject pills */
+
+/* Clips to 2 lines at lg+, 4 lines at md and below */
+.subject-pills {
+  max-height: 4.5rem;
+  overflow: hidden;
+}
+
+@media (max-width: 991.98px) {
+  .subject-pills {
+    max-height: 9rem;
+  }
+}
+
+.subject-pill {
+  --bs-btn-bg: var(--stanford-fog-light);
+  --bs-btn-border-color: var(--stanford-fog-light);
+  --bs-btn-color: var(--bs-body-color);
+  --bs-btn-hover-bg: var(--stanford-sky-dark);
+  --bs-btn-hover-border-color: var(--stanford-sky-dark);
+  --bs-btn-hover-color: #fff;
+}

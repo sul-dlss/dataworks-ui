@@ -5,6 +5,10 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include ContributorModal
 
+  before_action only: :index do
+    redirect_to root_path unless has_search_parameters?
+  end
+
   # If you'd like to handle errors returned by Solr in a certain way,
   # you can use Rails rescue_from with a method you define in this controller,
   # uncomment:

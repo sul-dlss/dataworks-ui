@@ -1,0 +1,43 @@
+<section class="landing-hero position-relative d-flex align-items-center overflow-hidden" aria-label="Search datasets">
+  <div class="landing-hero__bg position-absolute top-0 start-0 end-0 bottom-0 d-none d-sm-block" aria-hidden="true">
+    <%= image_tag 'hero-image.jpg', alt: '', class: 'w-100 h-100 object-fit-cover' %>
+  </div>
+  <div class="position-relative z-1 w-100">
+    <div class="container-md pt-1 pb-3 py-sm-5">
+      <h1 class="landing-hero__title mb-4 visually-hidden"><%= t("landing_page.title") %></h1>
+      <div class="landing-hero__search-wrapper bg-white rounded-1">
+        <%= render Index::SearchBarComponent.new(
+          url: search_catalog_path,
+          params: {},
+          autocomplete_path: suggest_index_catalog_path,
+          classes: %w[search-query-form],
+          search_classes: %w[search-card d-flex position-relative flex-column rounded-1]
+        ) %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container py-5">
+  <div class="row gy-4 gx-4 gx-xl-5">
+    <div class="col-sm-6 col-lg-8">
+      <h2 class="visually-hidden"><%= t("landing_page.intro_heading") %></h2>
+      <p class="lead"><%= t("landing_page.intro") %></p>
+      <% if @popular_subjects.any? %>
+        <h2 class="mt-4 mb-3"><%= t("landing_page.popular_subjects_heading") %></h2>
+        <div class="subject-pills d-flex flex-wrap gap-2">
+          <% @popular_subjects.each do |subject| %>
+            <%= link_to subject, search_catalog_path(f: { subjects_ssim: [subject] }), class: "btn btn-sm rounded-pill subject-pill" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+      <div class="landing-beta-notice d-flex flex-column gap-3 p-4 rounded-1">
+        <h2 class="visually-hidden"><%= t("landing_page.beta_heading") %></h2>
+        <p class="mb-0"><%= t("landing_page.beta_notice_html") %></p>
+        <%= link_to t("landing_page.feedback_button"), feedback_path, class: "btn btn-outline-primary btn-compact align-self-start" %>
+      </div>
+    </div>
+  </div>
+</div>
