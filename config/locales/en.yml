@@ -102,6 +102,8 @@ en:
       show_less: "Show less"
     contributors_component:
       heading: "Contributors"
+      contributor: "Contributor"
+      affiliation: "Affiliation"
       show_more: "Show more"
       show_less: "Show less"
       orcid_aria_label: "ORCID profile for %{name}"

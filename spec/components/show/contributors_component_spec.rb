@@ -44,8 +44,13 @@ RSpec.describe Show::ContributorsComponent, type: :component do
       expect(page).to have_css('#contributors h2', text: 'Contributors')
     end
 
-    it 'renders an expand-items entry per contributor' do
-      expect(page).to have_css("#contributors ul li[data-expand-items-target='item']", count: 2)
+    it 'renders an expand-items table row per contributor' do
+      expect(page).to have_css("#contributors table tbody tr[data-expand-items-target='item']", count: 2)
+    end
+
+    it 'renders visually-hidden column headers for the contributor and affiliation columns' do
+      expect(page).to have_css('#contributors table thead.visually-hidden th', text: 'Contributor', visible: :all)
+      expect(page).to have_css('#contributors table thead.visually-hidden th', text: 'Affiliation', visible: :all)
     end
 
     it 'sets the expand-items controller to show a fixed number of rows' do
@@ -81,15 +86,9 @@ RSpec.describe Show::ContributorsComponent, type: :component do
       expect(page).to have_link(href: 'https://profiles.stanford.edu/intranet/12345')
     end
 
-    it 'renders the affiliations in a styled, numbered block' do
-      expect(page).to have_css('#contributors ol.bg-light li', count: 1)
-      expect(page).to have_css('#contributors ol.bg-light li', text: 'Stanford University')
-      expect(page).to have_css('#contributors ol.bg-light li sup', text: '1')
-    end
-
-    it 'references a contributor to its affiliation with a superscript number' do
-      expect(page).to have_css('#contributors ul li', text: 'Alexandra Trelle') do |item|
-        expect(item).to have_css('sup', text: '1')
+    it "renders each contributor's affiliation alongside them in the same row" do
+      expect(page).to have_css('#contributors table tbody tr', text: 'Alexandra Trelle') do |row|
+        expect(row).to have_text('Stanford University')
       end
     end
 
@@ -115,13 +114,9 @@ RSpec.describe Show::ContributorsComponent, type: :component do
 
     before { render_inline(component) }
 
-    it 'lists the shared affiliation once' do
-      expect(page).to have_css('#contributors ol.bg-light li', count: 1)
-    end
-
-    it 'references the shared affiliation number from each contributor' do
-      expect(page).to have_css('#contributors ul li', count: 2)
-      expect(page).to have_css('#contributors ul li sup', text: '1', count: 2)
+    it "shows the shared affiliation in each contributor's row" do
+      expect(page).to have_css('#contributors table tbody tr', count: 2)
+      expect(page).to have_css('#contributors table tbody tr td', text: 'Stanford University', count: 2)
     end
   end
 
@@ -140,7 +135,7 @@ RSpec.describe Show::ContributorsComponent, type: :component do
     end
 
     it 'shows the affiliation country alongside the institution' do
-      expect(page).to have_css('#contributors ol.bg-light li', text: 'United States')
+      expect(page).to have_css('#contributors table tbody tr td', text: 'United States')
     end
   end
 
@@ -150,7 +145,7 @@ RSpec.describe Show::ContributorsComponent, type: :component do
 
     it 'de-duplicates them into a single contributor' do
       render_inline(component)
-      expect(page).to have_css('#contributors ul li', count: 1)
+      expect(page).to have_css('#contributors table tbody tr', count: 1)
     end
   end
 end

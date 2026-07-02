@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module Show
-  # Renders the "Contributors" section of the show page: a list of creators and
-  # other contributors alongside a numbered list of their shared affiliations.
+  # Renders the "Contributors" section of the show page: a two-column table
+  # pairing each creator or contributor with their affiliation(s).
   class ContributorsComponent < ViewComponent::Base
     include AffiliationPresentation
 
     # Solr field backing the contributors facet, used for the search links.
     FACET_FIELD = 'contributors_ssim'
 
-    # Number of contributors shown before the list collapses behind a toggle.
-    VISIBLE_COUNT = 5
+    # Number of contributors shown before the table collapses behind a toggle.
+    VISIBLE_COUNT = 6
 
     def initialize(document:)
       @document = document
@@ -28,23 +28,23 @@ module Show
       @contributors ||= document.contributors
     end
 
-    # Every affiliation across all contributors, de-duplicated and ordered. An
-    # affiliation's position is its superscript key in the affiliations block,
-    # linking a contributor back to its institution(s).
-    def affiliations
-      @affiliations ||= contributors.flat_map { |contributor| Array(contributor['affiliation']) }
-                                    .uniq { |affiliation| affiliation_key(affiliation) }
+    # Render a contributor's affiliation(s) for the table's second column.
+    def render_affiliations(contributor)
+      affiliations = Array(contributor['affiliation'])
+      return if affiliations.blank?
+
+      safe_join(affiliations.map { |affiliation| render_affiliation(affiliation) })
     end
 
-    # The superscript number(s) linking a contributor to its affiliation(s).
-    def affiliation_numbers(contributor)
-      Array(contributor['affiliation']).filter_map { |affiliation| affiliation_number(affiliation) }.uniq.sort
-    end
-
-    # 1-based position of an affiliation within #affiliations.
-    def affiliation_number(affiliation)
-      index = affiliations.index { |candidate| affiliation_key(candidate) == affiliation_key(affiliation) }
-      index && (index + 1)
+    # Render a single affiliation: its name, ROR link, and country, if present.
+    def render_affiliation(affiliation)
+      parts = [affiliation['name'], render_ror_link(affiliation)]
+      if (country = affiliation_country(affiliation))
+        parts << tag.span(class: 'text-nowrap ms-3') do
+          render(Icons::GeoAltComponent.new(classes: 'me-1', aria_hidden: true)) + country
+        end
+      end
+      tag.div(safe_join(parts.compact), class: 'mb-1')
     end
 
     # Render a contributor's name as a link that opens its detail modal.
@@ -75,19 +75,6 @@ module Show
           render(Icons::PersonFillComponent.new(classes: 'ms-1 profile', aria_hidden: true)) +
           tag.span(t('.stanford_profile'), class: 'profile', aria_hidden: true)
       end
-    end
-
-    # Render the superscript reference(s) linking a contributor to its affiliation(s).
-    def render_affiliation_refs(contributor)
-      numbers = affiliation_numbers(contributor)
-      return if numbers.blank?
-
-      tag.sup(numbers.join(','), class: 'ms-1')
-    end
-
-    # A de-duplication key for an affiliation: its name and identifier.
-    def affiliation_key(affiliation)
-      [affiliation['name'], affiliation['affiliation_identifier']]
     end
 
     # The ORCID profile URL for a contributor, if present.
