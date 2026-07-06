@@ -83,6 +83,17 @@ module DataworksHelper
     args[:value].map(&:titleize).sort.join('<br>').html_safe
   end
 
+  # Collapse a list of temporal coverage years into ranges of consecutive years.
+  # e.g. [1990, 1991, 1992, 1995] => "1990–1992, 1995"
+  def display_temporal_coverage(args)
+    years = Array(args[:value]).map(&:to_i).uniq.sort
+    return if years.empty?
+
+    years.slice_when { |prev, curr| curr > prev + 1 }.map do |group|
+      group.length == 1 ? group.first.to_s : "#{group.first}–#{group.last}"
+    end.join(', ')
+  end
+
   def display_facet_separate_lines(args)
     field = args[:field]
     args[:value].sort.map do |val|

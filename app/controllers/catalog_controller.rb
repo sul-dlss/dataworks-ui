@@ -169,7 +169,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'other_title_tsim'
     config.add_show_field 'methods_tsim', helper_method: :render_rich_text
     config.add_show_field 'other_descriptions_tsim', helper_method: :render_rich_text
-    config.add_show_field 'temporal_isim', link_to_facet: true
+    config.add_show_field 'temporal_isim', helper_method: :display_temporal_coverage
     config.add_show_field 'geo_place_ssim'
     config.add_show_field 'variables_tsim', helper_method: :display_variables
     config.add_show_field 'dates_struct_ss', component: Show::RelatedDatesFieldComponent
