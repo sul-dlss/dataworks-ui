@@ -159,6 +159,12 @@
   vertical-align: sub;
 }
 
+/* Bump the ORCID logo slightly larger than the ROR icon for legibility. */
+.orcid-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 /* Add breathing room between the label, filter badges, and start-over button */
 .constraints-container {
   gap: 0.5rem 0.75rem;
@@ -295,6 +301,17 @@ h5 { --sul-header-font-size: 1.0rem; }
 /* Take the icon off the text baseline so the filled circle isn't clipped at the bottom. */
 .content-summary__control svg {
   display: block;
+}
+
+/* Contributors table: pin the column widths so they don't reflow when the
+   show more/less toggle reveals or hides rows (auto layout re-measures only
+   the in-flow rows, making the columns jump). */
+#contributors table {
+  table-layout: fixed;
+}
+
+#contributors td:first-child {
+  width: 40%;
 }
 
 /* Subject pills */
