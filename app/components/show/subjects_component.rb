@@ -6,9 +6,6 @@ module Show
     # Solr field backing the subjects facet.
     FACET_FIELD = 'subjects_ssim'
 
-    # Number of subjects shown before the list collapses behind a toggle.
-    VISIBLE_COUNT = 5
-
     def initialize(document:)
       @document = document
       super()

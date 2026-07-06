@@ -124,8 +124,6 @@ en:
       ror_aria_label: "ROR profile for %{name}"
     subjects_component:
       heading: "Subjects"
-      show_more: "Show more"
-      show_less: "Show less"
     toolbar_component:
       aria_label: "Tools"
       copy_failed: "Unable to copy link"
