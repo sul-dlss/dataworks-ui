@@ -30,12 +30,12 @@ RSpec.describe Show::BibliographicInfoComponent, type: :component do
   end
 
   it 'renders configured show_fields using Blacklight metadata rendering' do
-    expect(page).to have_text 'Geographic Coverage'
+    expect(page).to have_text 'Geographic coverage'
     expect(page).to have_text 'Antarctica'
   end
 
   it 'renders field labels without a trailing colon' do
-    expect(page).to have_css 'dt', exact_text: 'Geographic Coverage', normalize_ws: true
+    expect(page).to have_css 'dt', exact_text: 'Geographic coverage', normalize_ws: true
   end
 
   context 'when none of the configured fields have a value' do

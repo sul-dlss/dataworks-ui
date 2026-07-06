@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Show::RelatedDatesFieldComponent, type: :component do
   let(:view_context) { vc_test_controller.view_context }
   let(:document) { SolrDocument.new(dates_struct_ss: dates.to_json) }
-  let(:field_config) { Blacklight::Configuration::ShowField.new(key: 'dates_struct_ss', label: 'Related Dates') }
+  let(:field_config) { Blacklight::Configuration::ShowField.new(key: 'dates_struct_ss', label: 'Related dates') }
   let(:field) { Blacklight::FieldPresenter.new(view_context, document, field_config) }
 
   before { render_inline(described_class.new(field:, show: true)) }
@@ -18,7 +18,7 @@ RSpec.describe Show::RelatedDatesFieldComponent, type: :component do
     end
 
     it 'renders the field label' do
-      expect(page).to have_css 'dt', text: 'Related Dates'
+      expect(page).to have_css 'dt', text: 'Related dates'
     end
 
     it 'renders each typed date as its own value cell' do

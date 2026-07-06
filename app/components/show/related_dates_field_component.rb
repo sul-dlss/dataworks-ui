@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Show
-  # Renders the "Related Dates" show field within the bibliographic info
+  # Renders the "Related dates" show field within the bibliographic info
   # definition list.
   class RelatedDatesFieldComponent < Blacklight::MetadataFieldComponent
     # Dates without a date_type are omitted.

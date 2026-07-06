@@ -143,22 +143,4 @@ module ExternalHelper
           end
     sanitize "<a href='#{url}'>Provider url</a>"
   end
-
-  # From the other provider hash added to the solr doc, everything is in lower case
-  def provider_url_link_for_id(source, id)
-    case source
-    when 'dryad'
-      "https://datadryad.org/dataset/#{id}"
-    when 'datacite'
-      "https://commons.datacite.org/doi.org/#{id}"
-    when 'redivis'
-      "https://redivis.com/datasets/#{id}"
-    when 'zenodo'
-      "https://zenodo.org/records/#{id}"
-    when 'searchworks'
-      "https://searchworks.stanford.edu/view/#{id}"
-    when 'open_alex'
-      "https://openalex.org/works/#{id['https://openalex.org/'.length, id.length]}"
-    end
-  end
 end
