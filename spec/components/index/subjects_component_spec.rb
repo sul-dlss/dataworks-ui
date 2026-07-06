@@ -29,5 +29,11 @@ RSpec.describe Index::SubjectsComponent, type: :component do
       expect(page).to have_css('.document-subjects__pill', text: 'Climate change')
       expect(page).to have_css('.document-subjects__pill', text: 'Ocean science')
     end
+
+    it 'links each pill to its facet search' do
+      expect(page).to have_link('Biology', href: %r{/catalog\?f%5Bsubjects_ssim%5D%5B%5D=Biology})
+      expect(page).to have_link('Climate change',
+                                href: %r{/catalog\?f%5Bsubjects_ssim%5D%5B%5D=Climate\+change})
+    end
   end
 end

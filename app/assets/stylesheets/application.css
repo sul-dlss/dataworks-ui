@@ -304,10 +304,20 @@ h5 { --sul-header-font-size: 1.0rem; }
 }
 
 .document-subjects__pill {
+  --bs-badge-padding-x: 0.75rem;
+  --bs-badge-padding-y: 0.25rem;
   background-color: var(--stanford-fog-light);
   color: var(--bs-body-color);
   font-weight: normal;
   font-size: 0.875rem;
+  text-decoration: none;
+}
+
+a.document-subjects__pill:hover,
+a.document-subjects__pill:focus {
+  background-color: var(--stanford-digital-blue);
+  color: #fff;
+  text-decoration: underline;
 }
 
 /* The component library styles the expanded selected-facet header (dark text
