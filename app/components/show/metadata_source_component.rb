@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Show
-  class AlsoAvailableComponent < ViewComponent::Base
+  class MetadataSourceComponent < ViewComponent::Base
     def initialize(document:)
       super()
       @providers = document.struct_field('provider_identifier_map_struct_ss')
@@ -9,17 +9,17 @@ module Show
     end
 
     def render?
-      also_available.present?
+      metadata_sources.present?
     end
 
-    # [label, url] pairs for each provider where this dataset is also available
-    def also_available
-      @also_available ||= @providers.filter_map do |provider, id|
-        available_url = provider_url(provider: provider.downcase, id: id)
+    # [label, url] pairs for each provider that is a source of this dataset's metadata
+    def metadata_sources
+      @metadata_sources ||= @providers.filter_map do |provider, id|
+        source_url = provider_url(provider: provider.downcase, id: id)
         # Don't display if no URL mapped for provider OR this is already the landing page URL
-        next if available_url.blank? || remove_prefix(url: @url) == remove_prefix(url: available_url)
+        next if source_url.blank? || remove_prefix(url: @url) == remove_prefix(url: source_url)
 
-        [I18n.t("provider.#{provider.downcase}"), available_url]
+        [I18n.t("provider.#{provider.downcase}"), source_url]
       end
     end
 

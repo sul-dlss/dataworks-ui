@@ -1,7 +1,7 @@
 <div>
   <h2><%= t('.heading') %></h2>
   <ul class="list-unstyled mb-0">
-    <% also_available.each do |label, url| %>
+    <% metadata_sources.each do |label, url| %>
       <li><%= link_to label, url, target: '_blank' %></li>
     <% end %>
   </ul>

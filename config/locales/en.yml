@@ -90,8 +90,8 @@ en:
       published: "Published: %{year}"
       size_html: '<span class="fw-bold">Size:</span>&nbsp;%{size}'
       version: "Version: %{version}"
-    also_available_component:
-      heading: "Also available at"
+    metadata_source_component:
+      heading: "Metadata source"
     bibliographic_info_component:
       heading: "Bibliographic information"
     contact_component:

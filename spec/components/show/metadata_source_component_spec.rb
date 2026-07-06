@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Show::AlsoAvailableComponent, type: :component do
+RSpec.describe Show::MetadataSourceComponent, type: :component do
   subject(:component) { described_class.new(document:) }
 
   let(:document) do
@@ -16,7 +16,7 @@ RSpec.describe Show::AlsoAvailableComponent, type: :component do
     let(:providers) { { 'Dryad' => '10.5061/dryad.abc', 'Zenodo' => '12345' } }
 
     it 'renders the section heading' do
-      expect(page).to have_css('h2', text: 'Also available at')
+      expect(page).to have_css('h2', text: 'Metadata source')
     end
 
     it 'links each provider to its external record' do
