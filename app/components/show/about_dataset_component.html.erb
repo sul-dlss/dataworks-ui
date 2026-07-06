@@ -10,18 +10,28 @@
       <% end %>
     </div>
     <div class="d-flex flex-wrap gap-3">
-      <span><%= t('.published', year: document.publication_year) if document.publication_year.present? %></span>
-      <span><%= t('.version', version: document.version) if document.version.present? %></span>
+      <% if document.publication_year.present? %>
+        <span><%= t('.published', year: document.publication_year) %></span>
+      <% end %>
+      <% if document.version.present? %>
+        <span><%= t('.version', version: document.version) %></span>
+      <% end %>
     </div>
   </div>
-  <div class="bg-light rounded-2 d-flex flex-wrap justify-content-between align-items-center gap-3 p-3">
-    <div class="d-flex flex-wrap gap-3">
-      <span><%= t('.size_html', size: document.sizes.join(', ')) if document.sizes.present? %></span>
-      <span><%= t('.formats_html', formats: document.formats.join(', ')) if document.formats.present? %></span>
-      <span><%= t('.doi_html', doi: document.doi) if document.doi.present? %></span>
+  <div class="bg-light rounded-2 d-flex justify-content-between align-items-center gap-3 p-3">
+    <div class="d-flex flex-wrap gap-3 flex-grow-1">
+      <% if document.sizes.present? %>
+        <span><%= t('.size_html', size: document.sizes.join(', ')) %></span>
+      <% end %>
+      <% if document.formats.present? %>
+        <span><%= t('.formats_html', formats: document.formats.join(', ')) %></span>
+      <% end %>
+      <% if document.doi.present? %>
+        <span><%= t('.doi_html', doi: document.doi) %></span>
+      <% end %>
     </div>
     <% if document.url.present? %>
-      <%= link_to document.url, class: 'btn btn-primary d-inline-flex align-items-center gap-1 w-auto', target: '_blank', rel: 'noopener' do %>
+      <%= link_to document.url, class: 'btn btn-primary d-inline-flex align-items-center gap-1 w-auto flex-shrink-0 align-self-end', target: '_blank', rel: 'noopener' do %>
         <%= t('.button') %>
         <%= render Icons::ArrowUpRightComponent.new(aria_hidden: true) %>
       <% end %>
