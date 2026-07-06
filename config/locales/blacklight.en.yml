@@ -12,15 +12,26 @@ en:
         facet:
           access_ssi: "Access"
           funders_ssim: "Funder"
-          language_ssi: "Language"
           formats_ssim: "Format"
           publication_year_isi: "Publication year"
           publisher_ssi: "Available at"
           provider_ssi: "Provider"
           stanford_contributor_bsi: "Stanford-authored only"
           subjects_ssim: "Subject"
-          temporal_isim: "Temporal Coverage"
+          temporal_isim: "Temporal coverage"
           contributors_ssim: "Contributor"
+        show:
+          alternative_title_tsim: "Alternative title"
+          dates_struct_ss: "Related dates"
+          funding_references_struct_ss: "Funding information"
+          geo_place_ssim: "Geographic coverage"
+          methods_tsim: "Methods"
+          other_descriptions_tsim: "Other description"
+          other_title_tsim: "Other title"
+          subtitle_tsim: "Subtitle"
+          temporal_isim: "Temporal coverage"
+          translate_title_tsim: "Translated title"
+          variables_tsim: "Variables"
         search:
           author: Contributor
           doi: DOI

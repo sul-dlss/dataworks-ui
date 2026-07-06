@@ -90,20 +90,6 @@ module DataworksHelper
     end.join('<br>').html_safe
   end
 
-  def display_also_available(args)
-    doc = args[:document]
-    url = doc['url_ss']
-    # Filter out any providers that are already in the main URL
-    args[:value].map do |arg|
-      parsed_json = JSON.parse(arg)
-      parsed_json.filter_map do |provider, id|
-        next if url.include?(provider.downcase)
-
-        "<a target='_blank' href='#{provider_url_link_for_id(provider.downcase, id)}'>#{provider.titleize}</a>"
-      end.join('<br>')
-    end.join.html_safe
-  end
-
   # Define allowed tags and attributes for sanitization
   ALLOWED_TAGS = %w[a b i em strong p ul ol li br table thead tbody tr th td colgroup col].freeze
   ALLOWED_ATTRIBUTES = %w[href].freeze

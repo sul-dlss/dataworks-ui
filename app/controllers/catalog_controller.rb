@@ -136,7 +136,6 @@ class CatalogController < ApplicationController
     # Configured as facets for metadata record click to search functionality,
     # but not displayed in the facet sidebar
     config.add_facet_field 'funders_ssim', show: false
-    config.add_facet_field 'language_ssi', show: false
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -145,23 +144,17 @@ class CatalogController < ApplicationController
 
     # Show fields
     # config.add_show_field 'title_tsim', label: 'Title'
-    config.add_show_field 'subtitle_tsim', label: 'Subtitle'
-    config.add_show_field 'alternative_title_tsim', label: 'Alternative Title'
-    config.add_show_field 'translate_title_tsim', label: 'Translated Title'
-    config.add_show_field 'other_title_tsim', label: 'Other Title'
-    config.add_show_field 'methods_tsim', label: 'Methods', helper_method: :render_rich_text
-    config.add_show_field 'other_descriptions_tsim', label: 'Other description', helper_method: :render_rich_text
-    config.add_show_field 'language_ssi', label: 'Language', link_to_facet: true
-    config.add_show_field 'funding_references_struct_ss', label: 'Funding Full Info',
-                                                          helper_method: :display_funding_information
-    config.add_show_field 'temporal_isim', label: 'Temporal Coverage', link_to_facet: true
-    config.add_show_field 'geo_place_ssim', label: 'Geographic Coverage'
-    config.add_show_field 'variables_tsim', label: 'Variables', helper_method: :display_variables
-    # config.add_show_field 'related_identifiers_struct_ss', label: 'Related Publications', component: Show::RelatedPublicationsComponent
-    config.add_show_field 'dates_struct_ss', label: 'Related Dates', component: Show::RelatedDatesFieldComponent
-    # config.add_show_field 'rights_list_struct_ss', label: 'Rights', show: false
-    # config.add_show_field 'provider_identifier_map_struct_ss', label: 'Also Available At',
-    #   helper_method: :display_also_available
+    config.add_show_field 'subtitle_tsim'
+    config.add_show_field 'alternative_title_tsim'
+    config.add_show_field 'translate_title_tsim'
+    config.add_show_field 'other_title_tsim'
+    config.add_show_field 'methods_tsim', helper_method: :render_rich_text
+    config.add_show_field 'other_descriptions_tsim', helper_method: :render_rich_text
+    config.add_show_field 'temporal_isim', link_to_facet: true
+    config.add_show_field 'geo_place_ssim'
+    config.add_show_field 'variables_tsim', helper_method: :display_variables
+    config.add_show_field 'dates_struct_ss', component: Show::RelatedDatesFieldComponent
+    config.add_show_field 'funding_references_struct_ss', helper_method: :display_funding_information
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
