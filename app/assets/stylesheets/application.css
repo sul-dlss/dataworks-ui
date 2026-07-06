@@ -53,7 +53,7 @@
 
 .documents-list {
   --bl-results-document-margin-top: 0;
-  --bl-results-document-padding-top: 0.5rem;
+  --bl-results-document-padding-top: 1rem;
 }
 
 .dl-invert dt {
