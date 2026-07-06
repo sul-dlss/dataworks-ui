@@ -81,7 +81,10 @@ body.blacklight-landing_page #main-container {
   --bs-btn-bg: var(--stanford-fog-light);
   --bs-btn-border-color: var(--stanford-fog-light);
   --bs-btn-color: var(--bs-body-color);
-  --bs-btn-hover-bg: var(--stanford-sky-dark);
-  --bs-btn-hover-border-color: var(--stanford-sky-dark);
+  --bs-btn-hover-bg: var(--stanford-digital-blue);
+  --bs-btn-hover-border-color: var(--stanford-digital-blue);
   --bs-btn-hover-color: #fff;
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.75rem;
 }
