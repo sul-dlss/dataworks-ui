@@ -3,13 +3,9 @@
   margin-bottom: 10px;
 }
 
-.pagesection {
-  margin-bottom: 10px;
-}
-
 .queryresult {
-  background-color: #f7fafb;
-  border: 1px solid #016895;
+  background-color: var(--stanford-fog-light);
+  border: 1px solid var(--stanford-sky-dark);
   padding: 15px;
   margin-right: 15px;
 }
@@ -19,6 +15,6 @@
 }
 
 .highlight {
-  background-color: #f7fafb;
-  border: 1px solid #016895;
+  background-color: var(--stanford-fog-light);
+  border: 1px solid var(--stanford-sky-dark);
 }

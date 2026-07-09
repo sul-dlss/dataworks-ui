@@ -1,6 +1,6 @@
 :root {
-  --bs-dark-rgb: 1, 104, 149;
-  --bs-dark: #016895;
+  --bs-dark-rgb: var(--stanford-sky-dark-rgb);
+  --bs-dark: var(--stanford-sky-dark);
   --bs-border-color: var(--stanford-20-black);
   --bs-light-bg-subtle: var(--stanford-10-black);
 }
