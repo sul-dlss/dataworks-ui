@@ -1,0 +1,42 @@
+/* Badges rendered on both the index (results) and show views. */
+
+/* Stanford authored badge */
+.badge.stanford-authored {
+  --bs-badge-color: var(--stanford-cardinal);
+  background-color: var(--stanford-fog-light);
+  font-size: 0.75rem;
+}
+
+/* Access badges */
+.badge.access-badge {
+  --bs-badge-font-size: 0.75rem;
+
+  &.public {
+    --bs-badge-color: rgb(var(--stanford-palo-alto-rgb));
+    background-color: rgba(var(--stanford-palo-verde-dark-rgb), 0.05);
+  }
+
+  &.restricted {
+    --bs-badge-color: var(--stanford-digital-red-dark);
+    background-color: var(--bs-danger-bg-subtle);
+  }
+}
+
+/* Subject pills */
+.document-subjects__pill {
+  --bs-badge-padding-x: 0.75rem;
+  --bs-badge-padding-y: 0.25rem;
+  background-color: var(--stanford-fog-light);
+  color: var(--bs-body-color);
+  font-weight: normal;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+a.document-subjects__pill:hover,
+a.document-subjects__pill:focus {
+  background-color: var(--stanford-digital-blue);
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}

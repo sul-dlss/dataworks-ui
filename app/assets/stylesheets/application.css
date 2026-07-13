@@ -96,6 +96,13 @@ h5 { --sul-header-font-size: 1.0rem; }
   align-self: center;
 }
 
+/* Show-more/less toggle for lists (subject pills on index + show,
+   contributors on show). */
+.expand-items__toggle {
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
 /* Toast notifications (e.g. "Link copied to clipboard") */
 .toast {
   --bs-toast-bg: var(--stanford-90-black);

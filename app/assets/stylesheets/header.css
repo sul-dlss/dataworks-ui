@@ -21,3 +21,11 @@ search {
     border-left: var(--bs-border-width) solid var(--bs-border-color);
   }
 }
+
+/* Beta badge in the masthead */
+.badge-cardinal {
+  --bs-badge-bg: var(--stanford-cardinal);
+  --bs-badge-color: #fff;
+  background-color: var(--bs-badge-bg);
+  color: var(--bs-badge-color);
+}

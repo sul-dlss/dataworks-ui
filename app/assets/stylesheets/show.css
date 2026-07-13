@@ -98,30 +98,6 @@
   width: 40%;
 }
 
-/* Subject pills */
-.expand-items__toggle {
-  font-size: 0.875rem;
-  vertical-align: middle;
-}
-
-.document-subjects__pill {
-  --bs-badge-padding-x: 0.75rem;
-  --bs-badge-padding-y: 0.25rem;
-  background-color: var(--stanford-fog-light);
-  color: var(--bs-body-color);
-  font-weight: normal;
-  font-size: 0.875rem;
-  text-decoration: none;
-}
-
-a.document-subjects__pill:hover,
-a.document-subjects__pill:focus {
-  background-color: var(--stanford-digital-blue);
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
 /* Below lg, match the gap between show-document and the sidebar to the metadata section gap. */
 @media (max-width: 991.98px) {
   .blacklight-catalog-show .page-sidebar {

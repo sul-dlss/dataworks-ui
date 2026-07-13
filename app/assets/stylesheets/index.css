@@ -55,13 +55,6 @@
   display: none;
 }
 
-.badge-cardinal {
-  --bs-badge-bg: var(--stanford-cardinal);
-  --bs-badge-color: #fff;
-  background-color: var(--bs-badge-bg);
-  color: var(--bs-badge-color);
-}
-
 /* Cardinal red button (stanford datasets facet). */
 .btn-stanford-cardinal {
   --bs-btn-border-color: var(--stanford-cardinal);
@@ -77,27 +70,5 @@
 
   &:hover {
     text-decoration: underline;
-  }
-}
-
-/* Stanford authored badge */
-.badge.stanford-authored {
-  --bs-badge-color: var(--stanford-cardinal);
-  background-color: var(--stanford-fog-light);
-  font-size: 0.75rem;
-}
-
-/* Access badges */
-.badge.access-badge {
-  --bs-badge-font-size: 0.75rem;
-
-  &.public {
-    --bs-badge-color: rgb(var(--stanford-palo-alto-rgb));
-    background-color: rgba(var(--stanford-palo-verde-dark-rgb), 0.05);
-  }
-
-  &.restricted {
-    --bs-badge-color: var(--stanford-digital-red-dark);
-    background-color: var(--bs-danger-bg-subtle);
   }
 }
