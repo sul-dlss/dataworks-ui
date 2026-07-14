@@ -6,6 +6,8 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   include ContributorModal
 
+  bot_challenge only: %i[index facet], if: -> { has_search_parameters? }
+
   before_action only: :index do
     redirect_to root_path unless has_search_parameters?
   end

@@ -98,6 +98,9 @@ GEM
       view_component (>= 2.54, < 5)
     bootsnap (1.24.6)
       msgpack (~> 1.2)
+    bot_challenge_page (1.2.0)
+      http (>= 5.2, < 7)
+      rails (>= 7.1, < 8.2)
     builder (3.3.0)
     capistrano (3.20.1)
       airbrussh (>= 1.0.0)
@@ -147,6 +150,7 @@ GEM
       capistrano-one_time_key (>= 0.2.0)
       capistrano-shared_configs
       ed25519
+    domain_name (0.6.20240107)
     dotenv (3.2.0)
     dotenv-rails (3.2.0)
       dotenv (= 3.2.0)
@@ -165,6 +169,11 @@ GEM
       net-http (~> 0.5)
     globalid (1.4.0)
       activesupport (>= 6.1)
+    http (6.0.3)
+      http-cookie (~> 1.0)
+      llhttp (~> 0.6.1)
+    http-cookie (1.1.6)
+      domain_name (~> 0.5)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.3)
@@ -195,6 +204,7 @@ GEM
     kaminari-core (1.2.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
+    llhttp (0.6.2)
     logger (1.7.0)
     loofah (2.25.1)
       crass (~> 1.0.2)
@@ -434,6 +444,7 @@ DEPENDENCIES
   blacklight (~> 9.0)
   blacklight_range_limit (~> 9.2)
   bootsnap
+  bot_challenge_page (~> 1.2)
   capistrano
   capistrano-bundler
   capistrano-maintenance (~> 1.2)

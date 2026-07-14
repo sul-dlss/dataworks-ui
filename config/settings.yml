@@ -6,3 +6,15 @@ sources:
 
 ror:
   url: https://api.ror.org
+
+# Cloudflare turnstile settings for bot challenge page
+# NOTE: these example keys always pass the challenge; see:
+# https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+turnstile:
+  enabled: false
+  site_key: "1x00000000000000000000AA"
+  secret_key: "1x0000000000000000000000000000000AA"
+  safelist:
+    - 171.64.0.0/14
+    - 172.16.0.0/12
+    - 10.0.0.0/8

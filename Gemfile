@@ -73,6 +73,7 @@ gem 'blacklight_range_limit', '~> 9.2'
 # CSV needs to be added explicitly post ruby 3.4
 gem 'csv'
 
+gem 'bot_challenge_page', '~> 1.2'
 gem 'config'
 gem 'dotenv'
 gem 'openssl'
