@@ -145,7 +145,22 @@ class CatalogController < ApplicationController
                                     chart_segment_bg_color: '#6FC3FF' },
                            component: Index::RangeFacetComponent,
                            item_presenter: Index::RangeFacetItemPresenter
-    config.add_facet_field 'subjects_ssim', limit: 6, component: Index::FacetSearchComponent
+    # Subjects use OR (inclusive) selection: picking several values matches any
+    # of them rather than all. `tag`/`ex` exclude this facet's own filter from
+    # its counts so sibling values stay visible while a group is active.
+    config.add_facet_field 'subjects_ssim', limit: 6, component: Index::FacetSearchComponent,
+                                            item_presenter: Index::InclusiveFacetItemPresenter,
+                                            tag: 'subjects_ssim', ex: 'subjects_ssim'
+    # TEMPORARY DEMO: a second view of the same subjects field using Blacklight's
+    # stock checkbox component (its advanced_search_component) with none of our
+    # custom presenter/component/tag-ex wiring, to preview the out-of-the-box OR
+    # UI. `field:` aliases it onto subjects_ssim so the key can differ. Remove
+    # once we've decided on the approach.
+    # High limit so all values render inline (no "more"/modal) for the demo.
+    config.add_facet_field 'subjects_checkbox_demo', field: 'subjects_ssim',
+                                                     label: 'Subjects (BL checkbox demo)',
+                                                     limit: 1000,
+                                                     component: Blacklight::Facets::CheckboxesComponent
     config.add_facet_field 'temporal_isim',
                            range: { textual_facets_collapsible: false,
                                     chart_segment_bg_color: '#6FC3FF' },

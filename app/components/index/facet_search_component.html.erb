@@ -3,12 +3,11 @@
     <%= @facet_field.label %>
   <% end %>
   <% component.with_body do %>
-    <% if inclusive_present? %>
-      <%= render(Blacklight::Facets::InclusiveConstraintComponent.new(facet_field: @facet_field)) %>
-    <% else %>
-      <%= content_tag :ul, class: 'facet-values list-unstyled', role: @role do %>
-        <%= render facet_items %>
-      <% end %>
+    <%# Selected OR-group (only renders when inclusive values are present), %>
+    <%# followed by the value list so more values can be added to the group. %>
+    <%= render(Blacklight::Facets::InclusiveConstraintComponent.new(facet_field: @facet_field)) %>
+    <%= content_tag :ul, class: 'facet-values list-unstyled', role: @role do %>
+      <%= render facet_items %>
     <% end %>
 
     <% if @facet_field.modal_path %>
