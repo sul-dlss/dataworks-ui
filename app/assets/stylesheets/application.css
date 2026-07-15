@@ -242,20 +242,48 @@
   --bs-badge-color: var(--stanford-cardinal);
   background-color: var(--stanford-fog-light);
   font-size: 0.75rem;
+  text-decoration: none;
+}
+
+a.badge.stanford-authored:hover,
+a.badge.stanford-authored:focus {
+  background-color: var(--stanford-cardinal);
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 /* Access badges */
 .badge.access-badge {
   --bs-badge-font-size: 0.75rem;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
 
   &.public {
     --bs-badge-color: rgb(var(--stanford-palo-alto-rgb));
     background-color: rgba(var(--stanford-palo-verde-dark-rgb), 0.05);
+
+    &:hover,
+    &:focus {
+      background-color: var(--stanford-digital-green);
+      color: #fff;
+    }
   }
-  
+
   &.restricted {
     --bs-badge-color: var(--stanford-digital-red-dark);
     background-color: var(--bs-danger-bg-subtle);
+
+    &:hover,
+    &:focus {
+      background-color: var(--stanford-digital-red);
+      color: #fff;
+    }
   }
 }
 
@@ -362,10 +390,12 @@ h5 { --sul-header-font-size: 1.0rem; }
 }
 
 /* The bi-check glyph carries a lot of internal whitespace, so scale it up to
-   read at a comparable size to the pill text. Use a transform rather than
-   font-size so the icon's layout box stays 1em and the selected pill keeps the
-   same height as an unselected one. */
-.document-subjects__pill--selected .blacklight-icons-check {
+   read at a comparable size to the text. Use a transform rather than font-size
+   so the icon's layout box stays 1em and the selected pill/badge keeps the same
+   height as an unselected one. */
+.document-subjects__pill--selected .blacklight-icons-check,
+.stanford-authored--selected .blacklight-icons-check,
+.access-badge--selected .blacklight-icons-check {
   display: inline-block;
   vertical-align: middle;
   transform: translateY(-0.1em) scale(1.5);

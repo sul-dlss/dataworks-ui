@@ -1,4 +1,9 @@
-<span class="badge access-badge text-uppercase fw-semibold d-inline-flex align-items-center gap-1 me-1 <%= document.access.downcase %>">
+<%= link_to facet_path,
+            class: class_names(
+              "badge access-badge text-uppercase fw-semibold d-inline-flex align-items-center gap-1 me-1 #{document.access.downcase}",
+              'access-badge--selected' => selected?
+            ),
+            aria: { pressed: selected? } do %>
   <%= render icon_component %>
   <%= access_message %>
-</span>
+<% end %>
