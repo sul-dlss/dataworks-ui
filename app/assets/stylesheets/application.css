@@ -181,6 +181,12 @@
   display: none;
 }
 
+/* Blacklight aligns the ">" separator icon with vertical-align: text-bottom,
+   which drops it below the text; center it vertically like the label */
+.applied-filter .constraint-value .filter-name::after {
+  vertical-align: middle;
+}
+
 .badge-cardinal {
   --bs-badge-bg: var(--stanford-cardinal);
   --bs-badge-color: #fff;
