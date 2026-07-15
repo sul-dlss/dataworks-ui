@@ -27,7 +27,7 @@
         <h2 class="mt-4 mb-3"><%= t("landing_page.popular_subjects_heading") %></h2>
         <div class="subject-pills d-flex flex-wrap gap-2">
           <% @popular_subjects.each do |subject| %>
-            <%= link_to subject, search_catalog_path(f: { subjects_ssim: [subject] }), class: "btn btn-sm rounded-pill subject-pill" %>
+            <%= link_to subject, search_catalog_path(f: { subjects_ssim: [subject] }, search_field: 'all_fields'), class: "btn btn-sm rounded-pill subject-pill" %>
           <% end %>
         </div>
       <% end %>

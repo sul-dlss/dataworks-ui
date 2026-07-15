@@ -30,6 +30,10 @@ RSpec.describe Show::SubjectsComponent, type: :component do
                                 href: %r{/catalog\?f%5Bsubjects_ssim%5D%5B%5D=Climate\+change})
     end
 
+    it 'carries a search_field so removing the facet stays on the results page' do
+      expect(page).to have_link('Biology', href: /search_field=all_fields/)
+    end
+
     it 'marks each subject as an expand-items item' do
       expect(page).to have_css("ul.document-subjects[data-controller='expand-items']")
       expect(page).to have_css("li[data-expand-items-target='item']", count: 2)

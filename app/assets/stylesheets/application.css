@@ -327,12 +327,29 @@ h5 { --sul-header-font-size: 1.0rem; }
 
 .document-subjects__pill {
   --bs-badge-padding-x: 0.75rem;
-  --bs-badge-padding-y: 0.25rem;
+  --bs-badge-padding-y: 0.4375rem;
+  display: inline-flex;
+  align-items: center;
   background-color: var(--stanford-fog-light);
   color: var(--bs-body-color);
   font-weight: normal;
   font-size: 0.875rem;
   text-decoration: none;
+}
+
+.document-subjects__pill--selected {
+  background-color: var(--stanford-10-black);
+  font-weight: 600;
+}
+
+/* The bi-check glyph carries a lot of internal whitespace, so scale it up to
+   read at a comparable size to the pill text. Use a transform rather than
+   font-size so the icon's layout box stays 1em and the selected pill keeps the
+   same height as an unselected one. */
+.document-subjects__pill--selected .blacklight-icons-check {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(-0.1em) scale(1.5);
 }
 
 a.document-subjects__pill:hover,

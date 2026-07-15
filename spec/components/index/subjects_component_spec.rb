@@ -36,4 +36,33 @@ RSpec.describe Index::SubjectsComponent, type: :component do
                                 href: %r{/catalog\?f%5Bsubjects_ssim%5D%5B%5D=Climate\+change})
     end
   end
+
+  context 'when a subject is already an active filter' do
+    let(:subjects) { ['Biology', 'Climate change'] }
+
+    before do
+      with_request_url '/catalog?f%5Bsubjects_ssim%5D%5B%5D=Biology' do
+        render_inline(component)
+      end
+    end
+
+    it 'marks the selected pill as pressed and links it to remove the filter' do
+      selected = page.find('.document-subjects__pill--selected')
+      expect(selected).to have_text('Biology')
+      expect(selected['aria-pressed']).to eq('true')
+      expect(selected['href']).not_to include('subjects_ssim')
+      expect(selected).to have_css('svg.bi-check')
+    end
+
+    it 'keeps the deselect link on the results page when it clears the last filter' do
+      selected = page.find('.document-subjects__pill--selected')
+      expect(selected['href']).to include('search_field=all_fields')
+    end
+
+    it 'still links an unselected pill to add its filter' do
+      climate = page.find('.document-subjects__pill', text: 'Climate change')
+      expect(climate['href']).to include('f%5Bsubjects_ssim%5D%5B%5D=Climate+change')
+      expect(climate['aria-pressed']).to eq('false')
+    end
+  end
 end

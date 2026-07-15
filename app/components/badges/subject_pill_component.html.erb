@@ -1,0 +1,4 @@
+<%= link_to label, path,
+            class: class_names('badge rounded-pill document-subjects__pill',
+                               'document-subjects__pill--selected' => selected?),
+            aria: toggle? ? { pressed: selected? } : {} %>
