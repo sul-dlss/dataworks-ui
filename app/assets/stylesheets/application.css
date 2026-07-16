@@ -283,7 +283,7 @@ h5 { --sul-header-font-size: 1.0rem; }
 }
 
 .document-description [data-expand-text-target="content"] .rich-text:last-child > *:last-child,
-.content-summary [data-expand-text-target="content"] .rich-text:last-child > *:last-child {
+.expand-text [data-expand-text-target="content"] .rich-text:last-child > *:last-child {
   margin-bottom: 0;
 }
 
@@ -295,16 +295,16 @@ h5 { --sul-header-font-size: 1.0rem; }
 
 /* inline-flex so the toggle icon centers with its label; a Bootstrap d-inline-flex
    utility would be !important and override the [hidden] attribute we toggle on. */
-.content-summary__control {
+.expand-text__control {
   display: inline-flex;
 }
 
-.content-summary__control[hidden] {
+.expand-text__control[hidden] {
   display: none;
 }
 
 /* Take the icon off the text baseline so the filled circle isn't clipped at the bottom. */
-.content-summary__control svg {
+.expand-text__control svg {
   display: block;
 }
 

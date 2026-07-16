@@ -169,11 +169,14 @@ class CatalogController < ApplicationController
     config.add_show_field 'alternative_title_tsim'
     config.add_show_field 'translate_title_tsim'
     config.add_show_field 'other_title_tsim'
-    config.add_show_field 'methods_tsim', helper_method: :render_rich_text
-    config.add_show_field 'other_descriptions_tsim', helper_method: :render_rich_text
+    config.add_show_field 'methods_tsim', helper_method: :render_rich_text,
+                                          component: Show::ExpandableFieldComponent
+    config.add_show_field 'other_descriptions_tsim', helper_method: :render_rich_text,
+                                                     component: Show::ExpandableFieldComponent
     config.add_show_field 'temporal_isim', helper_method: :display_temporal_coverage
     config.add_show_field 'geo_place_ssim'
-    config.add_show_field 'variables_tsim', helper_method: :display_variables
+    config.add_show_field 'variables_tsim', helper_method: :display_variables,
+                                            component: Show::ExpandableFieldComponent
     config.add_show_field 'dates_struct_ss', component: Show::RelatedDatesFieldComponent
     config.add_show_field 'funding_references_struct_ss', helper_method: :display_funding_information
 

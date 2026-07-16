@@ -12,7 +12,13 @@ RSpec.describe Show::BibliographicInfoComponent, type: :component do
     end
   end
   let(:presented_document) do
-    SolrDocument.new(id: 'abc-123', geo_place_ssim: ['Antarctica'])
+    SolrDocument.new(
+      id: 'abc-123',
+      geo_place_ssim: ['Antarctica'],
+      methods_tsim: ['A detailed description of the methods used.'],
+      other_descriptions_tsim: ['Some other description.'],
+      variables_tsim: %w[age income]
+    )
   end
   let(:presenter) { view_context.document_presenter(presented_document) }
 
@@ -36,6 +42,12 @@ RSpec.describe Show::BibliographicInfoComponent, type: :component do
 
   it 'renders field labels without a trailing colon' do
     expect(page).to have_css 'dt', exact_text: 'Geographic coverage', normalize_ws: true
+  end
+
+  it 'wraps the methods, other descriptions, and variables fields in the expand-text UI' do
+    expect(page).to have_css '[data-controller="expand-text"]', text: 'A detailed description of the methods used.'
+    expect(page).to have_css '[data-controller="expand-text"]', text: 'Some other description.'
+    expect(page).to have_css '[data-controller="expand-text"]', text: 'Age'
   end
 
   context 'when none of the configured fields have a value' do

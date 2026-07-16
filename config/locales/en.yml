@@ -98,6 +98,7 @@ en:
       heading: "Contact information"
     content_summary_component:
       heading: "Content/Summary"
+    expand_text_component:
       show_more: "Show more"
       show_less: "Show less"
     contributors_component:
