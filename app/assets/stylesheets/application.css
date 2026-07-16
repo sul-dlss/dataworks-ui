@@ -387,6 +387,16 @@ a.document-subjects__pill:focus {
   }
 }
 
+/* Widen the main container gutter to 24px/side below 992px.
+   Bootstrap's default 1.5rem gutter (12px/side) stays in effect on desktop. */
+@media screen and (max-width: 992px) {
+  #main-container,
+  footer .container,
+  footer .container-lg {
+    --bs-gutter-x: 3rem;
+  }
+}
+
 /* Toast notifications (e.g. "Link copied to clipboard") */
 .toast {
   --bs-toast-bg: var(--stanford-90-black);
