@@ -5,6 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Landing page' do
   before { visit root_path }
 
+  def subject_href(value)
+    search_catalog_path(f: { subjects_ssim: [value] }, search_field: 'all_fields')
+  end
+
   it 'renders the page title' do
     expect(page).to have_title('DataWorks')
   end
@@ -37,10 +41,8 @@ RSpec.describe 'Landing page' do
     end
 
     it 'renders subject pills as links to facet searches' do
-      expect(page).to have_link('Climate Change',
-                                href: search_catalog_path(f: { subjects_ssim: ['Climate Change'] }))
-      expect(page).to have_link('Ocean Science',
-                                href: search_catalog_path(f: { subjects_ssim: ['Ocean Science'] }))
+      expect(page).to have_link('Climate Change', href: subject_href('Climate Change'))
+      expect(page).to have_link('Ocean Science', href: subject_href('Ocean Science'))
     end
   end
 end

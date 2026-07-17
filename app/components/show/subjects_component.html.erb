@@ -2,7 +2,7 @@
   <h2><%= t('.heading') %></h2>
   <ul class="document-subjects list-unstyled d-flex flex-wrap column-gap-2 row-gap-1 mb-0" data-controller="expand-items">
     <% document.subjects.each do |subject| %>
-      <li data-expand-items-target="item"><%= link_to subject, subject_facet_path(subject), class: 'badge rounded-pill document-subjects__pill' %></li>
+      <li data-expand-items-target="item"><%= render Badges::SubjectPillComponent.new(subject:, path: subject_facet_path(subject)) %></li>
     <% end %>
   </ul>
 </div>

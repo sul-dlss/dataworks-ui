@@ -19,7 +19,9 @@ module Show
 
     # Blacklight facet search link for a single subject value.
     def subject_facet_path(subject)
-      helpers.search_action_path(helpers.search_state.filter(FACET_FIELD).add(subject))
+      path_params = helpers.search_state.filter(FACET_FIELD).add(subject).to_h
+      path_params[:search_field] = 'all_fields' if path_params[:search_field].blank?
+      helpers.search_action_path(path_params)
     end
   end
 end
