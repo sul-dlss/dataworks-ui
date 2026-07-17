@@ -160,6 +160,34 @@
   vertical-align: sub;
 }
 
+.search-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: sub;
+}
+
+.datasets-link {
+  position: relative;
+  top: 5px;
+  margin-bottom: 5px;
+}
+
+.contributor-modal-header .blacklight-modal-close {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.contributor-modal-title {
+  column-gap: 1rem;
+  row-gap: 0;
+  margin-right: 2.25rem;
+}
+
+.contributor-name-row {
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+}
+
 /* Keep the ROR logo aligned with the affiliation text it follows. */
 .ror-icon {
   vertical-align: middle;

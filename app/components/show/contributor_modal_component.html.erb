@@ -1,12 +1,12 @@
 <div data-blacklight-modal="container">
-  <div class="modal-header flex-wrap py-2">
-    <h1 class="modal-title fs-3 mb-0 d-flex flex-wrap gap-3 align-items-center">
-      <span class="d-inline-flex flex-wrap align-items-center"><%= @contributors.to_sentence %><% if (record = contributor_record) %><%= render_orcid_link(record) %><%= render_profile_link(record) %><% end %></span>
+  <div class="contributor-modal-header modal-header flex-wrap py-2">
+    <h1 class="contributor-modal-title modal-title fs-3 mb-0 d-flex flex-wrap align-items-center flex-fill">
+      <span class="contributor-name-row d-inline-flex flex-wrap align-items-center flex-fill"><%= @contributors.to_sentence %><% if (record = contributor_record) %><span class="d-inline-flex align-items-center"><%= render_orcid_link(record) %><%= render_profile_link(record) %></span><% end %></span>
       <% if datasets_count > 1 %>
         <%= link_to search_catalog_path(f: { @facet.key => @contributors }),
-                    class: 'fs-6 fw-normal d-inline-flex align-items-center gap-1' do %>
-          <%= render Icons::SearchComponent.new(aria_hidden: true) %>
-          <%= t('.view_datasets', total: number_with_delimiter(datasets_count)) %>
+                    class: 'datasets-link fs-6 fw-normal d-inline-flex align-items-center gap-1' do %>
+          <%= render Icons::SearchComponent.new(classes: 'search-icon', aria_hidden: true) %>
+          <span><%= t('.view_datasets_html', total: tag.strong(number_with_delimiter(datasets_count))) %></span>
         <% end %>
       <% end %>
     </h1>

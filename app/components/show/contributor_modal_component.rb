@@ -40,7 +40,7 @@ module Show
 
       link_to(url, class: 'orcid-record', target: :blank) do
         tag.span(t('.orcid_aria_label', name: record['name']), class: 'visually-hidden') +
-          render(Icons::OrcidComponent.new(classes: 'ms-3', aria_hidden: true)) +
+          render(Icons::OrcidComponent.new(aria_hidden: true)) +
           tag.span(t('.orcid_record'), class: 'orcid-record__label fs-6 fw-normal', aria: { hidden: true })
       end
     end

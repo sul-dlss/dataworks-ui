@@ -121,7 +121,7 @@ en:
       shared_datasets: "Shared datasets"
       stanford_profile: "Stanford profile"
       stanford_profile_aria_label: "Stanford profile for %{name}"
-      view_datasets: "View %{total} datasets"
+      view_datasets_html: "View %{total} datasets"
     affiliation_presentation:
       ror_aria_label: "ROR profile for %{name}"
     subjects_component:
