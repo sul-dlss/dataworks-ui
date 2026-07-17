@@ -15,8 +15,20 @@ RSpec.describe DataworksHelper do
   describe '#add_facet_link' do
     it 'links to a catalog search with the facet applied' do
       link = helper.add_facet_link('funders_ssim', 'National Science Foundation')
-      expect(link).to have_link('National Science Foundation',
-                                href: '/catalog?f%5Bfunders_ssim%5D%5B%5D=National+Science+Foundation')
+      href = '/catalog?f%5Bfunders_ssim%5D%5B%5D=National+Science+Foundation&search_field=all_fields'
+      expect(link).to have_link('National Science Foundation', href:)
+    end
+
+    context 'when the current request already has a search_field' do
+      let(:search_state) do
+        Blacklight::SearchState.new(ActionController::Parameters.new(search_field: 'title', q: 'water'),
+                                    CatalogController.blacklight_config)
+      end
+
+      it 'preserves the existing search_field rather than overriding it' do
+        link = helper.add_facet_link('funders_ssim', 'National Science Foundation')
+        expect(link).to have_link('National Science Foundation', href: /search_field=title/)
+      end
     end
   end
 
@@ -24,8 +36,8 @@ RSpec.describe DataworksHelper do
     it 'renders funder name as a catalog search link with award details' do
       value = [[{ funder_name: 'National Science Foundation', award_number: '12345' }].to_json]
       result = helper.display_funding_information(value:)
-      expect(result).to have_link('National Science Foundation',
-                                  href: '/catalog?f%5Bfunders_ssim%5D%5B%5D=National+Science+Foundation')
+      href = '/catalog?f%5Bfunders_ssim%5D%5B%5D=National+Science+Foundation&search_field=all_fields'
+      expect(result).to have_link('National Science Foundation', href:)
       expect(result).to include('Award number 12345')
     end
   end
