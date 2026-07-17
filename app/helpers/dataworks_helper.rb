@@ -1,25 +1,6 @@
 # frozen_string_literal: true
 
 module DataworksHelper
-  # Try to render a human-readable display of related identifier information
-  def render_related_identifiers(args)
-    # Convert into array of objects
-    args[:value].map do |arg|
-      parsed_json = JSON.parse(arg)
-      parsed_json.map do |val|
-        prefix_string = ''
-        relation_type = ''
-        id = val['related_identifier'].to_s
-        relation_type = "#{val['relation_type']}: " if val.key?('relation_type')
-        prefix_string = "#{relation_type}#{val['related_identifier_type']}" if val.key?('related_identifier_type')
-        "#{prefix_string} #{id} #{display_remaining_keys(val,
-                                                         %w[related_identifier relation_type
-                                                            related_identifier_type])}"
-        # Display any other keys after
-      end.join('<br>')
-    end.join.html_safe
-  end
-
   def display_remaining_keys(val, exclude_keys)
     display_string = val.filter_map do |key, value|
       next if exclude_keys.include?(key)
@@ -55,29 +36,6 @@ module DataworksHelper
     link_to(facet_value, search_action_path(search_state.filter(facet_field).add(facet_value)))
   end
 
-  def url_link(args)
-    link_to(args[:value][0], args[:value][0], target: :blank)
-  end
-
-  def display_rights(args)
-    args[:value].map do |arg|
-      parsed_json = JSON.parse(arg)
-      parsed_json.map do |val|
-        rights = val['rights'] || ''
-        rights_uri = val['rights_uri'] || ''
-        rights_identifier = val['rights_identifier'] || ''
-        rights_identifier_scheme = val['rights_identifier_scheme'] || ''
-        rights_link = rights_uri.present? ? ", #{link_to('URI', rights_uri)}" : ''
-        rights_identifier_display = if rights_identifier_scheme.present?
-                                      ", #{rights_identifier_scheme}: #{rights_identifier}"
-                                    else
-                                      rights_identifier
-                                    end
-        "#{rights}#{rights_link} #{rights_identifier_display}"
-      end.join('<br>')
-    end.join(' ').html_safe
-  end
-
   def display_variables(args)
     args[:value].map(&:titleize).sort.join('<br>').html_safe
   end
@@ -91,13 +49,6 @@ module DataworksHelper
     years.slice_when { |prev, curr| curr > prev + 1 }.map do |group|
       group.length == 1 ? group.first.to_s : "#{group.first}–#{group.last}"
     end.join(', ')
-  end
-
-  def display_facet_separate_lines(args)
-    field = args[:field]
-    args[:value].sort.map do |val|
-      add_facet_link(field, val)
-    end.join('<br>').html_safe
   end
 
   # Define allowed tags and attributes for sanitization
@@ -124,17 +75,5 @@ module DataworksHelper
         sanitize_options: { tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES }
       )
     end)
-  end
-
-  # Preview version of rich text that strips out almost all HTML and renders
-  # a truncated version for the index view. Allows italics. Tries to break on
-  # word boundaries.
-  def render_rich_text_preview(args)
-    sanitize(truncate(
-               safe_join(args[:value].map { |arg| sanitize(CGI.unescapeHTML(arg), tags: %w[em i]) }),
-               length: 500,
-               escape: false,
-               separator: ' '
-             ), tags: %w[em i])
   end
 end
