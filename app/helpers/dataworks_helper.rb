@@ -33,7 +33,9 @@ module DataworksHelper
   end
 
   def add_facet_link(facet_field, facet_value)
-    link_to(facet_value, search_action_path(search_state.filter(facet_field).add(facet_value)))
+    new_params = search_state.filter(facet_field).add(facet_value).params
+    new_params = new_params.merge(search_field: 'all_fields') if new_params[:search_field].blank?
+    link_to(facet_value, search_action_path(new_params))
   end
 
   def display_variables(args)
