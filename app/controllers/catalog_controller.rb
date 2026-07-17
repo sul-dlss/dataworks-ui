@@ -61,12 +61,12 @@ class CatalogController < ApplicationController
     # config.per_page = [10,20,50,100]
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'title_tsim'
+    config.index.title_field = 'title_html_tsm'
     # config.index.display_type_field = 'format'
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
     # The presenter is the view-model class for the page
-    # config.index.document_presenter_class = MyApp::IndexPresenter
+    config.index.document_presenter_class = Index::DocumentPresenter
 
     # Some components can be configured
     config.index.document_component = Index::DocumentComponent
@@ -96,12 +96,14 @@ class CatalogController < ApplicationController
     config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
 
     # solr field configuration for document/show views
-    # config.show.title_field = 'title_tsim'
+    config.show.title_field = 'title_html_tsm'
+    # Plain-text title for the browser <title> element, so markup doesn't leak into <head>
+    config.show.html_title_field = 'title_tsim'
     # config.show.display_type_field = 'format'
     # config.show.thumbnail_field = 'thumbnail_path_ss'
     #
     # The presenter is a view-model class for the page
-    # config.show.document_presenter_class = MyApp::ShowPresenter
+    config.show.document_presenter_class = Show::DocumentPresenter
     #
     # These components can be configured
     config.show.document_header_component = Show::PageHeaderComponent
