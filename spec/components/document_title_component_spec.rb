@@ -29,7 +29,7 @@ RSpec.describe DocumentTitleComponent, type: :component do
 
   it 'renders the access badge by default' do
     render_title
-    expect(page).to have_css('span.badge.access-badge.public', text: 'Public')
+    expect(page).to have_css('a.badge.access-badge.public', text: 'Public')
   end
 
   context 'when access_badge: false' do
@@ -40,7 +40,7 @@ RSpec.describe DocumentTitleComponent, type: :component do
 
     it 'still renders the Stanford authored badge' do
       render_title(access_badge: false)
-      expect(page).to have_css('span.badge.stanford-authored', text: 'Stanford Authored')
+      expect(page).to have_css('a.badge.stanford-authored', text: 'Stanford Authored')
     end
 
     context 'when the dataset is also not Stanford authored' do

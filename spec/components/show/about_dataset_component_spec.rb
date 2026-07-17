@@ -25,7 +25,7 @@ RSpec.describe Show::AboutDatasetComponent, type: :component do
   end
 
   it 'renders the access badge alongside the heading' do
-    expect(page).to have_css('h2 span.badge.access-badge.public', text: 'Public')
+    expect(page).to have_css('h2 a.badge.access-badge.public', text: 'Public')
   end
 
   it 'shows where the dataset is available, using the URL host' do
