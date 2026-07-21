@@ -16,7 +16,7 @@ RSpec.describe Index::DocumentComponent, type: :component do
       id: 'abc-123',
       title_tsim: 'My Dataset',
       access_ssi: 'restricted',
-      descriptions_tsim: 'A description of the dataset.',
+      descriptions_html_tsm: 'A description of the dataset.',
       url_ss: 'https://example.com/dataset'
     )
   end

@@ -54,28 +54,23 @@ module DataworksHelper
   end
 
   # Define allowed tags and attributes for sanitization
-  ALLOWED_TAGS = %w[a b i em strong p ul ol li br table thead tbody tr th td colgroup col].freeze
+  ALLOWED_TAGS = %w[a b i em strong sub sup p ul ol li br table thead tbody tr th td colgroup col].freeze
   ALLOWED_ATTRIBUTES = %w[href].freeze
 
-  # Sanitize HTML/XML in rich text fields and render line breaks.
+  # Render rich-text HTML (already sanitized by the ETL at index time) for display.
   def render_rich_text(args)
     safe_join(args[:value].map do |arg|
-      # If there are newlines in between tags or in running text, they will get
-      # converted to <br> tags by simple_format, which we don't want. We sanitize
-      # first, then clean up any undesired newlines that may result.
-      input = sanitize(CGI.unescapeHTML(arg), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)
+      # Sanitize again as a final gate, then clean up newlines between tags or in
+      # running text that simple_format would otherwise turn into stray <br> tags.
+      sanitized = sanitize(arg, tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)
         .gsub(/>\n+\s*</, '><')
         .gsub(/([^>])\n ([^<])/, '\1 \2')
 
-      # We wrap each value in a div with class 'rich-text' so that we can
-      # scope styling to just these fields. The default is <p>, but that
-      # causes issues when the content itself contains <p> tags.
-      simple_format(
-        input,
-        { class: 'rich-text' },
-        wrapper_tag: :div,
-        sanitize_options: { tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES }
-      )
+      # Wrap each value in a div with class 'rich-text' so styling can be scoped
+      # to just these fields. The default <p> wrapper causes issues when the
+      # content itself contains <p> tags. The content is already sanitized, so
+      # simple_format does not need to sanitize again.
+      simple_format(sanitized, { class: 'rich-text' }, wrapper_tag: :div, sanitize: false)
     end)
   end
 end

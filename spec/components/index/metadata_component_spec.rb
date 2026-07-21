@@ -10,7 +10,7 @@ RSpec.describe Index::MetadataComponent, type: :component do
   let(:access) { nil }
   let(:publication_year) { nil }
   let(:document) do
-    SolrDocument.new(id: 'abc-123', descriptions_tsim: description, url_ss: url, access_ssi: access,
+    SolrDocument.new(id: 'abc-123', descriptions_html_tsm: description, url_ss: url, access_ssi: access,
                      publication_year_isi: publication_year, stanford_contributor_bsi: false, subjects_ssim: [])
   end
 

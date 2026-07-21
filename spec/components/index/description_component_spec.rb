@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe Index::DescriptionComponent, type: :component do
   subject(:component) { described_class.new(document:) }
 
-  let(:description) { nil }
-  let(:document) { instance_double(SolrDocument, description:) }
+  let(:description_html) { nil }
+  let(:document) { instance_double(SolrDocument, description_html:) }
 
   context 'when description is blank' do
     it 'renders nothing' do
@@ -16,7 +16,7 @@ RSpec.describe Index::DescriptionComponent, type: :component do
   end
 
   context 'when a description is present' do
-    let(:description) { 'A dataset about something interesting.' }
+    let(:description_html) { 'A dataset about something interesting.' }
 
     before { render_inline(component) }
 

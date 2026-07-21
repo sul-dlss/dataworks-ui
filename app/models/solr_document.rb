@@ -5,7 +5,7 @@ class SolrDocument
   include Blacklight::Solr::Document
 
   attribute :access, :string, 'access_ssi'
-  attribute :description, :string, 'descriptions_tsim'
+  attribute :description_html, :string, 'descriptions_html_tsm'
   attribute :doi, :string, 'doi_ssi'
   attribute :formats, :array, 'formats_ssim'
   attribute :publication_year, :string, 'publication_year_isi'

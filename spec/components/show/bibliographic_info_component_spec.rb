@@ -15,8 +15,8 @@ RSpec.describe Show::BibliographicInfoComponent, type: :component do
     SolrDocument.new(
       id: 'abc-123',
       geo_place_ssim: ['Antarctica'],
-      methods_tsim: ['A detailed description of the methods used.'],
-      other_descriptions_tsim: ['Some other description.'],
+      methods_html_tsm: ['A detailed description of the methods used.'],
+      other_descriptions_html_tsm: ['Some other description.'],
       variables_tsim: %w[age income]
     )
   end
