@@ -67,4 +67,31 @@ RSpec.describe DataworksHelper do
       expect(helper.display_temporal_coverage(value: [])).to be_nil
     end
   end
+
+  describe '#render_rich_text' do
+    it 'wraps each value in a rich-text div' do
+      result = helper.render_rich_text(value: ['<p>A paragraph.</p>'])
+      expect(result).to have_css('div.rich-text', text: 'A paragraph.')
+    end
+
+    it 'preserves allowlisted inline markup, trusting index-time sanitization' do
+      result = helper.render_rich_text(value: ['H<sub>2</sub>O and <em>emphasis</em>'])
+      expect(result).to include('H<sub>2</sub>O and <em>emphasis</em>')
+    end
+
+    it 'tidies newlines between tags that would otherwise become stray line breaks' do
+      result = helper.render_rich_text(value: ["<ul><li>one</li>\n<li>two</li>\n</ul>"])
+      expect(result).to include('<ul><li>one</li><li>two</li></ul>')
+    end
+
+    it 'wraps each of several values in its own rich-text div' do
+      result = helper.render_rich_text(value: ['<p>First</p>', '<p>Second</p>'])
+      expect(result).to have_css('div.rich-text', count: 2)
+    end
+
+    it 'strips disallowed markup as a final safety check before rendering' do
+      result = helper.render_rich_text(value: ['Safe <a href="x" onclick="bad()">link</a>'])
+      expect(result).to include('Safe <a href="x">link</a>')
+    end
+  end
 end

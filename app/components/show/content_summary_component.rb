@@ -11,11 +11,11 @@ module Show
     attr_reader :document
 
     def render?
-      document.description.present?
+      document.description_html.present?
     end
 
     def description
-      helpers.render_rich_text(value: Array(document.description))
+      helpers.render_rich_text(value: Array(document.description_html))
     end
   end
 end
