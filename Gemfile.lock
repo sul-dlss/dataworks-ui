@@ -170,6 +170,9 @@ GEM
       net-http (~> 0.5)
     globalid (1.4.0)
       activesupport (>= 6.1)
+    honeybadger (6.9.1)
+      logger
+      ostruct
     http (6.0.3)
       http-cookie (~> 1.0)
       llhttp (~> 0.6.1)
@@ -461,6 +464,7 @@ DEPENDENCIES
   dlss-capistrano
   dotenv
   dotenv-rails
+  honeybadger
   importmap-rails
   jbuilder
   okcomputer
