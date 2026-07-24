@@ -94,6 +94,9 @@ GEM
       rails (>= 7.0, < 9)
       view_component (>= 3.0, < 5.0)
       zeitwerk
+    blacklight_dynamic_sitemap (1.0.0)
+      blacklight (> 7.0)
+      rails
     blacklight_range_limit (9.2.0)
       blacklight (>= 7.25.2, < 10)
       view_component (>= 2.54, < 5)
@@ -448,6 +451,7 @@ PLATFORMS
 
 DEPENDENCIES
   blacklight (~> 9.0)
+  blacklight_dynamic_sitemap
   blacklight_range_limit (~> 9.2)
   bootsnap
   bot_challenge_page (~> 1.2)

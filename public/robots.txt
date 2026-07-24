@@ -1,1 +1,49 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+Sitemap: https://dataworks.stanford.edu/sitemap.xml
+
+User-agent: *
+Crawl-delay: 10
+
+# Search result pages (keyword queries) — crawler traps
+Disallow: /?q=*
+Disallow: /?*&q=
+Disallow: /catalog?q=*
+Disallow: /catalog?*&q=
+Disallow: /catalog.html?q=*
+Disallow: /catalog.html?*&q=
+
+# Faceted search pages — crawler traps
+Disallow: /?f[*
+Disallow: /?*&f[*
+Disallow: /?f%5B*
+Disallow: /?*&f%5B*
+Disallow: /catalog?f[*
+Disallow: /catalog?*&f[*
+Disallow: /catalog?f%5B*
+Disallow: /catalog?*&f%5B*
+Disallow: /catalog.html?f[*
+Disallow: /catalog.html?*&f[*
+Disallow: /catalog.html?f%5B*
+Disallow: /catalog.html?*&f%5B*
+
+# Blacklight endpoints that are not content pages
+Disallow: /catalog/range_limit
+Disallow: /catalog/facet
+Disallow: /catalog/opensearch
+Disallow: /catalog/suggest
+Disallow: /catalog.rss
+Disallow: /catalog.atom
+Disallow: /search_history
+Disallow: /bookmarks
+Disallow: /openalex_info
+Disallow: /feedback
+
+# Per-record action endpoints (not content pages) — wildcards keep /catalog/:id crawlable
+Disallow: /catalog/*/email
+Disallow: /catalog/*/sms
+Disallow: /catalog/*/citation
+Disallow: /catalog/*/track
+Disallow: /catalog/*/raw
+Disallow: /catalog/email
+Disallow: /catalog/sms
+Disallow: /catalog/citation

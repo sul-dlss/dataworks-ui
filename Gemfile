@@ -68,6 +68,7 @@ end
 
 # Incorporating blacklight
 gem 'blacklight', '~> 9.0'
+gem 'blacklight_dynamic_sitemap'
 gem 'blacklight_range_limit', '~> 9.2'
 
 # CSV needs to be added explicitly post ruby 3.4
