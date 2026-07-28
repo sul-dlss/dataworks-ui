@@ -66,6 +66,36 @@ RSpec.describe SolrDocument do
     end
   end
 
+  describe '#embargoed?' do
+    subject(:embargoed?) { described_class.new(publication_year_isi: publication_year).embargoed? }
+
+    before { travel_to(Time.zone.local(2026, 7, 28)) }
+
+    context 'when the publication year is in the future' do
+      let(:publication_year) { 2028 }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when the publication year is the current year' do
+      let(:publication_year) { 2026 }
+
+      it { is_expected.to be(false) }
+    end
+
+    context 'when the publication year is in the past' do
+      let(:publication_year) { 1998 }
+
+      it { is_expected.to be(false) }
+    end
+
+    context 'when the publication year is blank' do
+      let(:publication_year) { nil }
+
+      it { is_expected.to be(false) }
+    end
+  end
+
   describe '#url_host' do
     subject(:url_host) { described_class.new(url_ss: url).url_host }
 

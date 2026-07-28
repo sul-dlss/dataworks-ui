@@ -26,7 +26,7 @@
     "related_ids_sim": ["10.1234/5678", "10.2345/6789"],
     "publisher_ssi": "My publisher",
     "publisher_id_sim": "https://ror.org/00f54p054",
-    "publication_year_isi": 2023,
+    "publication_year_isi": 2028,
     "subjects_ssim": ["My subject", "My subject 2"],
     "language_ssi": "en",
     "sizes_ssm": ["1.2 MB", "3 pages"],

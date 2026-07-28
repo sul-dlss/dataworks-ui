@@ -7,6 +7,6 @@ module Index
       super()
     end
 
-    delegate :publication_year, to: :@document
+    delegate :publication_year, :embargoed?, to: :@document
   end
 end

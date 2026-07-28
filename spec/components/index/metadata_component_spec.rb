@@ -24,6 +24,15 @@ RSpec.describe Index::MetadataComponent, type: :component do
     end
   end
 
+  context 'when the publication year is in the future' do
+    let(:publication_year) { 2999 }
+
+    it 'renders an embargo label instead of the publication year' do
+      expect(page).to have_css('p.document-publication-year', text: 'Embargoed until: 2999')
+      expect(page).to have_no_text('Published:')
+    end
+  end
+
   context 'when a description is present' do
     let(:description) { 'A dataset about something interesting.' }
 

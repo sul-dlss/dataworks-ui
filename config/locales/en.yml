@@ -65,6 +65,7 @@ en:
     subjects_component:
       heading: Subjects
     metadata_component:
+      embargoed: "Embargoed until: %{year}"
       publication_year: "Published: %{year}"
   badges:
     access:
@@ -86,6 +87,7 @@ en:
       available_at: "Available on"
       button: "Access data"
       doi_html: '<span class="fw-bold">DOI:</span>&nbsp;%{doi}'
+      embargoed: "Embargoed until: %{year}"
       formats_html: '<span class="fw-bold">Formats:</span>&nbsp;%{formats}'
       published: "Published: %{year}"
       size_html: '<span class="fw-bold">Size:</span>&nbsp;%{size}'
