@@ -8,7 +8,7 @@ DataWorks UI is the front-end half of the DataWorks system. Dataset metadata is 
 
 ## Requirements
 
-- Ruby (see the version in [`.ruby-version`](.ruby-version) and the CI matrix in
+- Ruby (see the version in the CI matrix in
   [`.github/workflows/ruby.yml`](.github/workflows/ruby.yml))
 - A JavaScript runtime
 - [Apache Solr](https://solr.apache.org/), run locally via
