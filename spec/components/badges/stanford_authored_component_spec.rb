@@ -19,7 +19,7 @@ RSpec.describe Badges::StanfordAuthoredComponent, type: :component do
     it 'links to add the stanford-authored facet' do
       badge = page.find('a.stanford-authored')
       expect(badge['href']).to include('f%5Bstanford_contributor_bsi%5D%5B%5D=true')
-      expect(badge['aria-pressed']).to eq('false')
+      expect(badge['aria-current']).to be_nil
     end
   end
 
@@ -32,10 +32,10 @@ RSpec.describe Badges::StanfordAuthoredComponent, type: :component do
       end
     end
 
-    it 'marks the badge as pressed and links to remove the filter' do
+    it 'marks the badge as current and links to remove the filter' do
       badge = page.find('a.stanford-authored')
       expect(badge['class']).to include('stanford-authored--selected')
-      expect(badge['aria-pressed']).to eq('true')
+      expect(badge['aria-current']).to eq('true')
       expect(badge['href']).not_to include('stanford_contributor_bsi')
       expect(badge).to have_css('svg.bi-check')
     end

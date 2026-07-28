@@ -17,7 +17,7 @@ RSpec.describe Badges::SubjectPillComponent, type: :component do
 
     it 'omits the toggle affordances' do
       link = page.find('.document-subjects__pill')
-      expect(link['aria-pressed']).to be_nil
+      expect(link['aria-current']).to be_nil
       expect(link).to have_no_css('.document-subjects__pill--selected')
     end
   end
@@ -27,8 +27,8 @@ RSpec.describe Badges::SubjectPillComponent, type: :component do
 
     before { render_inline(component) }
 
-    it 'marks the pill as not pressed' do
-      expect(page.find('.document-subjects__pill')['aria-pressed']).to eq('false')
+    it 'does not mark the pill as current' do
+      expect(page.find('.document-subjects__pill')['aria-current']).to be_nil
     end
   end
 
@@ -37,9 +37,9 @@ RSpec.describe Badges::SubjectPillComponent, type: :component do
 
     before { render_inline(component) }
 
-    it 'marks the pill as pressed with the selected modifier and a check icon' do
+    it 'marks the pill as current with the selected modifier and a check icon' do
       selected = page.find('.document-subjects__pill--selected')
-      expect(selected['aria-pressed']).to eq('true')
+      expect(selected['aria-current']).to eq('true')
       expect(selected).to have_text('Biology')
       expect(selected).to have_css('svg.bi-check')
     end

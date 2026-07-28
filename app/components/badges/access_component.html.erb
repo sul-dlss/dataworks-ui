@@ -3,7 +3,7 @@
               "badge access-badge text-uppercase fw-semibold d-inline-flex align-items-center gap-1 me-1 #{document.access.downcase}",
               'access-badge--selected' => selected?
             ),
-            aria: { pressed: selected? } do %>
+            aria: selected? ? { current: true } : {} do %>
   <%= render icon_component %>
   <%= access_message %>
 <% end %>

@@ -16,11 +16,6 @@ module Badges
 
     attr_reader :subject, :path
 
-    # True when this pill behaves as a filter toggle rather than a plain link.
-    def toggle?
-      !@selected.nil?
-    end
-
     def selected?
       @selected == true
     end

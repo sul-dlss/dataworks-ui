@@ -3,4 +3,4 @@
               'badge stanford-authored text-uppercase fw-semibold',
               'stanford-authored--selected' => selected?
             ),
-            aria: { pressed: selected? } %>
+            aria: selected? ? { current: true } : {} %>

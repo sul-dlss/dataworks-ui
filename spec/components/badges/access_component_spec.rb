@@ -19,7 +19,7 @@ RSpec.describe Badges::AccessComponent, type: :component do
     it 'links to add the restricted access filter' do
       badge = page.find('a.access-badge')
       expect(badge['href']).to include('f%5Baccess_ssi%5D%5B%5D=restricted')
-      expect(badge['aria-pressed']).to eq('false')
+      expect(badge['aria-current']).to be_nil
     end
 
     it 'renders the lock icon' do
@@ -55,10 +55,10 @@ RSpec.describe Badges::AccessComponent, type: :component do
       end
     end
 
-    it 'marks the badge as pressed and links to remove the filter' do
+    it 'marks the badge as current and links to remove the filter' do
       badge = page.find('a.access-badge')
       expect(badge['class']).to include('access-badge--selected')
-      expect(badge['aria-pressed']).to eq('true')
+      expect(badge['aria-current']).to eq('true')
       expect(badge['href']).not_to include('access_ssi')
     end
 
