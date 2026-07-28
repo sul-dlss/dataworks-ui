@@ -48,6 +48,18 @@ RSpec.describe Show::AboutDatasetComponent, type: :component do
     expect(page).to have_css('a[target="_blank"][rel="noopener"]', text: 'Access data')
   end
 
+  context 'when the publication year is in the future' do
+    let(:document) do
+      SolrDocument.new(id: 'abc-123', access_ssi: 'public', url_ss: 'https://example.com',
+                       publication_year_isi: 2999)
+    end
+
+    it 'renders an embargo label instead of the publication year' do
+      expect(page).to have_text('Embargoed until: 2999')
+      expect(page).to have_no_text('Published:')
+    end
+  end
+
   context 'when optional metadata is missing' do
     let(:document) do
       SolrDocument.new(id: 'abc-123', access_ssi: 'public', url_ss: 'https://example.com')

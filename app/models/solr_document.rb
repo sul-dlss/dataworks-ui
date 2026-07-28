@@ -15,6 +15,14 @@ class SolrDocument
   attribute :url, :string, 'url_ss'
   attribute :version, :string, 'version_ss'
 
+  # True when the publication year is in the future, indicating an embargoed dataset.
+  # Only whole future years are treated as embargoed; dates later in the current year are not.
+  def embargoed?
+    return false if publication_year.blank?
+
+    publication_year.to_i > Time.zone.today.year
+  end
+
   # The host portion of the dataset's external URL, for "Available on <host>" labels.
   def url_host
     return if url.blank?
