@@ -80,6 +80,10 @@ GEM
     airbrussh (1.6.2)
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.3)
+    axe-core-api (4.12.0)
+      dumb_delegator
+    axe-core-rspec (4.12.0)
+      axe-core-api (= 4.12.0)
     base64 (0.3.0)
     bcrypt_pbkdf (1.1.2)
     benchmark (0.5.0)
@@ -160,6 +164,7 @@ GEM
       dotenv (= 3.2.0)
       railties (>= 6.1)
     drb (2.2.3)
+    dumb_delegator (1.1.0)
     ed25519 (1.4.0)
     erb (6.0.6)
     erubi (1.13.1)
@@ -450,6 +455,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  axe-core-rspec
   blacklight (~> 9.0)
   blacklight_dynamic_sitemap
   blacklight_range_limit (~> 9.2)

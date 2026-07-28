@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
-  <a class="btn btn-outline-primary btn-stanford-cardinal py-2 px-3 <%= 'active' if presenter.selected? %>" href="<%= presenter.href %>">
-    <input type="checkbox" class="me-2" style="pointer-events: none;" <%= 'checked' if presenter.selected? %>>
+  <a class="btn btn-outline-primary btn-stanford-cardinal py-2 px-3 <%= 'active' if presenter.selected? %>" href="<%= presenter.href %>"
+     <%= 'aria-current="true"'.html_safe if presenter.selected? %>>
+    <input type="checkbox" class="me-2" style="pointer-events: none;" tabindex="-1" aria-hidden="true" <%= 'checked' if presenter.selected? %>>
     <%= facet_field.label %>
   </a>
 </div>

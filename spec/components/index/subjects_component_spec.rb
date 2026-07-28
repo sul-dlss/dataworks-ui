@@ -46,10 +46,10 @@ RSpec.describe Index::SubjectsComponent, type: :component do
       end
     end
 
-    it 'marks the selected pill as pressed and links it to remove the filter' do
+    it 'marks the selected pill as current and links it to remove the filter' do
       selected = page.find('.document-subjects__pill--selected')
       expect(selected).to have_text('Biology')
-      expect(selected['aria-pressed']).to eq('true')
+      expect(selected['aria-current']).to eq('true')
       expect(selected['href']).not_to include('subjects_ssim')
       expect(selected).to have_css('svg.bi-check')
     end
@@ -62,7 +62,7 @@ RSpec.describe Index::SubjectsComponent, type: :component do
     it 'still links an unselected pill to add its filter' do
       climate = page.find('.document-subjects__pill', text: 'Climate change')
       expect(climate['href']).to include('f%5Bsubjects_ssim%5D%5B%5D=Climate+change')
-      expect(climate['aria-pressed']).to eq('false')
+      expect(climate['aria-current']).to be_nil
     end
   end
 end
