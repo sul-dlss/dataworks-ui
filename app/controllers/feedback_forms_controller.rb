@@ -31,7 +31,7 @@ class FeedbackFormsController < ApplicationController
   end
 
   def collect_errors(errors)
-    errors << t('feedback_form.errors.recaptcha') unless verify_recaptcha(action: 'feedback')
+    errors << t('feedback_form.errors.recaptcha') unless verify_recaptcha(action: 'feedback', minimum_score: 0.5)
     errors << t('feedback_form.errors.email_required') if params[:to].blank?
     errors << t('feedback_form.errors.message_required') if params[:message].blank?
   end
