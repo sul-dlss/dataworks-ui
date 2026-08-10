@@ -27,6 +27,7 @@ Disallow: /catalog.html?f%5B*
 Disallow: /catalog.html?*&f%5B*
 
 # Blacklight endpoints that are not content pages
+Disallow: /catalog/contributor
 Disallow: /catalog/range_limit
 Disallow: /catalog/facet
 Disallow: /catalog/opensearch
