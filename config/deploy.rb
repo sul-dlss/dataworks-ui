@@ -37,6 +37,9 @@ set :linked_files, %w[config/database.yml]
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage"
 set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads]
 
+# Install the whenever-managed crontab (config/schedule.rb) only on the db host.
+set :whenever_roles, %i[db]
+
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
