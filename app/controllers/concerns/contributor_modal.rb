@@ -18,6 +18,8 @@ module ContributorModal
   def load_contributor_data
     @facet = contributor_facet
     @contributors = contributor_params(@facet)
+    raise ActionController::RoutingError, 'Not Found' if @contributors.blank?
+
     @response = contributor_response(@facet, @contributors)
     @display_facet = @response.aggregations[@facet.key]
     @presenter = @facet.presenter.new(@facet, @display_facet, view_context)
@@ -46,7 +48,7 @@ module ContributorModal
   end
 
   def contributor_params(facet)
-    params[:f][facet.key]
+    params.dig(:f, facet.key)
   end
 
   def contributor_response(facet, contributors)
