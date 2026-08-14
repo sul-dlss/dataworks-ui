@@ -15,4 +15,16 @@ namespace :dataworks_ui do
       Blacklight.default_index.connection.commit
     end
   end
+
+  desc 'Prune saved search data older than the given number of days'
+  task :prune_search_data, %i[days_old] => :environment do |_, args|
+    days_old = args[:days_old].to_i
+    raise ArgumentError, 'days_old is expected to be greater than 0' if days_old <= 0
+
+    updated_at = Search.arel_table[:updated_at]
+    Search.where(updated_at.lt(days_old.days.ago)).in_batches do |searches|
+      searches.delete_all
+      sleep(10) # Throttle the delete queries to avoid overloading the database
+    end
+  end
 end

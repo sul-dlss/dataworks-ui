@@ -84,6 +84,7 @@ gem 'openssl'
 gem 'pg'
 gem 'recaptcha', '~> 5.21'
 gem 'rsolr', '>= 1.0', '< 3'
+gem 'whenever', require: false
 
 # For Capistrano
 group :deployment do
