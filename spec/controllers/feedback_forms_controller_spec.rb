@@ -58,5 +58,39 @@ RSpec.describe FeedbackFormsController do
         end.not_to change(ActionMailer::Base.deliveries, :count)
       end
     end
+
+    describe 'redirect after submission' do
+      let(:base_params) { { to: 'user@example.com', message: 'Hello' } }
+
+      it 'redirects back to a safe same-host url' do
+        post :create, params: base_params.merge(url: 'http://test.host/catalog/1')
+        expect(response).to redirect_to('http://test.host/catalog/1')
+      end
+
+      it 'falls back to the home page when the url is missing' do
+        post :create, params: base_params
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'falls back to the home page for an off-host url' do
+        post :create, params: base_params.merge(url: 'https://bad.example.com/')
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'falls back to the home page for a path-relative or malformed url' do
+        post :create, params: base_params.merge(url: '-1 OR 5*5=26 -- ')
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'falls back to the home page when the url is an array' do
+        post :create, params: base_params.merge(url: ['http://test.host/'])
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'falls back to the home page when the url is a hash' do
+        post :create, params: base_params.merge(url: { '$eq' => 'http://test.host/' })
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 end

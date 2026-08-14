@@ -2,5 +2,6 @@
 
 module Feedback
   class FeedbackModalComponent < ViewComponent::Base
+    include WithReferer
   end
 end

@@ -15,13 +15,20 @@ class FeedbackFormsController < ApplicationController
         render json: flash
       end
       format.html do
-        redirect_to params[:url]
+        redirect_to return_url
       end
       format.turbo_stream
     end
   end
 
   private
+
+  # params[:url] is the (user-controlled) page the feedback was submitted from.
+  # url_from returns it only when it's safe to redirect to (a same-host or
+  # path-relative URL); otherwise fall back to the home page.
+  def return_url
+    url_from(params[:url]) || root_path
+  end
 
   def valid?
     errors = []
