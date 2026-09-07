@@ -89,14 +89,14 @@ GEM
     benchmark (0.5.0)
     bigdecimal (4.1.2)
     bindex (0.8.1)
-    blacklight (9.0.0)
+    blacklight (9.1.0)
       globalid
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       ostruct (>= 0.3.2)
-      rails (>= 7.0, < 9)
-      view_component (>= 3.0, < 5.0)
+      rails (>= 7.2, < 9)
+      view_component (~> 4.0)
       zeitwerk
     blacklight_dynamic_sitemap (1.0.0)
       blacklight (> 7.0)
@@ -104,7 +104,7 @@ GEM
     blacklight_range_limit (9.2.0)
       blacklight (>= 7.25.2, < 10)
       view_component (>= 2.54, < 5)
-    bootsnap (1.25.0)
+    bootsnap (1.26.0)
       msgpack (~> 1.5)
     bot_challenge_page (1.2.0)
       http (>= 5.2, < 7)
@@ -159,7 +159,7 @@ GEM
       capistrano-one_time_key (>= 0.2.0)
       capistrano-shared_configs
       ed25519
-    domain_name (0.6.20260829)
+    domain_name (0.6.20260902)
     dotenv (3.2.0)
     dotenv-rails (3.2.0)
       dotenv (= 3.2.0)
@@ -202,7 +202,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.21.2)
+    json (3.0.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -261,7 +261,7 @@ GEM
       benchmark
     openssl (4.0.2)
     ostruct (0.6.3)
-    parallel (2.1.0)
+    parallel (2.2.0)
     parser (3.3.12.0)
       ast (~> 2.4.1)
       racc
@@ -394,7 +394,7 @@ GEM
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
-    rubyzip (3.5.0)
+    rubyzip (3.6.0)
     securerandom (0.4.1)
     selenium-webdriver (4.48.0)
       base64 (~> 0.2)
@@ -506,4 +506,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-  4.0.19
+  4.0.20
