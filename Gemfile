@@ -79,6 +79,8 @@ gem 'bot_challenge_page', '~> 1.2'
 gem 'config'
 gem 'dotenv'
 gem 'honeybadger'
+# Pin until Faraday is updated to support v3, see: https://github.com/lostisland/faraday/pull/1687
+gem 'json', '~> 2.21'
 gem 'okcomputer'
 gem 'openssl'
 gem 'pg'
