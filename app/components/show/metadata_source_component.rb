@@ -4,7 +4,7 @@ module Show
   class MetadataSourceComponent < ViewComponent::Base
     def initialize(document:)
       super()
-      @providers = document.struct_field('provider_identifier_map_struct_ss')
+      @providers = document.provider_identifier_map_struct
       @url = document['url_ss']
     end
 
