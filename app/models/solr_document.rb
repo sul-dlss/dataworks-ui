@@ -5,10 +5,17 @@ class SolrDocument
   include Blacklight::Solr::Document
 
   attribute :access, :string, 'access_ssi'
+  attribute :access_contact_struct, :json, 'access_contact_struct_ss', default: '[]'
+  attribute :contributors_struct, :json, 'contributors_struct_ss', default: '[]'
+  attribute :creators_struct, :json, 'creators_struct_ss', default: '[]'
+  attribute :dates_struct, :json, 'dates_struct_ss', default: '[]'
   attribute :description_html, :string, 'descriptions_html_tsm'
   attribute :doi, :string, 'doi_ssi'
   attribute :formats, :array, 'formats_ssim'
+  attribute :provider_identifier_map_struct, :json, 'provider_identifier_map_struct_ss', default: '{}'
   attribute :publication_year, :string, 'publication_year_isi'
+  attribute :related_identifiers_struct, :json, 'related_identifiers_struct_ss', default: '[]'
+  attribute :rights_list_struct, :json, 'rights_list_struct_ss', default: '[]'
   attribute :sizes, :array, 'sizes_ssm'
   attribute :stanford_authored?, :boolean, 'stanford_contributor_bsi'
   attribute :subjects, :array, 'subjects_ssim'
@@ -32,14 +39,9 @@ class SolrDocument
     url
   end
 
-  # Parse a JSON `*_struct_ss` field into Ruby data, defaulting to an empty array when blank.
-  def struct_field(key)
-    JSON.parse(self[key] || '[]')
-  end
-
   # Creators and other contributors, merged and de-duplicated by name and identifiers.
   def contributors
-    @contributors ||= (creator_structs + contributor_structs).uniq do |contributor|
+    @contributors ||= (creator_structs + contributors_struct).uniq do |contributor|
       [contributor['name'], contributor['name_identifiers']]
     end
   end
@@ -63,10 +65,6 @@ class SolrDocument
 
   # Creator structs, tagged with the "Creator" role they lack by default.
   def creator_structs
-    struct_field(:creators_struct_ss).each { |creator| creator['role'] = 'Creator' }
-  end
-
-  def contributor_structs
-    struct_field(:contributors_struct_ss)
+    creators_struct.each { |creator| creator['role'] = 'Creator' }
   end
 end

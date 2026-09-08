@@ -3,7 +3,7 @@
 module Show
   class RightsComponent < ViewComponent::Base
     def initialize(document:)
-      @rights_list = document.struct_field('rights_list_struct_ss')
+      @rights_list = document.rights_list_struct
       super()
     end
 

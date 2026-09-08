@@ -11,7 +11,7 @@ module Show
 
     def initialize(document:)
       super()
-      @related_items = document.struct_field('related_identifiers_struct_ss')
+      @related_items = document.related_identifiers_struct
     end
 
     # Publications grouped under the relationship label we display them by

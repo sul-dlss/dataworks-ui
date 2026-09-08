@@ -6,7 +6,7 @@ module Show
   class RelatedDatesFieldComponent < Blacklight::MetadataFieldComponent
     # Dates without a date_type are omitted.
     def render_field_values
-      @field.document.struct_field('dates_struct_ss').filter_map do |val|
+      @field.document.dates_struct.filter_map do |val|
         "#{val['date_type']}: #{val['date']}" if val['date_type'].present?
       end
     end
