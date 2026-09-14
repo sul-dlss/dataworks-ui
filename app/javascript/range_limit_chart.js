@@ -66,6 +66,43 @@ function separatorsPlugin(separators) {
 }
 
 export function customizeRangeLimitChart(BlacklightRangeLimit) {
+  // Before Turbo caches the page for back/forward, destroy the live Chart.js
+  // instances. Turbo caches a *clone* of the canvas, so the original node (and
+  // its Chart instance) would otherwise linger in Chart.js's registry and never
+  // be collected. The canvas itself is left in place; setupDomForChart replaces
+  // it with a freshly drawn one when the page is restored.
+  document.addEventListener("turbo:before-cache", () => {
+    document.querySelectorAll("canvas.blacklight-range-limit-chart").forEach((canvas) => {
+      Chart.getChart(canvas)?.destroy()
+    })
+  })
+
+  // Idempotent chart setup. Blacklight.onLoad re-runs the range limit init on
+  // every turbo:load, turbo:frame-load (e.g. typing in the sidebar facet search
+  // box), and back/forward restore. The gem's setupDomForChart unconditionally
+  // prepends a new <canvas>, so repeated runs stack up duplicate graphs; and a
+  // Turbo-restored canvas comes back blank (its 2D bitmap isn't serialized). By
+  // clearing any existing canvas (and its Chart.js instance) before creating a
+  // fresh one, every run yields exactly one freshly drawn chart.
+  BlacklightRangeLimit.prototype.setupDomForChart = function () {
+    const wrapper = this.container.querySelector("*[data-chart-wrapper=true]")
+
+    wrapper.querySelectorAll("canvas.blacklight-range-limit-chart").forEach((canvas) => {
+      Chart.getChart(canvas)?.destroy()
+      canvas.remove()
+    })
+
+    const canvas = this.container.ownerDocument.createElement("canvas")
+    canvas.setAttribute("aria-hidden", "true") // the textual facet list is the accessible alternative
+    canvas.classList.add("blacklight-range-limit-chart")
+    canvas.style.display = "inline-block"
+    wrapper.style.display = "block"
+    wrapper.prepend(canvas)
+
+    this.chartCanvasElement = canvas
+    return canvas
+  }
+
   BlacklightRangeLimit.prototype.drawChart = function (chartCanvasElement) {
     const buckets = this.rangeBuckets
     if (!buckets || buckets.length === 0) return
